@@ -17,17 +17,20 @@ const footerLinks = [
     ],
   },
   {
-    title: "Resources",
+    title: "Legal",
     links: [
-      { label: "Startup Blog", to: "/blog" },
-      { label: "Tech Insights", to: "/blog" },
+      { label: "Privacy Policy", to: "/blog" },
+      { label: "Terms Of services", to: "/blog" },
+      { label: "Disclaimers", to: "/blog" },
+      { label: "Cookies Policy", to: "/blog" },
     ],
   },
   {
-    title: "Investors",
+    title: "Resources",
     links: [
-      { label: "Request Pitch Deck", to: "/investors" },
-      { label: "Contact", to: "/contact" },
+      { label: "Startup Blogs", to: "/blog" },
+      { label: "Tech Insights", to: "/contact" },
+      { label: "Pitch Deck", to: "/blog" },
     ],
   },
 ];

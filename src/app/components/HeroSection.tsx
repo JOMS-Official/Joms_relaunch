@@ -1,5 +1,6 @@
+import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Link } from "react-router";
 
 interface HeroProps {
@@ -117,40 +118,17 @@ export default function HeroSection({ darkMode }: HeroProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            className="flex justify-center lg:justify-start"
           >
             <Link
-              to="/#vision"
-              onClick={() =>
-                document
-                  .getElementById("vision")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-white transition-all hover:scale-105"
+              to="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-2xl text-white transition-all hover:scale-105"
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                 boxShadow: "0 8px 30px rgba(79,70,229,0.4)",
               }}
             >
-              Explore Our Vision
-              <ArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-            <Link
-              to="/careers"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl transition-all hover:scale-105"
-              style={{
-                background: darkMode
-                  ? "rgba(255,255,255,0.08)"
-                  : "rgba(0,0,0,0.05)",
-                border: darkMode
-                  ? "1px solid rgba(255,255,255,0.15)"
-                  : "1px solid rgba(0,0,0,0.1)",
-              }}
-            >
-              Join Our Journey
+              Contact Us
             </Link>
           </motion.div>
         </div>
