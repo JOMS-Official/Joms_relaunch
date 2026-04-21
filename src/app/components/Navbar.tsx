@@ -21,6 +21,8 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
   const linkIsActive = (to: string) => {
     if (to === "/") return location.pathname === "/";
     if (to === "/blog") return location.pathname === "/blog" || location.pathname.startsWith("/blog/");
+    if (to === "/careers")
+      return location.pathname === "/careers" || location.pathname.startsWith("/careers/");
     return location.pathname === to;
   };
 

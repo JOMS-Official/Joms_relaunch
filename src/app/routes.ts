@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import CareersPage from "./pages/CareersPage";
+import JobDetailPage from "./pages/JobDetailPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import InvestorsPage from "./pages/InvestorsPage";
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: HomePage },
       { path: "careers", Component: CareersPage },
+      { path: "careers/:jobId", Component: JobDetailPage },
       { path: "blog", Component: BlogPage },
       { path: "blog/:postId", Component: BlogPostPage },
       { path: "investors", Component: InvestorsPage },
