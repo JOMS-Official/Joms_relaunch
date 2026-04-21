@@ -3,6 +3,7 @@ import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import CareersPage from "./pages/CareersPage";
 import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import InvestorsPage from "./pages/InvestorsPage";
 import ContactPage from "./pages/ContactPage";
 
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage },
       { path: "careers", Component: CareersPage },
       { path: "blog", Component: BlogPage },
+      { path: "blog/:postId", Component: BlogPostPage },
       { path: "investors", Component: InvestorsPage },
       { path: "contact", Component: ContactPage },
     ],
