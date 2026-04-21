@@ -98,8 +98,54 @@ export const careersJobs: CareerJob[] = [
     howToApply:
       "Apply with your resume and one growth initiative you led end-to-end. We’ll reply to candidates we’d like to speak with.",
   },
+  {
+    id: 5,
+    title: "Brand Marketing Intern",
+    department: "Marketing",
+    location: "Remote",
+    type: "Internship",
+    description:
+      "Support campaigns, content, and brand storytelling for JOMS. Learn growth fundamentals in a fast-moving product company.",
+    requirements: [
+      "Pursuing or recently completed a degree in marketing, communications, or related field",
+      "Interest in brand, social, and campaign execution",
+      "Strong writing and organizational skills",
+      "Curiosity about tech and marketplace products",
+    ],
+    aboutUs:
+      "JOMS (Just One More Step) is building the next generation of marketplace and mobile platforms. Our internship program pairs you with mentors who care about your growth.",
+    roleOverview:
+      "You will assist with campaign coordination, content drafts, and performance reporting. You’ll collaborate with marketing and product on launches and learn how we measure impact.",
+    howToApply:
+      "Apply through the form on this role’s page with your resume and a short note on a brand or campaign you admire.",
+  },
+  {
+    id: 6,
+    title: "Frontend Development Intern",
+    department: "Engineering",
+    location: "Remote",
+    type: "Internship",
+    description:
+      "Build user-facing features with React and modern tooling. Pair with engineers on real components shipped to users.",
+    requirements: [
+      "Coursework or projects in HTML, CSS, and JavaScript/TypeScript",
+      "Familiarity with React or similar component frameworks",
+      "Eagerness to learn code review, testing, and accessibility basics",
+      "Strong communication and documentation habits",
+    ],
+    aboutUs:
+      "JOMS (Just One More Step) invests in interns with structured mentorship and meaningful tickets—not busywork.",
+    roleOverview:
+      "You will contribute to UI components, fix bugs, and participate in reviews. Expect exposure to our design system and deployment pipeline.",
+    howToApply:
+      "Submit your application with a resume and a link to a project or repo you’re proud of (coursework is fine).",
+  },
 ];
 
 export function getCareerJobById(id: number): CareerJob | undefined {
   return careersJobs.find((j) => j.id === id);
+}
+
+export function getInternshipJobs(): CareerJob[] {
+  return careersJobs.filter((j) => j.type === "Internship");
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useOutletContext, useParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, Briefcase, MapPin, Clock, CheckCircle, X, Upload } from "lucide-react";
+import { ArrowLeft, Briefcase, MapPin, Clock, X, Upload } from "lucide-react";
 import { getCareerJobById } from "../data/careersJobs";
+import applicationSuccessIcon from "../../assets/application-success-icon.png";
 import { careerGlassDeptTag, careerGlassIconBox } from "../careersGlass";
 
 function detailIconBox(darkMode: boolean): React.CSSProperties {
@@ -226,12 +227,25 @@ export default function JobDetailPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.98, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative flex flex-col rounded-xl overflow-hidden shadow-xl w-[min(440px,calc(100vw-1.5rem))] max-h-[min(93vh,800px)]"
-              style={{
-                background: darkMode ? "rgba(15,23,42,0.98)" : "rgba(255,255,255,0.98)",
-                border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
-                boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)",
-              }}
+              className={
+                "relative flex flex-col overflow-hidden shadow-xl " +
+                (submitted
+                  ? "w-[min(512px,calc(100vw-1.5rem))] h-[294px] rounded-[20px]"
+                  : "rounded-xl w-[min(440px,calc(100vw-1.5rem))] max-h-[min(93vh,800px)]")
+              }
+              style={
+                submitted
+                  ? {
+                      background: "#0B1120",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      boxShadow: "0 24px 60px rgba(0,0,0,0.55)",
+                    }
+                  : {
+                      background: darkMode ? "rgba(15,23,42,0.98)" : "rgba(255,255,255,0.98)",
+                      border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
+                      boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)",
+                    }
+              }
             >
               <button
                 type="button"
@@ -239,20 +253,37 @@ export default function JobDetailPage() {
                   setShowApplication(false);
                   setSubmitted(false);
                 }}
-                className="absolute top-3 right-3 z-10 p-1.5 rounded-lg hover:opacity-80 transition-opacity"
-                style={{ color: darkMode ? "#F8FAFC" : "#020617" }}
+                className={
+                  "absolute z-10 p-1.5 rounded-lg hover:opacity-80 transition-opacity " +
+                  (submitted ? "top-5 right-5" : "top-3 right-3")
+                }
+                style={{ color: submitted ? "#F8FAFC" : darkMode ? "#F8FAFC" : "#020617" }}
                 aria-label="Close"
               >
-                <X size={18} />
+                <X size={18} strokeWidth={1.75} />
               </button>
 
               {submitted ? (
-                <div className="flex flex-col items-center justify-center py-10 px-6 text-center">
-                  <CheckCircle size={52} style={{ color: "#50C878" }} className="mb-4" />
-                  <h3 className="text-lg mb-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
+                <div className="flex h-full flex-col items-center justify-center px-8 text-center">
+                  <div
+                    className="mb-4 flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] backdrop-blur-md"
+                    aria-hidden
+                  >
+                    <img
+                      src={applicationSuccessIcon}
+                      alt=""
+                      className="h-[52px] w-[52px] object-contain"
+                      width={52}
+                      height={52}
+                    />
+                  </div>
+                  <h3
+                    className="mb-2 text-[26px] font-bold leading-tight text-white"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                  >
                     Application Sent!
                   </h3>
-                  <p className="text-sm" style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}>
+                  <p className="text-base font-normal text-[#94A3B8]">
                     We're excited to review your application.
                   </p>
                 </div>

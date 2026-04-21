@@ -62,6 +62,21 @@ export default function CareersPage() {
             We're looking for exceptional people who believe the best technology
             is yet to be built. Join a team where every step counts.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/careers/internships"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:opacity-95 hover:shadow-[0_0_28px_rgba(52,211,153,0.2)]"
+              style={{
+                color: "#34D399",
+                border: "1px solid rgba(52, 211, 153, 0.45)",
+                background: darkMode ? "rgba(52, 211, 153, 0.06)" : "rgba(16, 185, 129, 0.08)",
+                boxShadow: "0 0 20px rgba(52, 211, 153, 0.12)",
+              }}
+            >
+              Looking for internships? Explore our intern program
+              <ArrowRight size={16} strokeWidth={2} />
+            </Link>
+          </div>
         </div>
 
         {/* Search + filter trigger */}
