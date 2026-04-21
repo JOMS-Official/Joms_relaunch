@@ -37,13 +37,7 @@ export default function BlogPostPage() {
   const metaColor = darkMode ? "rgba(248,250,252,0.45)" : "rgba(2,6,23,0.45)";
 
   return (
-    <div
-      className="pt-24 pb-20 px-6 min-h-[70vh]"
-      style={{
-        background: darkMode ? "#0a0c14" : "#F8FAFC",
-        color: darkMode ? "#F8FAFC" : "#020617",
-      }}
-    >
+    <div className="pt-24 pb-20 px-6 min-h-[70vh]">
       <article className="max-w-[800px] mx-auto">
         <Link
           to="/blog"

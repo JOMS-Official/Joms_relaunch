@@ -1,10 +1,30 @@
+import type { CSSProperties, FormEvent } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
-import { motion } from "motion/react";
-import { TrendingUp, Shield, Globe, Mail, FileText, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  TrendingUp,
+  Shield,
+  Globe,
+  Mail,
+  Sparkles,
+  MapPin,
+  X,
+  FileText,
+  User,
+  Phone,
+  Building2,
+  Link2,
+} from "lucide-react";
 import GlassCard from "../components/GlassCard";
 import SectionWrapper from "../components/SectionWrapper";
+import applicationSuccessIcon from "../../assets/application-success-icon.png";
 
-interface Props {}
+const goldDividerStyle: CSSProperties = {
+  height: 1,
+  background:
+    "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.85) 50%, transparent 100%)",
+};
 
 const highlights = [
   {
@@ -26,6 +46,56 @@ const highlights = [
 
 export default function InvestorsPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
+
+  const [showPitchModal, setShowPitchModal] = useState(false);
+  const [pitchSubmitted, setPitchSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [location, setLocation] = useState("");
+  const [website, setWebsite] = useState("");
+
+  useEffect(() => {
+    if (!showPitchModal) return;
+    setPitchSubmitted(false);
+    setName("");
+    setPhone("");
+    setEmail("");
+    setCompany("");
+    setLocation("");
+    setWebsite("");
+  }, [showPitchModal]);
+
+  const emailLooksValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+
+  const canSubmitPitch =
+    name.trim() !== "" &&
+    phone.trim() !== "" &&
+    email.trim() !== "" &&
+    emailLooksValid(email) &&
+    company.trim() !== "" &&
+    location.trim() !== "";
+
+  const handlePitchSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!canSubmitPitch) return;
+    setPitchSubmitted(true);
+    window.setTimeout(() => {
+      setPitchSubmitted(false);
+      setShowPitchModal(false);
+    }, 3000);
+  };
+
+  const glassInput =
+    "w-full px-3.5 py-2.5 rounded-lg text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
+    (darkMode
+      ? "bg-white/[0.08] border border-white/[0.14] text-[#F8FAFC] placeholder:text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_2px_12px_rgba(0,0,0,0.12)] focus:ring-1 focus:ring-amber-500/35 focus:border-amber-400/40"
+      : "bg-white/65 border border-black/[0.1] text-[#020617] placeholder:text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_2px_8px_rgba(0,0,0,0.05)] focus:ring-1 focus:ring-amber-500/30 focus:border-amber-400/45");
+
+  const labelClass =
+    "text-[11px] font-medium mb-2 flex items-center gap-1.5 " +
+    (darkMode ? "text-slate-500" : "text-slate-600");
 
   return (
     <div className="pt-24">
@@ -60,57 +130,83 @@ export default function InvestorsPage() {
             </span>
           </h1>
           <p
-            className="max-w-2xl mx-auto text-lg"
+            className="max-w-2xl mx-auto text-lg mb-10"
             style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}
           >
             JOMS is building next-generation digital platforms. We're seeking
             strategic partners who believe in long-term value creation through
             technology that serves people.
           </p>
+          <button
+            type="button"
+            onClick={() => setShowPitchModal(true)}
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl text-sm font-semibold transition-all hover:scale-[1.02]"
+            style={{
+              background: "linear-gradient(135deg, #D4AF37, #B8860B)",
+              color: "#0B0E14",
+              boxShadow: "0 8px 30px rgba(212,175,55,0.35)",
+            }}
+          >
+            Contact Us
+          </button>
         </div>
 
-        {/* Highlights */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
+        {/* Highlights — same structure as VisionMissionValues; gold palette */}
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-20">
           {highlights.map((h) => (
-            <GlassCard key={h.title} darkMode={darkMode}>
+            <div key={h.title} className="relative pl-6 text-left">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                className="absolute left-0 top-0"
                 style={{
-                  background: "linear-gradient(135deg, #D4AF37, #B8860B)",
+                  width: 3,
+                  height: 48,
+                  background: "linear-gradient(180deg, #D4AF37 0%, rgba(0,0,0,0) 100%)",
+                  borderRadius: 2,
+                }}
+              />
+              <h.icon
+                size={32}
+                className="mb-6"
+                strokeWidth={1.5}
+                style={{ color: "#D4AF37" }}
+              />
+              <h3
+                className="text-xl mb-3"
+                style={{
+                  fontFamily: "'Sora', sans-serif",
+                  color: darkMode ? "#F8FAFC" : "#020617",
                 }}
               >
-                <h.icon size={22} className="text-white" />
-              </div>
-              <h3 className="text-lg mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>
                 {h.title}
               </h3>
               <p
                 className="text-sm"
                 style={{
-                  color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
+                  color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.6)",
                   lineHeight: 1.7,
                 }}
               >
                 {h.description}
               </p>
-            </GlassCard>
+            </div>
           ))}
         </div>
 
-        {/* Story section */}
-        <GlassCard darkMode={darkMode} hover={false} className="max-w-3xl mx-auto mb-20">
+        {/* Why JOMS — no card; gold gradient dividers */}
+        <div className="max-w-3xl mx-auto w-full mb-10">
+          <div className="w-full" style={goldDividerStyle} aria-hidden />
           <h3
-            className="text-2xl mb-6 text-center"
+            className="text-2xl sm:text-3xl my-10 text-center"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            Why{" "}
+            <span style={{ color: darkMode ? "#F8FAFC" : "#020617" }}>Why </span>
             <span style={{ color: "#D4AF37" }}>JOMS?</span>
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-4 text-left">
             <p
               className="text-sm"
               style={{
-                color: darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)",
+                color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
                 lineHeight: 1.8,
               }}
             >
@@ -122,7 +218,7 @@ export default function InvestorsPage() {
             <p
               className="text-sm"
               style={{
-                color: darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)",
+                color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
                 lineHeight: 1.8,
               }}
             >
@@ -134,7 +230,7 @@ export default function InvestorsPage() {
             <p
               className="text-sm"
               style={{
-                color: darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)",
+                color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
                 lineHeight: 1.8,
               }}
             >
@@ -142,34 +238,323 @@ export default function InvestorsPage() {
               craftsmanship, and want to partner with a team that's committed
               to building products that matter.
             </p>
+            <p
+              className="text-sm italic pt-2"
+              style={{
+                color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
+                lineHeight: 1.8,
+              }}
+            >
+              &ldquo;Every great collaboration starts with a single conversation. We believe the next
+              big thing could begin with your message.&rdquo;
+            </p>
+            <p
+              className="text-sm pt-1"
+              style={{ color: "#A78BFA", fontStyle: "normal" }}
+            >
+              — The JOMS Team
+            </p>
           </div>
-        </GlassCard>
+          <div className="w-full mt-10" style={goldDividerStyle} aria-hidden />
+        </div>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <a
-            href="mailto:investors@joms.co"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-sm transition-all hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #D4AF37, #B8860B)",
-              color: "white",
-              boxShadow: "0 8px 30px rgba(212,175,55,0.3)",
-            }}
-          >
-            <FileText size={18} /> Request Pitch Deck
-          </a>
-          <a
-            href="mailto:hello@joms.co"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-sm transition-all hover:scale-105"
-            style={{
-              background: darkMode ? "rgba(255,255,252,0.06)" : "rgba(0,0,0,0.03)",
-              border: darkMode ? "1px solid rgba(255,255,252,0.12)" : "1px solid rgba(0,0,0,0.08)",
-            }}
-          >
-            <Mail size={18} /> Send Email
-          </a>
+        {/* Contact cards */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto w-full mb-20">
+          <GlassCard darkMode={darkMode} hover={false}>
+            <div className="flex items-start gap-4">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                style={{
+                  background: "rgba(124, 58, 237, 0.2)",
+                  border: "1px solid rgba(167, 139, 250, 0.35)",
+                  boxShadow: "0 0 20px rgba(124, 58, 237, 0.15)",
+                }}
+              >
+                <Mail size={20} style={{ color: "#A78BFA" }} strokeWidth={1.75} />
+              </div>
+              <div>
+                <p
+                  className="text-sm font-semibold mb-1"
+                  style={{ color: darkMode ? "#F8FAFC" : "#020617" }}
+                >
+                  Email Us
+                </p>
+                <a
+                  href="mailto:hello@joms.co"
+                  className="text-sm transition-opacity hover:opacity-90"
+                  style={{ color: "#A78BFA" }}
+                >
+                  hello@joms.co
+                </a>
+              </div>
+            </div>
+          </GlassCard>
+          <GlassCard darkMode={darkMode} hover={false}>
+            <div className="flex items-start gap-4">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                style={{
+                  background: "rgba(124, 58, 237, 0.2)",
+                  border: "1px solid rgba(167, 139, 250, 0.35)",
+                  boxShadow: "0 0 20px rgba(124, 58, 237, 0.15)",
+                }}
+              >
+                <MapPin size={20} style={{ color: "#A78BFA" }} strokeWidth={1.75} />
+              </div>
+              <div>
+                <p
+                  className="text-sm font-semibold mb-1"
+                  style={{ color: darkMode ? "#F8FAFC" : "#020617" }}
+                >
+                  Location
+                </p>
+                <p className="text-sm" style={{ color: "#94A3B8" }}>
+                  Remote-first, Global Team
+                </p>
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </SectionWrapper>
+
+      <AnimatePresence>
+        {showPitchModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "rgba(2,6,23,0.65)", backdropFilter: "blur(12px)" }}
+          >
+            <motion.div
+              initial={{ scale: 0.98, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.98, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={
+                "relative flex flex-col overflow-hidden shadow-xl " +
+                (pitchSubmitted
+                  ? "w-[min(512px,calc(100vw-1.5rem))] h-[294px] rounded-[20px]"
+                  : "rounded-xl w-[min(500px,calc(100vw-1.5rem))] max-h-[min(94vh,820px)] min-h-[min(560px,85vh)]")
+              }
+              style={
+                pitchSubmitted
+                  ? {
+                      background: "#0B1120",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      boxShadow: "0 24px 60px rgba(0,0,0,0.55)",
+                    }
+                  : {
+                      background: darkMode ? "rgba(15,23,42,0.98)" : "rgba(255,255,255,0.98)",
+                      border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
+                      boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)",
+                    }
+              }
+            >
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPitchModal(false);
+                  setPitchSubmitted(false);
+                }}
+                className={
+                  "absolute z-10 p-1.5 rounded-lg hover:opacity-80 transition-opacity " +
+                  (pitchSubmitted ? "top-5 right-5" : "top-3 right-3")
+                }
+                style={{ color: pitchSubmitted ? "#F8FAFC" : darkMode ? "#F8FAFC" : "#020617" }}
+                aria-label="Close"
+              >
+                <X size={18} strokeWidth={1.75} />
+              </button>
+
+              {pitchSubmitted ? (
+                <div className="flex h-full flex-col items-center justify-center px-8 text-center">
+                  <div
+                    className="mb-4 flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] backdrop-blur-md"
+                    aria-hidden
+                  >
+                    <img
+                      src={applicationSuccessIcon}
+                      alt=""
+                      className="h-[52px] w-[52px] object-contain"
+                      width={52}
+                      height={52}
+                    />
+                  </div>
+                  <h3
+                    className="mb-2 text-[26px] font-bold leading-tight text-white"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                  >
+                    Request Sent!
+                  </h3>
+                  <p className="text-base font-normal text-[#94A3B8]">
+                    We&apos;ll share our pitch deck with you soon.
+                  </p>
+                </div>
+              ) : (
+                <div className="flex min-h-0 flex-1 flex-col">
+                  <div
+                    className="flex shrink-0 items-start gap-4 border-b px-6 pb-5 pt-6 pr-12"
+                    style={{ borderColor: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)" }}
+                  >
+                    <div
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+                      style={{
+                        background: "rgba(212,175,55,0.12)",
+                        border: "1px solid rgba(212,175,55,0.45)",
+                        boxShadow: "0 0 16px rgba(212,175,55,0.12)",
+                      }}
+                    >
+                      <FileText size={20} style={{ color: "#D4AF37" }} strokeWidth={1.75} />
+                    </div>
+                    <div className="min-w-0 pt-0.5 text-left">
+                      <h3
+                        className="text-[16px] font-semibold leading-snug"
+                        style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                      >
+                        Request Pitch Deck
+                      </h3>
+                      <p
+                        className="mt-1 text-xs leading-snug"
+                        style={{ color: darkMode ? "rgba(148,163,184,0.95)" : "rgba(2,6,23,0.55)" }}
+                      >
+                        Fill in your details and we&apos;ll share our pitch deck with you.
+                      </p>
+                    </div>
+                  </div>
+
+                  <form
+                    onSubmit={handlePitchSubmit}
+                    className="flex min-h-0 flex-1 flex-col px-6 pb-6 pt-5"
+                  >
+                    <div className="scrollbar-hide max-h-[min(58vh,500px)] min-h-0 flex-1 space-y-4 overflow-y-auto pr-1">
+                      <div>
+                        <label className={labelClass} htmlFor="pitch-name">
+                          <User size={14} strokeWidth={1.75} />
+                          Name <span className="text-amber-500/90">*</span>
+                        </label>
+                        <input
+                          id="pitch-name"
+                          name="name"
+                          type="text"
+                          autoComplete="name"
+                          placeholder="Enter your full name"
+                          className={glassInput}
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClass} htmlFor="pitch-phone">
+                          <Phone size={14} strokeWidth={1.75} />
+                          Phone <span className="text-amber-500/90">*</span>
+                        </label>
+                        <input
+                          id="pitch-phone"
+                          name="phone"
+                          type="tel"
+                          autoComplete="tel"
+                          placeholder="+91 (IN) Enter your phone"
+                          className={glassInput}
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label className={labelClass} htmlFor="pitch-email">
+                          <Mail size={14} strokeWidth={1.75} />
+                          E-mail <span className="text-amber-500/90">*</span>
+                        </label>
+                        <input
+                          id="pitch-email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          placeholder="Enter Email"
+                          className={glassInput}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-4">
+                        <div>
+                          <label className={labelClass} htmlFor="pitch-company">
+                            <Building2 size={14} strokeWidth={1.75} />
+                            Company <span className="text-amber-500/90">*</span>
+                          </label>
+                          <input
+                            id="pitch-company"
+                            name="company"
+                            type="text"
+                            autoComplete="organization"
+                            placeholder="Company Name"
+                            className={glassInput}
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                          />
+                        </div>
+                        <div>
+                          <label className={labelClass} htmlFor="pitch-location">
+                            <MapPin size={14} strokeWidth={1.75} />
+                            Location <span className="text-amber-500/90">*</span>
+                          </label>
+                          <input
+                            id="pitch-location"
+                            name="location"
+                            type="text"
+                            autoComplete="address-level1"
+                            placeholder="Location"
+                            className={glassInput}
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className={labelClass} htmlFor="pitch-website">
+                          <Link2 size={14} strokeWidth={1.75} />
+                          Company Website (optional)
+                        </label>
+                        <input
+                          id="pitch-website"
+                          name="website"
+                          type="url"
+                          autoComplete="url"
+                          placeholder="https://yourcompany.com"
+                          className={glassInput}
+                          value={website}
+                          onChange={(e) => setWebsite(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-6 shrink-0">
+                      <button
+                        type="submit"
+                        disabled={!canSubmitPitch}
+                        className={
+                          "w-full rounded-xl py-3.5 text-[13px] font-semibold transition-all " +
+                          (canSubmitPitch ? "text-[#0B0E14] hover:scale-[1.01]" : "cursor-not-allowed opacity-60")
+                        }
+                        style={{
+                          background: canSubmitPitch
+                            ? "linear-gradient(135deg, #D4AF37, #B8860B)"
+                            : darkMode
+                              ? "rgba(255,255,255,0.12)"
+                              : "rgba(0,0,0,0.1)",
+                          boxShadow: canSubmitPitch ? "0 8px 24px rgba(212,175,55,0.35)" : "none",
+                        }}
+                      >
+                        Request Pitch Deck
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
