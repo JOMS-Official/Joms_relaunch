@@ -1,7 +1,9 @@
 import { useCallback, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { SWAROOP_CARD_IMAGE, SWAROOP_SLUG } from "../data/teamMemberProfiles";
 
 interface Props {
   darkMode: boolean;
@@ -10,12 +12,17 @@ interface Props {
 const CARD_W = 260;
 const CARD_GAP = 16;
 
-const teamMembers = [
+const teamMembers: {
+  name: string;
+  role: string;
+  image: string;
+  slug?: string;
+}[] = [
   {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=520&h=700&fit=crop&q=80",
+    image: SWAROOP_CARD_IMAGE,
+    slug: SWAROOP_SLUG,
   },
   {
     name: "Ananya Reddy",
@@ -104,45 +111,74 @@ export default function TeamSection({ darkMode }: Props) {
           className="flex min-w-0 flex-1 gap-4 overflow-x-auto scroll-smooth py-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           style={{ scrollSnapType: "x mandatory" }}
         >
-          {teamMembers.map((member) => (
-            <div
-              key={member.name}
-              data-team-card
-              className="relative shrink-0 overflow-hidden rounded-2xl"
-              style={{
-                width: "min(260px, calc(100vw - 7rem))",
-                aspectRatio: `${CARD_W} / 346.66`,
-                scrollSnapAlign: "start",
-              }}
-            >
-              <ImageWithFallback
-                src={member.image}
-                alt={member.name}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+          {teamMembers.map((member) => {
+            const cardStyle = {
+              width: "min(260px, calc(100vw - 7rem))",
+              aspectRatio: `${CARD_W} / 346.66`,
+              scrollSnapAlign: "start" as const,
+            };
+            const cardInner = (
+              <>
+                <ImageWithFallback
+                  src={member.image}
+                  alt={member.name}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, transparent 72%)",
+                  }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-3 p-4 text-left">
+                  <div className="min-w-0">
+                    <h3
+                      className="text-base font-semibold text-white sm:text-lg"
+                      style={{ fontFamily: "'Sora', sans-serif" }}
+                    >
+                      {member.name}
+                    </h3>
+                    <p
+                      className="mt-0.5 text-xs sm:text-sm"
+                      style={{ color: "rgba(248,250,252,0.65)" }}
+                    >
+                      {member.role}
+                    </p>
+                  </div>
+                  {member.slug ? (
+                    <div
+                      className="pointer-events-none flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-transform group-hover:translate-x-0.5"
+                      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.35)" }}
+                      aria-hidden
+                    >
+                      <ArrowRight size={18} strokeWidth={2.25} />
+                    </div>
+                  ) : null}
+                </div>
+              </>
+            );
+            return (
               <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, transparent 72%)",
-                }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-                <h3
-                  className="text-base font-semibold text-white sm:text-lg"
-                  style={{ fontFamily: "'Sora', sans-serif" }}
-                >
-                  {member.name}
-                </h3>
-                <p
-                  className="mt-0.5 text-xs sm:text-sm"
-                  style={{ color: "rgba(248,250,252,0.65)" }}
-                >
-                  {member.role}
-                </p>
+                key={member.name}
+                data-team-card
+                className="relative shrink-0 overflow-hidden rounded-2xl"
+                style={cardStyle}
+              >
+                {member.slug ? (
+                  <Link
+                    to={`/team/${member.slug}`}
+                    className="group absolute inset-0 block rounded-2xl ring-offset-2 transition hover:ring-2 hover:ring-violet-500/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500"
+                    aria-label={`View profile: ${member.name}`}
+                  >
+                    {cardInner}
+                  </Link>
+                ) : (
+                  <div className="absolute inset-0">{cardInner}</div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <button

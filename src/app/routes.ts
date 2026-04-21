@@ -8,6 +8,8 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import InvestorsPage from "./pages/InvestorsPage";
 import ContactPage from "./pages/ContactPage";
+import TeamMemberProfilePage from "./pages/TeamMemberProfilePage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,8 @@ export const router = createBrowserRouter([
       { path: "blog/:postId", Component: BlogPostPage },
       { path: "investors", Component: InvestorsPage },
       { path: "contact", Component: ContactPage },
+      { path: "team/:memberSlug", Component: TeamMemberProfilePage },
+      { path: "privacy", Component: PrivacyPolicyPage },
     ],
   },
 ]);
