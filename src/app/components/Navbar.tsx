@@ -18,6 +18,12 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
+  const linkIsActive = (to: string) => {
+    if (to === "/") return location.pathname === "/";
+    if (to === "/blog") return location.pathname === "/blog" || location.pathname.startsWith("/blog/");
+    return location.pathname === to;
+  };
+
   const handleNavClick = (to: string) => {
     setMobileOpen(false);
     if (to.startsWith("/#")) {
@@ -76,11 +82,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
               onClick={() => handleNavClick(link.to)}
               className="text-sm transition-colors hover:opacity-100"
               style={{
-                opacity:
-                  location.pathname === link.to ||
-                  (link.to === "/" && location.pathname === "/")
-                    ? 1
-                    : 0.7,
+                opacity: linkIsActive(link.to) ? 1 : 0.7,
                 color: darkMode ? "#E2E8F0" : "#1E293B",
               }}
             >
