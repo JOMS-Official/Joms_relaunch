@@ -16,7 +16,7 @@ export default function BlogPage() {
   );
 
   return (
-    <div className="pt-24">
+   <div className="pt-8">
       <SectionWrapper>
         <div className="text-center mb-16">
           <p className="text-sm mb-4 tracking-widest uppercase" style={{ color: "#7C3AED" }}>

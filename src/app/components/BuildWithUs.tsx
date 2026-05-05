@@ -57,7 +57,7 @@ export default function BuildWithUs({ darkMode }: Props) {
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+      <div className="grid md:grid-cols-3 gap-12 lg:gap-20">
         {cards.map((card) => (
           <div key={card.title} className="relative pl-6">
             <div
