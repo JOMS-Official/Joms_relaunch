@@ -81,7 +81,7 @@ export default function InternshipsPage() {
       : "bg-white/80 border-black/[0.06] shadow-sm");
 
   return (
-    <div className="pt-24">
+    <div className="pt-35">
       {/* Hero */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-16 md:pb-20 text-center">
         <div
@@ -125,8 +125,8 @@ export default function InternshipsPage() {
       </section>
 
       {/* Features — layout + gradient line aligned with VisionMissionValues */}
-      <SectionWrapper>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <SectionWrapper className="!pt-4">
+  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {features.map((f) => (
             <div key={f.title} className="relative pl-6 text-left">
               <div

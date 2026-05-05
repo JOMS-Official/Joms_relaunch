@@ -98,7 +98,7 @@ export default function InvestorsPage() {
     (darkMode ? "text-slate-500" : "text-slate-600");
 
   return (
-    <div className="pt-24">
+    <div className="pt-8">
       <SectionWrapper>
         {/* Header */}
         <div className="text-center mb-16">
