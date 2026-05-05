@@ -10,13 +10,13 @@ const cards = [
     icon: Eye,
     title: "Vision",
     description:
-      "To be the catalyst for the next generation of digital platforms that empower billions of people to connect, transact, and grow — seamlessly.",
+      "Inspire global transformation through innovation that elevates human experiences and creates a more compassionate, inclusive and sustainable world.",
   },
   {
     icon: Rocket,
     title: "Mission",
     description:
-      "To build intelligent, scalable mobile platforms and marketplaces that solve real problems, create real value, and redefine how the world interacts with technology.",
+      "Enhancing experiences through passion, creativity, and technology to drive meaningful innovation and growth.",
   },
   {
     icon: Heart,
