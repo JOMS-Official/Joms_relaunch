@@ -8,19 +8,35 @@ interface Props {
 
 const milestones = [
   {
-    year: "2024",
-    title: "Innovation",
-    description: "Embracing cutting-edge technologies to elevate our offerings.",
+    /** Shown on the left with the headline (timeline rail in the centre). */
+    year: "Nov 2024",
+    title: "From Idea to Incorporation",
+    description:
+      "JOMS Commerce and Technologies is officially incorporated. An idea born from lived experience takes its first legal form.",
   },
   {
-    year: "2025",
-    title: "Community",
-    description: "Collaborating with visionary partners to amplify social impact.",
+    year: "Jan 2025",
+    title: "Startup India, Officially Backing the Vision",
+    description:
+      "Recognised as a startup under the Government of India's Startup India programme — validating our mission and unlocking a path to build with national support.",
   },
   {
-    year: "2025",
-    title: "Globalization",
-    description: "Expanding our footprint into global markets.",
+    year: "Feb 2025",
+    title: "Built on Trust; Certified for Growth",
+    description:
+      "Awarded MSME (Udyam Aadhar) registration, strengthening our foundation as a committed, credible, and compliant enterprise.",
+  },
+  {
+    year: "Mar–Apr 2026",
+    title: "Quietly Building What Comes Next",
+    description:
+      "Building in the Deep. Heads down. Product design, compliance architecture, team formation and the foundational work that doesn't make headlines but makes everything else possible.",
+  },
+  {
+    year: "May 15, 2026",
+    title: "The World Gets Its First Look",
+    description:
+      "The first chapter goes live. Vaagon enters the world.",
   },
 ];
 
@@ -76,7 +92,7 @@ export default function TimelineSection({ darkMode }: Props) {
           className="text-3xl sm:text-4xl lg:text-5xl mb-4"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
-          The Journey Has Begun
+          From Idea to Impact
         </h2>
         <p
           className="text-sm sm:text-base"
@@ -84,7 +100,7 @@ export default function TimelineSection({ darkMode }: Props) {
             color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)",
           }}
         >
-          Every great company starts with a single step. Here's how ours began.
+          Key moments from incorporation to launch — how an idea became something the world can see.
         </p>
       </div>
 
@@ -127,7 +143,7 @@ export default function TimelineSection({ darkMode }: Props) {
             >
               <div className="text-right pr-4">
                 <p
-                  className="text-sm mb-1"
+                  className="text-xs mb-1"
                   style={{
                     color: isActive ? "#4ade80" : "#7C3AED",
                     fontWeight: 600,
@@ -137,7 +153,7 @@ export default function TimelineSection({ darkMode }: Props) {
                   {m.year}
                 </p>
                 <h3
-                  className="text-4xl lg:text-5xl"
+                  className="text-xl sm:text-2xl lg:text-3xl"
                   style={{
                     fontFamily: "'Sora', sans-serif",
                     fontWeight: 600,
@@ -148,7 +164,7 @@ export default function TimelineSection({ darkMode }: Props) {
                       : darkMode
                       ? "rgba(248,250,252,0.08)"
                       : "rgba(2,6,23,0.06)",
-                    lineHeight: 1.1,
+                    lineHeight: 1.15,
                     transition: "color 0.7s ease",
                   }}
                 >
@@ -180,7 +196,7 @@ export default function TimelineSection({ darkMode }: Props) {
 
               <div className="pl-4">
                 <p
-                  className="text-sm sm:text-base max-w-xs"
+                  className="text-sm sm:text-base max-w-md lg:max-w-lg"
                   style={{
                     color: isActive
                       ? darkMode
@@ -252,7 +268,7 @@ export default function TimelineSection({ darkMode }: Props) {
                 {m.year}
               </p>
               <h3
-                className="text-2xl mb-2"
+                className="text-xl mb-2"
                 style={{
                   fontFamily: "'Sora', sans-serif",
                   fontWeight: 600,

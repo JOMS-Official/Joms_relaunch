@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "motion/react";
 import SectionWrapper from "./SectionWrapper";
 
@@ -5,7 +6,27 @@ interface Props {
   darkMode: boolean;
 }
 
+const pillars = [
+  {
+    title: "Human-Centred by Design",
+    body:
+      "Every product we build begins with one question: what does the person at the other end actually need? Not what's impressive but what's meaningful.",
+  },
+  {
+    title: "Technology that Scales",
+    body:
+      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve—robust, adaptive and future-ready.",
+  },
+  {
+    title: "Impact that Endures",
+    body:
+      "We don't measure success in downloads alone. We measure it in the value we create for real people, real businesses and the world around us.",
+  },
+];
+
 export default function FutureSection({ darkMode }: Props) {
+  const muted =
+    darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)";
   return (
     <SectionWrapper id="vision">
       <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -24,7 +45,7 @@ export default function FutureSection({ darkMode }: Props) {
             className="text-3xl sm:text-4xl lg:text-5xl mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
           >
-            Technology Should{" "}
+            Innovation Built {" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
@@ -32,33 +53,78 @@ export default function FutureSection({ darkMode }: Props) {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Move People Forward
+              Around Entrepreneurs
             </span>
           </h2>
           <p
-            className="text-lg mb-6"
+            className="text-lg mb-8"
             style={{
-              color: darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)",
+              color: muted,
               lineHeight: 1.8,
             }}
           >
-            The world is overflowing with technology, yet too many products are
-            built to extract value rather than create it. At JOMS, we believe
-            the next wave of digital products should be intelligent, human-centered,
-            and built to genuinely improve how people live, work, and connect.
+            JOMS is building the infrastructure entrepreneurs need to transform ideas into scalable products and sustainable businesses.
           </p>
-          <p
-            className="text-lg"
+
+          <h3
+            className="text-lg sm:text-xl font-semibold mb-6"
             style={{
-              color: darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)",
-              lineHeight: 1.8,
+              fontFamily: "'Sora', sans-serif",
+              color: darkMode ? "rgba(248,250,252,0.95)" : "rgb(15,23,42)",
             }}
           >
-            We're not just building apps — we're engineering ecosystems.
-            From smart mobile platforms to marketplace infrastructure,
-            every product we create is designed to scale globally while
-            remaining deeply personal.
-          </p>
+            Our products revolve around these three pillars:
+          </h3>
+
+          <ul className="space-y-5 list-none m-0 p-0" role="list">
+            {pillars.map((pillar, index) => (
+              <motion.li
+                key={pillar.title}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="flex gap-4 pl-1"
+              >
+                <span
+                  className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold"
+                  style={{
+                    background: darkMode
+                      ? "rgba(124,58,237,0.2)"
+                      : "rgba(79,70,229,0.1)",
+                    color: "#7C3AED",
+                    border: `1px solid ${
+                      darkMode
+                        ? "rgba(124,58,237,0.45)"
+                        : "rgba(79,70,229,0.25)"
+                    }`,
+                  }}
+                  aria-hidden
+                >
+                  {index + 1}
+                </span>
+                <div className="min-w-0 pt-0.5">
+                  <p
+                    className="font-semibold text-base sm:text-lg mb-1.5"
+                    style={{
+                      fontFamily: "'Sora', sans-serif",
+                      color: darkMode
+                        ? "rgba(248,250,252,0.95)"
+                        : "rgb(15,23,42)",
+                    }}
+                  >
+                    {pillar.title}
+                  </p>
+                  <p
+                    className="text-base leading-relaxed m-0"
+                    style={{ color: muted, lineHeight: 1.75 }}
+                  >
+                    {pillar.body}
+                  </p>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
         </div>
 
         {/* Right visual */}

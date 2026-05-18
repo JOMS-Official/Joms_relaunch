@@ -30,17 +30,17 @@ const highlights = [
   {
     icon: TrendingUp,
     title: "High-Growth Market",
-    description: "Targeting a $500B+ global digital marketplace and mobile platform ecosystem.",
+    description: "We’re operating at the intersection of networking, events and community-driven technology; industries rapidly evolving with the next generation of founders, creators, and professionals.",
   },
   {
     icon: Shield,
-    title: "Bootstrapped & Lean",
-    description: "Capital-efficient from day one. Every dollar creates real product value.",
+    title: "Lean Startup",
+    description: "Built with discipline from day one, we focus on smart execution, sustainable growth, and creating real value before chasing scale.",
   },
   {
     icon: Globe,
     title: "Global Vision",
-    description: "Building platforms designed to scale across markets, cultures, and geographies.",
+    description: "While our journey starts from India, our ambition is global. We’re designing experiences and ecosystems that can connect ambitious people across borders, industries and communities.",
   },
 ];
 
@@ -112,10 +112,10 @@ export default function InvestorsPage() {
               color: "#D4AF37",
             }}
           >
-            <Sparkles size={14} /> Investor Relations
+            <Sparkles size={14} /> Invest in the Future
           </motion.div>
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Partner With{" "}
@@ -133,9 +133,10 @@ export default function InvestorsPage() {
             className="max-w-2xl mx-auto text-lg mb-10"
             style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}
           >
-            JOMS is building next-generation digital platforms. We're seeking
-            strategic partners who believe in long-term value creation through
-            technology that serves people.
+            We're building more than a product, we're building the infrastructure
+            for meaningful connections, ambitious communities and opportunity at
+            scale. If you believe in long-term vision, thoughtful execution and
+            category-defining innovation, we'd love to connect.
           </p>
           <button
             type="button"
@@ -147,7 +148,7 @@ export default function InvestorsPage() {
               boxShadow: "0 8px 30px rgba(212,175,55,0.35)",
             }}
           >
-            Contact Us
+            Request Pitch Deck
           </button>
         </div>
 
@@ -252,7 +253,7 @@ export default function InvestorsPage() {
               className="text-sm pt-1"
               style={{ color: "#A78BFA", fontStyle: "normal" }}
             >
-              — The JOMS Team
+              — JOMS Team
             </p>
           </div>
           <div className="w-full mt-10" style={goldDividerStyle} aria-hidden />

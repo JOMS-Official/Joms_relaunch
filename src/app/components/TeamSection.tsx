@@ -81,7 +81,7 @@ export default function TeamSection({ darkMode }: Props) {
           className="text-3xl sm:text-4xl lg:text-5xl mb-4"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
-          The Minds Behind JOMS
+          People Who Challenge the Status Quo
         </h2>
         <p
           className="text-sm sm:text-base max-w-2xl mx-auto px-2"
@@ -90,8 +90,7 @@ export default function TeamSection({ darkMode }: Props) {
             lineHeight: 1.7,
           }}
         >
-          A passionate team of builders, designers, and visionaries working to
-          create the future of digital platforms.
+          A team united by bold ideas, deep integrity and an unwavering belief that the right technology built by the right people changes everything.
         </p>
       </div>
 
