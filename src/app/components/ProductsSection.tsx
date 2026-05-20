@@ -73,21 +73,19 @@ export default function ProductsSection({ darkMode }: Props) {
         }}
       />
 
-      <div className="flex flex-col items-center text-center py-12">
+      <div className="flex flex-col items-center py-12">
         <h2
-          className="text-4xl sm:text-5xl lg:text-6xl mb-5"
+          className="text-center text-section-title-home sm:text-section-title-home-xl mb-5 whitespace-nowrap max-w-full"
           style={{
             fontFamily: "'Sora', sans-serif",
             lineHeight: 1.15,
           }}
         >
-          Launching
-          <br />
-          Soon
+          Launching Soon
         </h2>
 
         <Link
-          to="/contact"
+          to="/contact#connect"
           className="inline-flex items-center justify-center px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl text-white text-sm sm:text-base font-medium transition-all hover:scale-105 mb-8"
           style={{
             background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
@@ -122,7 +120,7 @@ export default function ProductsSection({ darkMode }: Props) {
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={selectedIndex}
-                className="text-sm sm:text-base text-center"
+                className="text-sm sm:text-base text-justify"
                 style={{
                   color: muted,
                   lineHeight: 1.8,

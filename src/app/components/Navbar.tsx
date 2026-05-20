@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import JomsLogoMark from "./JomsLogoMark";
+import { useHomeSectionNav } from "../hooks/useHomeSectionNav";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -18,6 +19,7 @@ interface NavbarProps {
 export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { goToSection } = useHomeSectionNav();
 
   const linkIsActive = (to: string) => {
     if (to === "/") return location.pathname === "/";
@@ -27,14 +29,9 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
     return location.pathname === to;
   };
 
-  const handleNavClick = (to: string) => {
+  const handleNavClick = (e: React.MouseEvent, to: string) => {
     setMobileOpen(false);
-    if (to.startsWith("/#")) {
-      const id = to.replace("/#", "");
-      if (location.pathname === "/") {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    if (goToSection(to)) e.preventDefault();
   };
 
   return (
@@ -70,8 +67,8 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
           {navLinks.map((link) => (
             <Link
               key={link.label}
-              to={link.to.startsWith("/#") && location.pathname === "/" ? link.to : link.to.startsWith("/#") ? "/" : link.to}
-              onClick={() => handleNavClick(link.to)}
+              to={link.to}
+              onClick={(e) => handleNavClick(e, link.to)}
               className="text-sm transition-colors hover:opacity-100"
               style={{
                 opacity: linkIsActive(link.to) ? 1 : 0.7,
@@ -121,8 +118,8 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                to={link.to.startsWith("/#") ? "/" : link.to}
-                onClick={() => handleNavClick(link.to)}
+                to={link.to}
+                onClick={(e) => handleNavClick(e, link.to)}
                 className="text-sm py-2 px-3 rounded-lg transition-all"
                 style={{
                   background: darkMode

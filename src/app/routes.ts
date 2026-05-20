@@ -10,6 +10,9 @@ import InvestorsPage from "./pages/InvestorsPage";
 import ContactPage from "./pages/ContactPage";
 import TeamMemberProfilePage from "./pages/TeamMemberProfilePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
+import DisclaimerPage from "./pages/DisclaimerPage";
+import CookiesPolicyPage from "./pages/CookiesPolicyPage";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +29,9 @@ export const router = createBrowserRouter([
       { path: "contact", Component: ContactPage },
       { path: "team/:memberSlug", Component: TeamMemberProfilePage },
       { path: "privacy", Component: PrivacyPolicyPage },
+      { path: "terms-of-service", Component: TermsOfServicePage },
+      { path: "disclaimer", Component: DisclaimerPage },
+      { path: "cookies-policy", Component: CookiesPolicyPage },
     ],
   },
 ]);

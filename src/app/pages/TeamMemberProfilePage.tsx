@@ -68,7 +68,7 @@ function renderBlock(
     return (
       <h2
         key={index}
-        className="text-xl sm:text-2xl font-semibold tracking-tight mt-10 sm:mt-12 mb-4 scroll-mt-28"
+        className="text-section-subtitle font-semibold tracking-tight mt-10 sm:mt-12 mb-4 scroll-mt-28"
         style={{
           fontFamily: "'Sora', sans-serif",
           lineHeight: 1.25,
@@ -157,19 +157,19 @@ export default function TeamMemberProfilePage() {
         </Link>
 
         <header className="flex flex-col sm:flex-row gap-8 sm:gap-10 mb-10 sm:mb-12">
-          <div className="shrink-0 mx-auto sm:mx-0 w-full max-w-[260px] sm:max-w-[280px]">
+          <div className="shrink-0 mx-auto sm:mx-0 w-full max-w-[200px] sm:max-w-[220px]">
             <img
               src={profile.image}
               alt={profile.name}
-              className="w-full rounded-2xl object-cover object-center shadow-xl aspect-[260/346.66]"
+              className="w-full rounded-2xl object-cover object-center shadow-xl aspect-[220/293]"
               style={{
                 border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.08)",
               }}
             />
           </div>
-          <div className="flex-1 min-w-0 text-center sm:text-left pt-0 sm:pt-2">
+          <div className="flex flex-col items-start text-left pt-0 sm:pt-2 flex-1 min-w-0">
             <h1
-              className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold mb-2"
+              className="text-section-title lg:text-[calc(2.5rem-1px)] font-bold mb-2"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 lineHeight: 1.15,
@@ -218,7 +218,7 @@ export default function TeamMemberProfilePage() {
         />
 
         <article
-          className="space-y-5 text-[1.05rem] leading-[1.85]"
+          className="space-y-5 text-[1.05rem] leading-[1.85] text-justify"
           style={{
             fontFamily: "'Inter', sans-serif",
           }}

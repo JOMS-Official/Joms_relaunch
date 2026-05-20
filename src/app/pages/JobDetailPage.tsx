@@ -19,6 +19,23 @@ function contentCardStyle(darkMode: boolean): React.CSSProperties {
   };
 }
 
+const HELLO_EMAIL = "hello@joms.in";
+
+function renderTextWithHelloEmail(text: string, darkMode: boolean) {
+  const idx = text.indexOf(HELLO_EMAIL);
+  if (idx === -1) return text;
+  const emailColor = darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)";
+  return (
+    <>
+      {text.slice(0, idx)}
+      <a href={`mailto:${HELLO_EMAIL}`} className="hover:opacity-90" style={{ color: emailColor }}>
+        {HELLO_EMAIL}
+      </a>
+      {text.slice(idx + HELLO_EMAIL.length)}
+    </>
+  );
+}
+
 export default function JobDetailPage() {
   const { jobId } = useParams();
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
@@ -113,7 +130,7 @@ export default function JobDetailPage() {
           </div>
           <div className="flex-1 min-w-0">
             <h1
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4"
+              className="text-section-title-sm font-bold mb-4"
               style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
             >
               {job.title}
@@ -128,6 +145,18 @@ export default function JobDetailPage() {
               <span className="px-3 py-1 rounded-full text-xs font-medium" style={careerGlassDeptTag(darkMode)}>
                 {job.department}
               </span>
+              {job.listingStatus === "closing_soon" ? (
+                <span
+                  className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide"
+                  style={{
+                    color: "#FDE68A",
+                    border: "1px solid rgba(251, 191, 36, 0.45)",
+                    background: "rgba(251, 191, 36, 0.12)",
+                  }}
+                >
+                  Closing soon
+                </span>
+              ) : null}
             </div>
           </div>
         </header>
@@ -148,36 +177,38 @@ export default function JobDetailPage() {
               </div>
             ))}
 
-            <div className="rounded-2xl p-6" style={contentCardStyle(darkMode)}>
-              <h2 className="text-base font-semibold mb-4" style={{ fontFamily: "'Sora', sans-serif" }}>
-                Qualifications
-              </h2>
-              <ul className="space-y-3">
-                {job.requirements.map((r) => (
-                  <li key={r} className="flex items-start gap-3 text-sm" style={{ color: bodyText }}>
-                    <span
-                      className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ background: "#7B5CFF", boxShadow: "0 0 8px rgba(123,92,255,0.5)" }}
-                    />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {job.detailSections.map((sec, secIdx) => (
+              <div key={`${sec.title}-${secIdx}`} className="rounded-2xl p-6" style={contentCardStyle(darkMode)}>
+                <h2 className="text-base font-semibold mb-4" style={{ fontFamily: "'Sora', sans-serif" }}>
+                  {sec.title}
+                </h2>
+                <ul className="space-y-3">
+                  {sec.items.map((r, itemIdx) => (
+                    <li key={`${secIdx}-${itemIdx}`} className="flex items-start gap-3 text-sm" style={{ color: bodyText }}>
+                      <span
+                        className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
+                        style={{ background: "#7B5CFF", boxShadow: "0 0 8px rgba(123,92,255,0.5)" }}
+                      />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
             <div className="rounded-2xl p-6" style={contentCardStyle(darkMode)}>
               <h2 className="text-base font-semibold mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>
                 How to Apply
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: bodyText }}>
-                {job.howToApply}
+                {renderTextWithHelloEmail(job.howToApply, darkMode)}
               </p>
             </div>
           </div>
 
           <aside className="lg:sticky lg:top-28 space-y-4 w-full max-w-[384px] lg:max-w-none lg:w-[384px]">
             <div
-              className="rounded-2xl p-6 box-border w-full max-w-[384px] h-[238px] flex flex-col"
+              className="rounded-2xl p-6 box-border w-full max-w-[384px] min-h-[238px] flex flex-col"
               style={contentCardStyle(darkMode)}
             >
               <h3 className="text-sm font-semibold mb-4 shrink-0" style={{ fontFamily: "'Sora', sans-serif" }}>
@@ -196,6 +227,14 @@ export default function JobDetailPage() {
                   <dt style={{ color: muted }}>Type</dt>
                   <dd className="mt-0.5 font-medium">{job.type}</dd>
                 </div>
+                {job.listingStatus === "closing_soon" ? (
+                  <div>
+                    <dt style={{ color: muted }}>Status</dt>
+                    <dd className="mt-0.5 font-medium" style={{ color: "#FCD34D" }}>
+                      Closing soon
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
             </div>
             <button

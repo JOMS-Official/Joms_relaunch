@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { Linkedin, Instagram } from "lucide-react";
 import JomsLogoMark from "./JomsLogoMark";
+import { useHomeSectionNav } from "../hooks/useHomeSectionNav";
 
 interface Props {
   darkMode: boolean;
@@ -15,25 +16,20 @@ const footerLinks = [
       { label: "Products", to: "/#products" },
       { label: "Team", to: "/#team" },
       { label: "Careers", to: "/careers" },
-      { label: "Blogs", to: "/blog" },
     ],
   },
   {
     title: "Legal",
     links: [
       { label: "Privacy Policy", to: "/privacy" },
-      { label: "Terms Of services", to: "/blog" },
-      { label: "Disclaimers", to: "/blog" },
-      { label: "Cookies Policy", to: "/blog" },
+      { label: "Terms of Service", to: "/terms-of-service" },
+      { label: "Disclaimer", to: "/disclaimer" },
+      { label: "Cookies Policy", to: "/cookies-policy" },
     ],
   },
   {
     title: "Resources",
-    links: [
-      { label: "Startup Blogs", to: "/blog" },
-      { label: "Tech Insights", to: "/contact" },
-      { label: "Pitch Deck", to: "/blog" },
-    ],
+    links: [{ label: "Startup Blogs", to: "/blog" }],
   },
 ];
 
@@ -43,6 +39,12 @@ const socials = [
 ];
 
 export default function Footer({ darkMode }: Props) {
+  const { goToSection } = useHomeSectionNav();
+
+  const handleFooterLinkClick = (e: React.MouseEvent, to: string) => {
+    if (goToSection(to)) e.preventDefault();
+  };
+
   return (
     <footer
       className="mt-20 pt-16 pb-8 px-4 sm:px-6 lg:px-8"
@@ -110,6 +112,7 @@ export default function Footer({ darkMode }: Props) {
                   <li key={link.label}>
                     <Link
                       to={link.to}
+                      onClick={(e) => handleFooterLinkClick(e, link.to)}
                       className="text-sm transition-colors hover:opacity-100"
                       style={{
                         color: darkMode

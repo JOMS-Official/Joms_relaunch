@@ -1,99 +1,242 @@
-import { useEffect } from "react";
-import { useOutletContext } from "react-router";
-
-const lastUpdated = "March 1, 2026";
+import React from "react";
+import { Link, useOutletContext } from "react-router";
+import { LegalH2, LegalPageShell } from "../components/LegalPageShell";
 
 export default function PrivacyPolicyPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const heading = darkMode ? "#F8FAFC" : "#020617";
-  const body = darkMode ? "rgba(248,250,252,0.72)" : "rgba(2,6,23,0.75)";
-  const muted = darkMode ? "rgba(248,250,252,0.45)" : "rgba(2,6,23,0.5)";
-  const sectionTitle = darkMode ? "#F8FAFC" : "#0f172a";
+  const st = darkMode ? "rgba(248,250,252,0.72)" : "rgba(2,6,23,0.75)";
 
   return (
-    <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 min-h-[70vh]">
-      <div className="max-w-3xl mx-auto text-left">
-        <h1
-          className="text-3xl sm:text-4xl font-bold mb-3"
-          style={{ fontFamily: "'Sora', sans-serif", color: heading }}
-        >
-          Privacy Policy
-        </h1>
-        <p className="text-sm mb-8" style={{ color: muted }}>
-          Last updated: {lastUpdated}
+    <LegalPageShell
+      darkMode={darkMode}
+      title="Privacy Policy"
+      metaLine="Last Updated On: 28th January 2025"
+    >
+      <p style={{ color: st }}>
+        JOMS Commerce & Technologies Private Limited (&quot;Company,&quot; &quot;we,&quot; &quot;our,&quot; or
+        &quot;us&quot;) values your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard
+        your personal information when you visit our website, interact with our services, or engage with us. By using
+        our website or services, you agree to the practices described in this Privacy Policy. If you do not agree,
+        please refrain from using our services.
+      </p>
+
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>1. Information We Collect:</LegalH2>
+        <p style={{ color: st }}>
+          We collect information that you provide to us directly and automatically when you use our website or
+          services. This includes:
         </p>
+        <p className="font-semibold" style={{ color: st }}>
+          Personal Information:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Name, email address, phone number, and address.</li>
+          <li>Login credentials, including username and password.</li>
+        </ul>
+        <p className="font-semibold" style={{ color: st }}>
+          Non-Personal Information:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Browser type, operating system, IP address, and device identifiers.</li>
+          <li>Usage data, such as pages viewed, time spent on the website, and interactions with content.</li>
+        </ul>
+        <p className="font-semibold" style={{ color: st }}>
+          Information from Third Parties:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Data from analytics tools or advertising partners.</li>
+          <li>Information shared via social media platforms if you log in using those services.</li>
+        </ul>
+      </section>
 
-        <div
-          className="h-px w-full mb-10"
-          style={{
-            background: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-          }}
-        />
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>2. How We Use Your Information:</LegalH2>
+        <p className="font-semibold" style={{ color: st }}>
+          To Provide Services:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Manage user accounts.</li>
+          <li>Provide customer support.</li>
+        </ul>
+        <p className="font-semibold" style={{ color: st }}>
+          To Improve Our Website and Services:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Analyze website usage and user behavior.</li>
+          <li>Enhance functionality and user experience.</li>
+        </ul>
+        <p className="font-semibold" style={{ color: st }}>
+          For Marketing and Communications:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Send promotional emails, newsletters, and offers.</li>
+          <li>Display personalized ads based on user preferences.</li>
+        </ul>
+        <p className="font-semibold" style={{ color: st }}>
+          To Comply with Legal Obligations:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>Meet requirements under applicable laws, such as tax or consumer protection regulations.</li>
+          <li>Address fraud prevention, security, and enforcement.</li>
+        </ul>
+      </section>
 
-        <div className="space-y-10 text-[15px] leading-[1.8]" style={{ color: body }}>
-          <section className="space-y-4">
-            <h2 className="text-lg font-semibold" style={{ fontFamily: "'Sora', sans-serif", color: sectionTitle }}>
-              Information We Collect
-            </h2>
-            <p>
-              We collect information you provide directly to us, such as when you create an account, submit a form,
-              contact us, or otherwise communicate with us.
-            </p>
-            <p>
-              This may include your name, email address, phone number, company name, and any other information you
-              choose to provide.
-            </p>
-          </section>
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>3. Sharing Your Information</LegalH2>
+        <p style={{ color: st }}>We may share your information with:</p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>
+            <strong>Service Providers:</strong> Third-party vendors who assist with marketing or analytics.
+          </li>
+          <li>
+            <strong>Business Partners:</strong> Companies with whom we collaborate to offer joint products or services.
+          </li>
+          <li>
+            <strong>Legal Authorities:</strong> When required to comply with legal obligations, subpoenas, or court
+            orders.
+          </li>
+          <li>
+            <strong>Merger or Acquisition:</strong> In the event of a merger, acquisition, or sale of company assets,
+            your information may be transferred.
+          </li>
+        </ul>
+        <p style={{ color: st }}>
+          We will never sell your personal information to any other parties that is not listed in this agreement
+          without your consent.
+        </p>
+      </section>
 
-          <section className="space-y-4">
-            <h2 className="text-lg font-semibold" style={{ fontFamily: "'Sora', sans-serif", color: sectionTitle }}>
-              How We Use Your Information
-            </h2>
-            <p>
-              We use the information we collect to provide, maintain, and improve our services, to process transactions,
-              to send you technical notices and support messages, and to respond to your comments and questions.
-            </p>
-          </section>
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>4. Cookies and Tracking Technologies</LegalH2>
+        <p style={{ color: st }}>
+          We use cookies, web beacons, and similar technologies to collect information about your browsing behavior.
+          For more details, please refer to our{" "}
+          <Link to="/cookies-policy" className="underline font-medium" style={{ color: "#A78BFA" }}>
+            Cookie Policy
+          </Link>
+          .
+        </p>
+      </section>
 
-          <section className="space-y-4">
-            <h2 className="text-lg font-semibold" style={{ fontFamily: "'Sora', sans-serif", color: sectionTitle }}>
-              Information Sharing
-            </h2>
-            <p>
-              We do not share, sell, or rent your personal information to third parties for their marketing purposes
-              without your explicit consent.
-            </p>
-            <p>
-              We may share information with service providers who perform services on our behalf, or when required by
-              law.
-            </p>
-          </section>
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>5. User Rights</LegalH2>
+        <p style={{ color: st }}>
+          Depending on your location, you may have the following rights regarding your personal data:
+        </p>
+        <ul className="list-disc pl-5 space-y-2" style={{ color: st }}>
+          <li>
+            <strong>Access:</strong> Request a copy of the personal data we hold about you.
+          </li>
+          <li>
+            <strong>Correction:</strong> Update inaccurate or incomplete information.
+          </li>
+          <li>
+            <strong>Deletion:</strong> Request the deletion of your personal information, subject to legal or
+            contractual obligations.
+          </li>
+          <li>
+            <strong>Portability:</strong> Request a copy of your data in a portable format.
+          </li>
+          <li>
+            <strong>Restriction:</strong> Restrict the processing of your personal information under certain
+            conditions.
+          </li>
+          <li>
+            <strong>Objection:</strong> Object to the processing of your personal data for direct marketing or other
+            purposes.
+          </li>
+          <li>
+            <strong>Withdraw Consent:</strong> Revoke any consent previously given for data processing.
+          </li>
+        </ul>
+        <p style={{ color: st }}>
+          To exercise these rights, please contact us at{" "}
+          <a
+            href="mailto:hello@joms.in"
+            className="hover:opacity-90"
+            style={{
+              color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
+            }}
+          >
+            hello@joms.in
+          </a>
+          .
+        </p>
+      </section>
 
-          <section className="space-y-4">
-            <h2 className="text-lg font-semibold" style={{ fontFamily: "'Sora', sans-serif", color: sectionTitle }}>
-              Data Security
-            </h2>
-            <p>
-              We take reasonable measures to help protect your personal information from loss, theft, misuse,
-              unauthorized access, disclosure, alteration, and destruction.
-            </p>
-          </section>
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>6. Data Security</LegalH2>
+        <p style={{ color: st }}>
+          We implement appropriate technical and organizational measures to safeguard your information from unauthorized
+          access, disclosure, alteration, or destruction. However, no security system is impenetrable, and we cannot
+          guarantee absolute security.
+        </p>
+      </section>
 
-          <section className="space-y-4">
-            <h2 className="text-lg font-semibold" style={{ fontFamily: "'Sora', sans-serif", color: sectionTitle }}>
-              Contact Us
-            </h2>
-            <p>
-              If you have any questions about this Privacy Policy, please contact us at hello@joms.co.
-            </p>
-          </section>
-        </div>
-      </div>
-    </div>
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>7. Data Retention</LegalH2>
+        <p style={{ color: st }}>
+          We retain your personal information only for as long as necessary to fulfill the purposes outlined in this
+          Privacy Policy or as required by law. Once retention periods expire, your data will be securely deleted or
+          anonymized.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>8. International Data Transfers</LegalH2>
+        <p style={{ color: st }}>
+          If you are accessing our services from outside India, your information may be transferred to and processed in
+          India or other countries where our service providers operate. By using our services, you consent to such data
+          transfers.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>9. Third-Party Links</LegalH2>
+        <p style={{ color: st }}>
+          Our website may contain links to third-party websites or services. We are not responsible for the privacy
+          practices or content of these external sites. We encourage you to review their privacy policies before
+          providing personal information.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>10. Children&apos;s Privacy</LegalH2>
+        <p style={{ color: st }}>
+          Our products or services are not directed at children under 18 years of age. We do not knowingly collect
+          personal information from children. If we discover that we have inadvertently collected such data, we will
+          promptly delete it.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>11. Updates to This Privacy Policy</LegalH2>
+        <p style={{ color: st }}>
+          We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements,
+          or other circumstances. Updates will be posted on this page with a revised &quot;Effective Date.&quot; Your
+          continued use of our services constitutes acceptance of the updated policy.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <LegalH2 darkMode={darkMode}>12. Contact Information</LegalH2>
+        <p style={{ color: st }}>If you have questions, concerns, or requests related to this Privacy Policy, please contact us at:</p>
+        <p className="whitespace-pre-line" style={{ color: st }}>
+          JOMS Commerce & Technologies Private Limited{"\n"}
+          No-592/2/635, NGEF Layout, Nagarbhavi, Bangalore North,{"\n"}
+          Bangalore-560072, Karnataka, India{"\n"}
+          Email:{" "}
+          <a
+            href="mailto:hello@joms.in"
+            className="hover:opacity-90"
+            style={{
+              color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
+            }}
+          >
+            hello@joms.in
+          </a>
+        </p>
+      </section>
+    </LegalPageShell>
   );
 }

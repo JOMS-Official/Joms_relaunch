@@ -57,14 +57,15 @@ export default function HeroSection({ darkMode }: HeroProps) {
 
       <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
         {/* Left - Text */}
-        <div className="flex-1 text-center lg:text-left">
+        <div className="flex-1 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="flex justify-center lg:justify-start mb-8"
           >
             <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 text-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm"
               style={{
                 background: darkMode
                   ? "linear-gradient(135deg, rgba(79,70,229,0.52), rgba(124,58,237,0.45))"
@@ -84,7 +85,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 text-center lg:text-left"
             style={{
               fontFamily: "'Sora', sans-serif",
               lineHeight: 1.1,
@@ -99,18 +100,15 @@ export default function HeroSection({ darkMode }: HeroProps) {
               }}
             >
               Just One More Step
-
-      
-
-            </span>
-            Away
+            </span>{" "}
+            Closer
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl mb-10 max-w-xl mx-auto lg:mx-0"
+            className="text-lg sm:text-xl mb-10 max-w-xl w-full mx-auto lg:mx-0 text-justify"
             style={{
               color: darkMode ? "rgba(248,250,252,0.7)" : "rgba(2,6,23,0.6)",
               lineHeight: 1.7,
@@ -126,7 +124,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
             className="flex justify-center lg:justify-start"
           >
             <Link
-              to="/contact"
+              to="/contact#connect"
               className="inline-flex items-center justify-center px-8 py-4 rounded-2xl text-white transition-all hover:scale-105"
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
@@ -163,29 +161,12 @@ export default function HeroSection({ darkMode }: HeroProps) {
               }}
             />
 
-            {/* Orbiting cards */}
-            {orbitCards.map((card) => (
-              <motion.div
-                key={card.label}
-                initial={{ rotate: card.angle }}
-                animate={{ rotate: card.angle + 360 }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-0"
-                style={{ transformOrigin: "50% 50%" }}
-              >
-                <motion.div
-                  initial={{ rotate: -card.angle }}
-                  animate={{ rotate: -card.angle - 360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs text-center whitespace-nowrap"
+            {/* Pill labels — stacked tight above the sphere */}
+            <div className="absolute top-0 left-1/2 z-10 flex -translate-x-1/2 -translate-y-[calc(100%+0.35rem)] flex-col items-center gap-1.5 sm:gap-2">
+              {orbitCards.map((card) => (
+                <div
+                  key={card.label}
+                  className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl text-[11px] sm:text-xs text-center whitespace-nowrap"
                   style={{
                     background: darkMode
                       ? "rgba(255,255,255,0.08)"
@@ -198,9 +179,9 @@ export default function HeroSection({ darkMode }: HeroProps) {
                   }}
                 >
                   {card.label}
-                </motion.div>
-              </motion.div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

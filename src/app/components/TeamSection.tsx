@@ -9,8 +9,9 @@ interface Props {
   darkMode: boolean;
 }
 
-const CARD_W = 260;
-const CARD_GAP = 16;
+const CARD_W = 220;
+const CARD_H = (346.66 * CARD_W) / 260;
+const CARD_GAP = 14;
 
 const teamMembers: {
   name: string;
@@ -26,44 +27,60 @@ const teamMembers: {
     slug: SWAROOP_SLUG,
   },
   {
-    name: "Bhavana Gopala ",
-    role: "Head Of Operations",
+    name: "Bhavana G",
+    role: "Head of Operations",
     image: "/src/assets/Bhavana.webp",
   },
   {
-    name: "Vishal HM",
-    role: "UI/UX Developer",
-    image: "/src/assets/vishal.webp",
-  },
-  {
-    name: "Ashwin S ",
-    role: "Backend Developer",
-    image: "/src/assets/Ashwin.jpg",
-  },
-  {
-    name: "Tejas K ",
-    role: "Research Engineer",
-    image: "/src/assets/unnamed.webp",
-  },
-  {
-    name: "Soniya Patil",
-    role: "Frontend Developer",
-  },
-  {
     name: "Amarnath Bagineni",
-    role: "Software Engineer",
+    role: "Chief Technology Officer",
   },
   {
-    name: "Megha",
-    role: "Data Scientist",
+    name: "Sangeeta M",
+    role: "Head of Partnerships & Growth",
   },
   {
-    name: "Srinivas",
+    name: "Punith C A",
+    role: "Finance Manager",
+  },
+  {
+    name: "Srinivas C",
     role: "Senior Data Architect",
   },
   {
     name: "Deepak",
     role: "Senior Mobile Architect",
+  },
+  {
+    name: "Megha K",
+    role: "Senior Data Scientist",
+  },
+  {
+    name: "Soniya Patil",
+    role: "Front-end Developer",
+  },
+  {
+    name: "Ashwin S",
+    role: "Backend Developer",
+    image: "/src/assets/Ashwin.jpg",
+  },
+  {
+    name: "Vishal HM",
+    role: "UI/UX Designer",
+    image: "/src/assets/vishal.webp",
+  },
+  {
+    name: "Tejas K",
+    role: "AI Research Engineer",
+    image: "/src/assets/unnamed.webp",
+  },
+  {
+    name: "Sujala",
+    role: "Talent Acquisition Specialist",
+  },
+  {
+    name: "Kavya",
+    role: "Data Research Expert",
   },
 ];
 
@@ -88,7 +105,7 @@ export default function TeamSection({ darkMode }: Props) {
           Our Team
         </p>
         <h2
-          className="text-3xl sm:text-4xl lg:text-5xl mb-4"
+          className="text-section-title-home mb-4"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
           People Who Challenge the Status Quo
@@ -129,8 +146,8 @@ export default function TeamSection({ darkMode }: Props) {
         >
           {teamMembers.map((member) => {
             const cardStyle = {
-              width: "min(260px, calc(100vw - 7rem))",
-              aspectRatio: `${CARD_W} / 346.66`,
+              width: `min(${CARD_W}px, calc(100vw - 7rem))`,
+              aspectRatio: `${CARD_W} / ${CARD_H}`,
               scrollSnapAlign: "start" as const,
             };
             const cardInner = (

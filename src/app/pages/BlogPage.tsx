@@ -23,7 +23,7 @@ export default function BlogPage() {
             Blogs
           </p>
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl mb-6"
+            className="text-section-title-xl mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Insights &{" "}

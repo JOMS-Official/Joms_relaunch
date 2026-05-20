@@ -42,7 +42,7 @@ export default function FutureSection({ darkMode }: Props) {
             The Future We're Building
           </motion.p>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl mb-6"
+            className="text-section-title-home mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
           >
             Innovation Built {" "}

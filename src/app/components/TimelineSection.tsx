@@ -89,7 +89,7 @@ export default function TimelineSection({ darkMode }: Props) {
           Our Journey
         </p>
         <h2
-          className="text-3xl sm:text-4xl lg:text-5xl mb-4"
+          className="text-section-title-home mb-4"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
           From Idea to Impact
@@ -141,9 +141,9 @@ export default function TimelineSection({ darkMode }: Props) {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-10 mb-20 last:mb-0"
             >
-              <div className="text-right pr-4">
+              <div className="pr-4">
                 <p
-                  className="text-xs mb-1"
+                  className="text-xs mb-1 !text-right"
                   style={{
                     color: isActive ? "#4ade80" : "#7C3AED",
                     fontWeight: 600,
@@ -153,7 +153,7 @@ export default function TimelineSection({ darkMode }: Props) {
                   {m.year}
                 </p>
                 <h3
-                  className="text-xl sm:text-2xl lg:text-3xl"
+                  className="text-section-subtitle lg:text-section-subtitle-lg text-right"
                   style={{
                     fontFamily: "'Sora', sans-serif",
                     fontWeight: 600,
@@ -258,7 +258,7 @@ export default function TimelineSection({ darkMode }: Props) {
               />
 
               <p
-                className="text-xs mb-1"
+                className="text-xs mb-1 !text-right"
                 style={{
                   color: isActive ? "#4ade80" : "#7C3AED",
                   fontWeight: 600,
@@ -268,7 +268,7 @@ export default function TimelineSection({ darkMode }: Props) {
                 {m.year}
               </p>
               <h3
-                className="text-xl mb-2"
+                className="text-xl mb-2 text-left"
                 style={{
                   fontFamily: "'Sora', sans-serif",
                   fontWeight: 600,

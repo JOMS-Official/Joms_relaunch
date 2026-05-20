@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useOutletContext } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useOutletContext, useLocation } from "react-router";
 import { motion } from "motion/react";
 import { Send, CheckCircle, Mail, MapPin } from "lucide-react";
 import GlassCard from "../components/GlassCard";
@@ -8,6 +8,15 @@ import SectionWrapper from "../components/SectionWrapper";
 export default function ContactPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
   const [submitted, setSubmitted] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#connect") {
+      requestAnimationFrame(() => {
+        document.getElementById("connect")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, [location.hash, location.pathname]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,14 +24,14 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-24">
-      <SectionWrapper>
-        <div className="text-center mb-16">
-          <p className="text-sm mb-4 tracking-widest uppercase" style={{ color: "#7C3AED" }}>
+    <div className="pt-14 sm:pt-16 lg:pt-20">
+      <SectionWrapper className="!pt-8 !pb-6 md:!pt-10 md:!pb-8">
+        <div id="connect" className="text-center mb-6 sm:mb-8 scroll-mt-24">
+          <p className="text-sm mb-2 tracking-widest uppercase" style={{ color: "#7C3AED" }}>
             Contact
           </p>
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl mb-6"
+            className="text-section-title mb-3"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Let's{" "}
@@ -37,7 +46,7 @@ export default function ContactPage() {
             </span>
           </h1>
           <p
-            className="max-w-2xl mx-auto"
+            className="max-w-2xl mx-auto text-sm sm:text-base"
             style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}
           >
             Have a question, partnership idea, or want to learn more? We'd love to
@@ -45,9 +54,9 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto items-start">
           {/* Contact form */}
-          <GlassCard darkMode={darkMode} hover={false}>
+          <GlassCard darkMode={darkMode} hover={false} className="!p-5">
             {submitted ? (
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -73,7 +82,7 @@ export default function ContactPage() {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="text-xs mb-2 block" style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}>
                     Name
@@ -81,7 +90,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     required
-                    placeholder="Your name"
+                    placeholder="Enter your name"
                     className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
@@ -97,7 +106,7 @@ export default function ContactPage() {
                   <input
                     type="email"
                     required
-                    placeholder="your@email.com"
+                    placeholder="Enter your email"
                     className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
@@ -111,9 +120,9 @@ export default function ContactPage() {
                     Message
                   </label>
                   <textarea
-                    rows={5}
+                    rows={4}
                     required
-                    placeholder="Tell us what's on your mind..."
+                    placeholder="Enter your message"
                     className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none resize-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
@@ -124,7 +133,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-white text-sm transition-all hover:scale-[1.02]"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white text-sm transition-all hover:scale-[1.02]"
                   style={{
                     background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                     boxShadow: "0 8px 30px rgba(79,70,229,0.4)",
@@ -137,8 +146,8 @@ export default function ContactPage() {
           </GlassCard>
 
           {/* Contact info */}
-          <div className="space-y-6">
-            <GlassCard darkMode={darkMode} hover={false}>
+          <div className="space-y-4">
+            <GlassCard darkMode={darkMode} hover={false} className="!p-5">
               <div className="flex items-start gap-4">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -150,14 +159,20 @@ export default function ContactPage() {
                   <h4 className="text-sm mb-1" style={{ fontFamily: "'Sora', sans-serif" }}>
                     Email Us
                   </h4>
-                  <p className="text-sm" style={{ color: "#7C3AED" }}>
-                    hello@joms.co
-                  </p>
+                  <a
+                    href="mailto:hello@joms.in"
+                    className="text-sm hover:underline hover:opacity-90"
+                    style={{
+                      color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
+                    }}
+                  >
+                    hello@joms.in
+                  </a>
                 </div>
               </div>
             </GlassCard>
 
-            <GlassCard darkMode={darkMode} hover={false}>
+            <GlassCard darkMode={darkMode} hover={false} className="!p-5">
               <div className="flex items-start gap-4">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -179,19 +194,19 @@ export default function ContactPage() {
               </div>
             </GlassCard>
 
-            <GlassCard darkMode={darkMode} hover={false}>
+            <GlassCard darkMode={darkMode} hover={false} className="!p-5">
               <p
                 className="text-sm italic"
                 style={{
                   color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.6,
                 }}
               >
                 "Every great collaboration starts with a single conversation.
                 We believe the next big thing could begin with your message."
               </p>
-              <p className="text-xs mt-3" style={{ color: "#7C3AED" }}>
-                — The JOMS Team
+              <p className="text-xs mt-2" style={{ color: darkMode ? "#FFFFFF" : "#020617" }}>
+                — JOMS Team
               </p>
             </GlassCard>
           </div>

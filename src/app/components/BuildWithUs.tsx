@@ -51,7 +51,7 @@ export default function BuildWithUs({ darkMode }: Props) {
           Build With Us
         </p>
         <h2
-          className="text-3xl sm:text-4xl lg:text-5xl"
+          className="text-section-title-home"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
           Your Next Move Starts Here
