@@ -1,6 +1,6 @@
-import { useCallback, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { Link } from "react-router";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { SWAROOP_CARD_IMAGE, SWAROOP_SLUG } from "../data/teamMemberProfiles";
@@ -15,45 +15,55 @@ const CARD_GAP = 16;
 const teamMembers: {
   name: string;
   role: string;
-  image: string;
+  /** Omit until a portrait is available; card shows an empty placeholder slot. */
+  image?: string;
   slug?: string;
 }[] = [
   {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
-    image:  "/src/assets/Swaroop.jpg",
+    image: "/src/assets/Swaroop.jpg",
     slug: SWAROOP_SLUG,
   },
-   {
+  {
     name: "Bhavana Gopala ",
     role: "Head Of Operations",
-    image:
-      "/src/assets/Bhavana.webp",
+    image: "/src/assets/Bhavana.webp",
   },
- 
   {
     name: "Vishal HM",
     role: "UI/UX Developer",
-    image:
-      "/src/assets/vishal.webp",
+    image: "/src/assets/vishal.webp",
   },
   {
     name: "Ashwin S ",
     role: "Backend Developer",
-    image:
-      "/src/assets/Ashwin.jpg",
-  },
-   {
-    name: "Tejas K ",
-    role: "Research Engineer",
-    image:
-      "/src/assets/unnamed.webp",
+    image: "/src/assets/Ashwin.jpg",
   },
   {
-    name: "Maya Patel",
-    role: "Product Manager",
-    image:
-      "https://images.unsplash.com/photo-1659353220597-71b8c6a56259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    name: "Tejas K ",
+    role: "Research Engineer",
+    image: "/src/assets/unnamed.webp",
+  },
+  {
+    name: "Soniya Patil",
+    role: "Frontend Developer",
+  },
+  {
+    name: "Amarnath Bagineni",
+    role: "Software Engineer",
+  },
+  {
+    name: "Megha",
+    role: "Data Scientist",
+  },
+  {
+    name: "Srinivas",
+    role: "Senior Data Architect",
+  },
+  {
+    name: "Deepak",
+    role: "Senior Mobile Architect",
   },
 ];
 
@@ -125,11 +135,23 @@ export default function TeamSection({ darkMode }: Props) {
             };
             const cardInner = (
               <>
-                <ImageWithFallback
-                  src={member.image}
-                  alt={member.name}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                {member.image ? (
+                  <ImageWithFallback
+                    src={member.image}
+                    alt={member.name}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full"
+                    style={{
+                      background: darkMode
+                        ? "linear-gradient(160deg, rgba(79,70,229,0.22) 0%, rgba(15,23,42,0.95) 55%, rgba(15,23,42,1) 100%)"
+                        : "linear-gradient(160deg, rgba(79,70,229,0.14) 0%, rgba(226,232,240,0.65) 45%, rgba(241,245,249,0.98) 100%)",
+                    }}
+                  />
+                )}
                 <div
                   className="pointer-events-none absolute inset-0"
                   style={{
@@ -154,11 +176,19 @@ export default function TeamSection({ darkMode }: Props) {
                   </div>
                   {member.slug ? (
                     <div
-                      className="pointer-events-none flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-transform group-hover:translate-x-0.5"
-                      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.35)" }}
+                      className="pointer-events-none flex shrink-0 flex-col items-end justify-end self-end"
                       aria-hidden
                     >
-                      <ArrowRight size={18} strokeWidth={2.25} />
+                      <div
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.35)" }}
+                      >
+                        <ArrowUpRight
+                          size={19}
+                          strokeWidth={2}
+                          className="shrink-0"
+                        />
+                      </div>
                     </div>
                   ) : null}
                 </div>

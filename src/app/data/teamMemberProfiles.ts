@@ -6,11 +6,12 @@ export type TeamProfileBlock =
   | {
       kind: "heading";
       text: string;
-      /** When true: if the heading contains `:`, each word before `:` gets a purple first letter (e.g. Just One More Step → J O M S); otherwise only the very first character is purple. */
+      /** When true: if the heading contains ` - ` or `:`, each word in the phrase before that separator gets a highlighted first letter (e.g. Just One More Step → J O M S); otherwise only the very first character is highlighted. */
       accentFirstLetter?: boolean;
     }
   | { kind: "paragraph"; text: string }
-  | { kind: "bullets"; items: string[] };
+  /** `emphasis: "white"` — list text and markers use strong contrast (white in dark mode). */
+  | { kind: "bullets"; items: string[]; emphasis?: "white" };
 
 export type TeamMemberProfile = {
   slug: string;
@@ -34,7 +35,7 @@ export const teamMemberProfiles: TeamMemberProfile[] = [
     roleDisplay: "FOUNDER & CEO",
     company: "JOMS Commerce & Technologies Pvt. Ltd.",
     image: "/src/assets/Swaroop.jpg",
-    linkedinUrl: "https://www.linkedin.com/",
+    linkedinUrl: "https://www.linkedin.com/in/swaroopjayaram",
     content: [
       {
         kind: "paragraph",
@@ -147,7 +148,7 @@ export const teamMemberProfiles: TeamMemberProfile[] = [
 
       {
         kind: "heading",
-        text: 'Just One More Step: One small step for a man, one giant leap for mankind',
+        text: 'Just One More Step - One small step for a man, one giant leap for mankind',
         accentFirstLetter: true,
       },
       {
@@ -162,6 +163,7 @@ export const teamMemberProfiles: TeamMemberProfile[] = [
       },
       {
         kind: "bullets",
+        emphasis: "white",
         items: [
           "The right people",
           "The right infrastructure",

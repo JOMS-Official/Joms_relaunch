@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { Rocket } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Link } from "react-router";
 import SectionWrapper from "./SectionWrapper";
 
@@ -18,38 +17,47 @@ const slideTexts = [
   "Your network should work as hard as your ambition; build meaningful relationships that open doors, spark collaboration, and create lasting opportunities.",
 ];
 
+const textBlurbVariants = {
+  initial: { opacity: 0, y: 16 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.58,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -12,
+    transition: {
+      duration: 0.34,
+      ease: [0.4, 0, 0.2, 1],
+    },
+  },
+} as const;
+
 export default function ProductsSection({ darkMode }: Props) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "center",
-    duration: 20,
-  });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  const goTo = (index: number) => {
+    setSelectedIndex(
+      ((index % slideTexts.length) + slideTexts.length) % slideTexts.length,
+    );
+  };
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("reInit", onSelect);
-    emblaApi.on("select", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect]);
+  const goNext = () =>
+    setSelectedIndex((i) => (i + 1) % slideTexts.length);
+  const goPrev = () =>
+    setSelectedIndex((i) => (i - 1 + slideTexts.length) % slideTexts.length);
 
-  // Auto-advance every 3s; restart timer whenever the slide changes (swipe, dots, or autoplay).
+  // Longer dwell time; timer resets when the slide changes (dots or swipe).
   useEffect(() => {
-    if (!emblaApi) return;
     const id = window.setInterval(() => {
-      emblaApi.scrollNext();
-    }, 3000);
+      setSelectedIndex((i) => (i + 1) % slideTexts.length);
+    }, 5800);
     return () => window.clearInterval(id);
-  }, [emblaApi, selectedIndex]);
+  }, [selectedIndex]);
 
   const muted = darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)";
 
@@ -66,20 +74,6 @@ export default function ProductsSection({ darkMode }: Props) {
       />
 
       <div className="flex flex-col items-center text-center py-12">
-        <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8"
-          style={{
-            background: darkMode
-              ? "rgba(255,255,255,0.06)"
-              : "rgba(0,0,0,0.05)",
-            border: darkMode
-              ? "1px solid rgba(255,255,255,0.1)"
-              : "1px solid rgba(0,0,0,0.08)",
-          }}
-        >
-          <Rocket size={24} style={{ color: darkMode ? "#E2E8F0" : "#1E293B" }} />
-        </div>
-
         <h2
           className="text-4xl sm:text-5xl lg:text-6xl mb-5"
           style={{
@@ -105,33 +99,46 @@ export default function ProductsSection({ darkMode }: Props) {
         </Link>
 
         <div
-          className="w-full max-w-lg mx-auto mb-10"
+          className="w-full max-w-lg mx-auto mb-10 min-h-[7.5rem] sm:min-h-[6.75rem]"
           aria-roledescription="carousel"
           aria-label="Launching soon updates"
         >
-          <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
-            <div className="flex touch-pan-y">
-              {slideTexts.map((text, i) => (
-                <div
-                  key={i}
-                  className="min-w-0 shrink-0 grow-0 basis-full px-1"
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label={`${i + 1} of ${slideTexts.length}`}
-                >
-                  <p
-                    className="text-sm sm:text-base"
-                    style={{
-                      color: muted,
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <motion.div
+            className="overflow-hidden cursor-grab active:cursor-grabbing px-1 select-none touch-pan-y"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.12}
+            onDragEnd={(_, { offset, velocity }) => {
+              const swipe = offset.x + velocity.x * 0.15;
+              if (swipe < -40) {
+                goNext();
+              } else if (swipe > 40) {
+                goPrev();
+              }
+            }}
+            role="region"
+            aria-live="polite"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p
+                key={selectedIndex}
+                className="text-sm sm:text-base text-center"
+                style={{
+                  color: muted,
+                  lineHeight: 1.8,
+                }}
+                variants={textBlurbVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${selectedIndex + 1} of ${slideTexts.length}`}
+              >
+                {slideTexts[selectedIndex]}
+              </motion.p>
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         <div
@@ -148,7 +155,7 @@ export default function ProductsSection({ darkMode }: Props) {
                 role="tab"
                 aria-selected={active}
                 aria-label={`Slide ${i + 1}`}
-                onClick={() => emblaApi?.scrollTo(i)}
+                onClick={() => goTo(i)}
                 className="w-2 h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
                 style={{
                   background: active

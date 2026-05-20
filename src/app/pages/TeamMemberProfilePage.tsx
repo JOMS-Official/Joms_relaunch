@@ -24,16 +24,19 @@ function renderBlock(
   const headingColor = darkMode ? "#F1F5F9" : "#0f172a";
 
   if (block.kind === "heading") {
-    const leadAccent = "#7C3AED";
+    const jomsFirstLetterColor = darkMode ? "#FFFFFF" : headingColor;
 
     const headingBody =
       block.accentFirstLetter && block.text.length > 0 ? (
         (() => {
+          const dashIdx = block.text.indexOf(" - ");
           const colonIdx = block.text.indexOf(":");
-          if (colonIdx !== -1) {
-            const beforeColon = block.text.slice(0, colonIdx).trimEnd();
-            const fromColon = block.text.slice(colonIdx);
-            const words = beforeColon.split(/\s+/).filter(Boolean);
+          const splitIdx =
+            dashIdx !== -1 ? dashIdx : colonIdx !== -1 ? colonIdx : -1;
+          if (splitIdx !== -1) {
+            const beforeSep = block.text.slice(0, splitIdx).trimEnd();
+            const fromSep = block.text.slice(splitIdx);
+            const words = beforeSep.split(/\s+/).filter(Boolean);
             return (
               <>
                 {words.map((word, i) => (
@@ -41,19 +44,19 @@ function renderBlock(
                     {i > 0 ? " " : null}
                     {word.length > 0 ? (
                       <>
-                        <span style={{ color: leadAccent }}>{word[0]}</span>
+                        <span style={{ color: jomsFirstLetterColor }}>{word[0]}</span>
                         {word.slice(1)}
                       </>
                     ) : null}
                   </React.Fragment>
                 ))}
-                <span style={{ color: headingColor }}>{fromColon}</span>
+                <span style={{ color: headingColor }}>{fromSep}</span>
               </>
             );
           }
           return (
             <>
-              <span style={{ color: leadAccent }}>{block.text[0]}</span>
+              <span style={{ color: jomsFirstLetterColor }}>{block.text[0]}</span>
               {block.text.slice(1)}
             </>
           );
@@ -78,11 +81,23 @@ function renderBlock(
   }
 
   if (block.kind === "bullets") {
+    const emphasisWhite = block.emphasis === "white";
+    const bulletColor = emphasisWhite
+      ? darkMode
+        ? "#FFFFFF"
+        : "#0f172a"
+      : muted;
+    const markerClass = emphasisWhite
+      ? darkMode
+        ? "marker:text-white"
+        : "marker:text-slate-900"
+      : "marker:text-violet-500";
+
     return (
       <ul
         key={index}
-        className="list-disc pl-6 sm:pl-7 space-y-2.5 my-4 marker:text-violet-500"
-        style={{ color: muted }}
+        className={`list-disc pl-6 sm:pl-7 space-y-2.5 my-4 ${markerClass}`}
+        style={{ color: bulletColor }}
       >
         {block.items.map((item, j) => (
           <li key={j} className="pl-1">

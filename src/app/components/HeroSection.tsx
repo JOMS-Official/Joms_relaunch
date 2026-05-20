@@ -16,7 +16,7 @@ const orbitCards = [
 
 export default function HeroSection({ darkMode }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 px-4">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 px-4">
       {/* Animated gradient orbs */}
       <motion.div
         animate={{
@@ -67,13 +67,15 @@ export default function HeroSection({ darkMode }: HeroProps) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 text-sm"
               style={{
                 background: darkMode
-                  ? "rgba(79,70,229,0.15)"
-                  : "rgba(79,70,229,0.08)",
-                border: "1px solid rgba(79,70,229,0.3)",
-                color: "#7C3AED",
+                  ? "linear-gradient(135deg, rgba(79,70,229,0.52), rgba(124,58,237,0.45))"
+                  : "linear-gradient(135deg, rgba(79,70,229,0.72), rgba(124,58,237,0.62))",
+                border: darkMode
+                  ? "1px solid rgba(255,255,255,0.14)"
+                  : "1px solid rgba(255,255,255,0.22)",
+                color: "#FFFFFF",
               }}
             >
-              <Sparkles size={14} />
+              <Sparkles size={14} className="shrink-0 text-white" strokeWidth={2} style={{ color: "#FFFFFF" }} />
               Just One More Step
             </div>
           </motion.div>

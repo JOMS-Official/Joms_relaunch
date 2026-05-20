@@ -18,7 +18,7 @@ const milestones = [
     year: "Jan 2025",
     title: "Startup India, Officially Backing the Vision",
     description:
-      "Recognised as a startup under the Government of India's Startup India programme — validating our mission and unlocking a path to build with national support.",
+      "Recognised as a startup under the Government of India's Startup India programme, validating our mission and unlocking a path to build with national support.",
   },
   {
     year: "Feb 2025",
@@ -100,7 +100,7 @@ export default function TimelineSection({ darkMode }: Props) {
             color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)",
           }}
         >
-          Key moments from incorporation to launch — how an idea became something the world can see.
+          Key moments from incorporation to launch. How an idea became something the world can see.
         </p>
       </div>
 

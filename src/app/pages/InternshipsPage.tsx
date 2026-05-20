@@ -82,7 +82,7 @@ export default function InternshipsPage() {
   return (
     <div className="pt-35">
       {/* Hero */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-16 md:pb-20 text-center">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-12 md:pb-16 text-center">
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6"
           style={{
@@ -158,7 +158,7 @@ export default function InternshipsPage() {
       </SectionWrapper>
 
       {/* Duration & qualifications */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 md:pb-24">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-14 md:pb-20">
         <div className="grid md:grid-cols-2 gap-6">
           <div className={glassPanel}>
             <div className="flex items-start gap-4">
@@ -216,7 +216,7 @@ export default function InternshipsPage() {
       </section>
 
       {/* How to apply */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 md:pb-24">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-14 md:pb-20">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-start">
           <div>
             <h2
@@ -266,7 +266,7 @@ export default function InternshipsPage() {
       </section>
 
       {/* Open positions */}
-      <SectionWrapper id="open-positions" className="!pt-0 !pb-24 md:!pb-32">
+      <SectionWrapper id="open-positions" className="!pt-0 !pb-16 md:!pb-24">
         <div className="text-center mb-12">
           <p
             className="text-xs font-semibold tracking-[0.2em] uppercase mb-3"
