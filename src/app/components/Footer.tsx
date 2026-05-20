@@ -34,8 +34,16 @@ const footerLinks = [
 ];
 
 const socials = [
-  { icon: Instagram, href: "https://instagram.com" },
-  { icon: Linkedin, href: "https://linkedin.com" },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/joms_justonemorestep",
+    label: "JOMS on Instagram",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/justonemorestep/",
+    label: "JOMS on LinkedIn",
+  },
 ];
 
 export default function Footer({ darkMode }: Props) {
@@ -58,26 +66,29 @@ export default function Footer({ darkMode }: Props) {
         <div className="grid items-start sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="min-w-0 flex flex-col">
-            <div className="w-fit max-w-full shrink-0 -mt-8 sm:-mt-10 lg:-mt-12">
-              <Link
-                to="/"
-                aria-label="JOMS — home"
-                className="block w-[150px] max-w-full leading-none"
-              >
-                <JomsLogoMark
-                  darkMode={darkMode}
-                  className="object-left object-top -translate-y-2"
-                />
-              </Link>
-            </div>
-            <div className="-mt-12 flex gap-3">
+            <Link
+              to="/"
+              aria-label="JOMS — home"
+              className="relative z-0 -mt-14 block h-[150px] w-[150px] max-w-full leading-none sm:-mt-16"
+            >
+              <JomsLogoMark
+                darkMode={darkMode}
+                className="h-[150px] w-[150px] object-contain object-left object-top"
+              />
+            </Link>
+            <div className="relative z-10 -mt-10 flex gap-3 sm:-mt-11">
               {socials.map((s) => (
                 <a
                   key={s.href}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                  aria-label={s.label}
+                  className="relative z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg transition-all hover:scale-110"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(s.href, "_blank", "noopener,noreferrer");
+                  }}
                   style={{
                     background: darkMode
                       ? "rgba(255,255,255,0.06)"
@@ -87,7 +98,7 @@ export default function Footer({ darkMode }: Props) {
                       : "rgba(2,6,23,0.5)",
                   }}
                 >
-                  <s.icon size={16} />
+                  <s.icon size={16} aria-hidden />
                 </a>
               ))}
             </div>

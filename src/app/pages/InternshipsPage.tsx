@@ -105,7 +105,7 @@ export default function InternshipsPage() {
         >
           Internships for Builders and Problem Solvers
         </h1>
-        <p className="max-w-2xl mx-auto text-lg mb-10" style={{ color: darkMode ? muted(true) : subtext }}>
+        <p className="max-w-2xl mx-auto text-lg mb-10 !text-center" style={{ color: darkMode ? muted(true) : subtext }}>
           Build skills that matter through hands-on internships designed for curious thinkers, creators, and future
           entrepreneurs.
         </p>
@@ -269,7 +269,7 @@ export default function InternshipsPage() {
       <SectionWrapper id="open-positions" className="!pt-0 !pb-16 md:!pb-24">
         <div className="text-center mb-12">
           <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+            className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 !text-center"
             style={{ color: green }}
           >
             Open Positions

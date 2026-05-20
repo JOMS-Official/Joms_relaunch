@@ -7,51 +7,75 @@ interface HeroProps {
   darkMode: boolean;
 }
 
-/** Tighter arc (~44° apart) so the three pills sit closer together; full 360/3 would spread them farther. */
 const orbitCards = [
   { label: "The Right People", angle: 0 },
-  { label: "In The Right Place", angle: 44 },
-  { label: "At The Right Time", angle: 88 },
+  { label: "In The Right Place", angle: 15 },
+  { label: "At The Right Time", angle: 30 },
 ];
+
+function OrbitPill({
+  label,
+  angle,
+  darkMode,
+}: {
+  label: string;
+  angle: number;
+  darkMode: boolean;
+}) {
+  return (
+    <motion.div
+      animate={{ rotate: [angle, angle + 360] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      className="absolute inset-0"
+    >
+      <motion.div
+        animate={{ rotate: [-angle, -(angle + 360)] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute -top-8 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl text-xs whitespace-nowrap"
+        style={{
+          background: darkMode
+            ? "rgba(255,255,255,0.08)"
+            : "rgba(255,255,255,0.9)",
+          backdropFilter: "blur(20px)",
+          border: darkMode
+            ? "1px solid rgba(255,255,255,0.15)"
+            : "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "0 4px 20px rgba(79,70,229,0.2)",
+          color: darkMode ? "#ffffff" : "#111111",
+        }}
+      >
+        {label}
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function HeroSection({ darkMode }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12 px-4">
       {/* Animated gradient orbs */}
       <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl"
         style={{
-          background:
-            "radial-gradient(circle, rgba(79,70,229,0.4), transparent 70%)",
+          background: "radial-gradient(circle, rgba(79,70,229,0.4), transparent 70%)",
         }}
       />
       <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.4, 0.2],
-        }}
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl"
         style={{
-          background:
-            "radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)",
+          background: "radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)",
         }}
       />
       <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.15, 0.3, 0.15],
-        }}
+        animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/3 right-1/3 w-64 h-64 rounded-full blur-3xl"
         style={{
-          background:
-            "radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%)",
+          background: "radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%)",
         }}
       />
 
@@ -86,10 +110,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 text-center lg:text-left"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-              lineHeight: 1.1,
-            }}
+            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Every Opportunity is{" "}
             <span
@@ -114,7 +135,9 @@ export default function HeroSection({ darkMode }: HeroProps) {
               lineHeight: 1.7,
             }}
           >
-            JOMS is redefining startup eco-system with an all-in-one platform that helps founders validate ideas, build products, connect and scale efficiently. 
+            JOMS is redefining startup eco-system with an all-in-one platform
+            that helps founders validate ideas, build products, connect and
+            scale efficiently.
           </motion.p>
 
           <motion.div
@@ -136,14 +159,14 @@ export default function HeroSection({ darkMode }: HeroProps) {
           </motion.div>
         </div>
 
-        {/* Right - Animated sphere with orbiting cards */}
+        {/* Right - Animated sphere with orbiting pills */}
         <div className="flex-1 flex items-center justify-center">
-          <div className="relative w-72 h-72 sm:w-96 sm:h-96">
+          <div className="relative w-[500px] h-[500px]">
             {/* Central sphere */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-8 rounded-full"
+              className="absolute inset-16 rounded-full"
               style={{
                 background:
                   "radial-gradient(circle at 30% 30%, rgba(79,70,229,0.6), rgba(124,58,237,0.4), rgba(37,99,235,0.2), transparent 70%)",
@@ -154,34 +177,22 @@ export default function HeroSection({ darkMode }: HeroProps) {
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-16 rounded-full"
+              className="absolute inset-28 rounded-full"
               style={{
                 background:
                   "radial-gradient(circle at 70% 30%, rgba(124,58,237,0.5), transparent 60%)",
               }}
             />
 
-            {/* Pill labels — stacked tight above the sphere */}
-            <div className="absolute top-0 left-1/2 z-10 flex -translate-x-1/2 -translate-y-[calc(100%+0.35rem)] flex-col items-center gap-1.5 sm:gap-2">
-              {orbitCards.map((card) => (
-                <div
-                  key={card.label}
-                  className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl text-[11px] sm:text-xs text-center whitespace-nowrap"
-                  style={{
-                    background: darkMode
-                      ? "rgba(255,255,255,0.08)"
-                      : "rgba(255,255,255,0.9)",
-                    backdropFilter: "blur(20px)",
-                    border: darkMode
-                      ? "1px solid rgba(255,255,255,0.15)"
-                      : "1px solid rgba(0,0,0,0.08)",
-                    boxShadow: "0 4px 20px rgba(79,70,229,0.2)",
-                  }}
-                >
-                  {card.label}
-                </div>
-              ))}
-            </div>
+            {/* Orbiting pills */}
+            {orbitCards.map((card) => (
+              <OrbitPill
+                key={card.label}
+                label={card.label}
+                angle={card.angle}
+                darkMode={darkMode}
+              />
+            ))}
           </div>
         </div>
       </div>
