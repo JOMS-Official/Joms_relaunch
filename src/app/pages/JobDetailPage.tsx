@@ -4,7 +4,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Briefcase, MapPin, Clock, X, Upload } from "lucide-react";
 import { getCareerJobById } from "../data/careersJobs";
 import applicationSuccessIcon from "../../assets/application-success-icon.png";
-import { careerGlassDeptTag, careerGlassIconBox } from "../careersGlass";
+import {
+  careerClosingSoonTag,
+  careerClosingSoonTextColor,
+  careerGlassDeptTag,
+  careerGlassIconBox,
+} from "../careersGlass";
 
 function detailIconBox(darkMode: boolean): React.CSSProperties {
   return { ...careerGlassIconBox(darkMode), width: 48, height: 48 };
@@ -15,8 +20,7 @@ function contentCardStyle(darkMode: boolean): React.CSSProperties {
     background: darkMode ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.95)",
     border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.06)",
     backdropFilter: "blur(12px)",
-    WebkitBackdropFilter: "blur(12px)",
-  };
+    WebkitBackdropFilter: "blur(12px)"};
 }
 
 const HELLO_EMAIL = "hello@joms.in";
@@ -131,7 +135,7 @@ export default function JobDetailPage() {
           <div className="flex-1 min-w-0">
             <h1
               className="text-section-title-sm font-bold mb-4"
-              style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+              style={{lineHeight: 1.15 }}
             >
               {job.title}
             </h1>
@@ -148,11 +152,7 @@ export default function JobDetailPage() {
               {job.listingStatus === "closing_soon" ? (
                 <span
                   className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide"
-                  style={{
-                    color: "#FDE68A",
-                    border: "1px solid rgba(251, 191, 36, 0.45)",
-                    background: "rgba(251, 191, 36, 0.12)",
-                  }}
+                  style={careerClosingSoonTag(darkMode)}
                 >
                   Closing soon
                 </span>
@@ -168,7 +168,7 @@ export default function JobDetailPage() {
               { title: "Role Overview", body: job.roleOverview },
             ].map((block) => (
               <div key={block.title} className="rounded-2xl p-6" style={contentCardStyle(darkMode)}>
-                <h2 className="text-base font-semibold mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>
+                <h2 className="text-base font-semibold mb-3" style={{}}>
                   {block.title}
                 </h2>
                 <p className="text-sm leading-relaxed" style={{ color: bodyText }}>
@@ -179,7 +179,7 @@ export default function JobDetailPage() {
 
             {job.detailSections.map((sec, secIdx) => (
               <div key={`${sec.title}-${secIdx}`} className="rounded-2xl p-6" style={contentCardStyle(darkMode)}>
-                <h2 className="text-base font-semibold mb-4" style={{ fontFamily: "'Sora', sans-serif" }}>
+                <h2 className="text-base font-semibold mb-4" style={{}}>
                   {sec.title}
                 </h2>
                 <ul className="space-y-3">
@@ -197,7 +197,7 @@ export default function JobDetailPage() {
             ))}
 
             <div className="rounded-2xl p-6" style={contentCardStyle(darkMode)}>
-              <h2 className="text-base font-semibold mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>
+              <h2 className="text-base font-semibold mb-3" style={{}}>
                 How to Apply
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: bodyText }}>
@@ -211,7 +211,7 @@ export default function JobDetailPage() {
               className="rounded-2xl p-6 box-border w-full max-w-[384px] min-h-[238px] flex flex-col"
               style={contentCardStyle(darkMode)}
             >
-              <h3 className="text-sm font-semibold mb-4 shrink-0" style={{ fontFamily: "'Sora', sans-serif" }}>
+              <h3 className="text-sm font-semibold mb-4 shrink-0" style={{}}>
                 Quick Info
               </h3>
               <dl className="space-y-3 text-sm">
@@ -230,7 +230,7 @@ export default function JobDetailPage() {
                 {job.listingStatus === "closing_soon" ? (
                   <div>
                     <dt style={{ color: muted }}>Status</dt>
-                    <dd className="mt-0.5 font-medium" style={{ color: "#FCD34D" }}>
+                    <dd className="mt-0.5 font-medium" style={{ color: careerClosingSoonTextColor(darkMode) }}>
                       Closing soon
                     </dd>
                   </div>
@@ -243,8 +243,7 @@ export default function JobDetailPage() {
               className="w-full max-w-[384px] py-3.5 rounded-xl text-white text-sm font-medium transition-transform hover:scale-[1.02]"
               style={{
                 background: "linear-gradient(90deg, #4F46E5, #7B5CFF)",
-                boxShadow: "0 8px 24px rgba(79,70,229,0.45)",
-              }}
+                boxShadow: "0 8px 24px rgba(79,70,229,0.45)"}}
             >
               Apply Now
             </button>
@@ -277,13 +276,11 @@ export default function JobDetailPage() {
                   ? {
                       background: "#0B1120",
                       border: "1px solid rgba(255,255,255,0.08)",
-                      boxShadow: "0 24px 60px rgba(0,0,0,0.55)",
-                    }
+                      boxShadow: "0 24px 60px rgba(0,0,0,0.55)"}
                   : {
                       background: darkMode ? "rgba(15,23,42,0.98)" : "rgba(255,255,255,0.98)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
-                      boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)",
-                    }
+                      boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)"}
               }
             >
               <button
@@ -318,7 +315,7 @@ export default function JobDetailPage() {
                   </div>
                   <h3
                     className="mb-2 text-[26px] font-bold leading-tight text-white"
-                    style={{ fontFamily: "'Sora', sans-serif" }}
+                    style={{}}
                   >
                     Application Sent!
                   </h3>
@@ -334,7 +331,7 @@ export default function JobDetailPage() {
                   >
                     <h3
                       className="text-[15px] font-semibold leading-snug pr-8 mb-0.5 line-clamp-2"
-                      style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                      style={{color: darkMode ? "#F8FAFC" : "#020617" }}
                     >
                       Apply for {job.title}
                     </h3>
@@ -459,8 +456,7 @@ export default function JobDetailPage() {
                             ? "rgba(255,255,255,0.1)"
                             : "rgba(0,0,0,0.12)",
                           boxShadow: canSubmit ? "0 6px 18px rgba(79,70,229,0.38)" : "none",
-                          opacity: canSubmit ? 1 : 0.65,
-                        }}
+                          opacity: canSubmit ? 1 : 0.65}}
                       >
                         Submit Application
                       </button>

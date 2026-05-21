@@ -24,65 +24,51 @@ const teamMembers: {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
     image: "/src/assets/Swaroop.jpg",
-    slug: SWAROOP_SLUG,
-  },
+    slug: SWAROOP_SLUG},
   {
     name: "Bhavana G",
     role: "Head of Operations",
-    image: "/src/assets/Bhavana.webp",
-  },
+    image: "/src/assets/Bhavana.webp"},
   {
     name: "Amarnath Bagineni",
-    role: "Chief Technology Officer",
-  },
+    role: "Chief Technology Officer"},
   {
     name: "Sangeeta M",
-    role: "Head of Partnerships & Growth",
-  },
+    role: "Head of Partnerships & Growth"},
   {
     name: "Punith C A",
-    role: "Finance Manager",
-  },
+    role: "Finance Manager"},
   {
     name: "Srinivas C",
-    role: "Senior Data Architect",
-  },
+    role: "Senior Data Architect"},
   {
     name: "Deepak",
-    role: "Senior Mobile Architect",
-  },
+    role: "Senior Mobile Architect"},
   {
     name: "Megha K",
-    role: "Senior Data Scientist",
-  },
+    role: "Senior Data Scientist"},
   {
     name: "Soniya Patil",
     role: "Front-end Developer",
-    image: "/src/assets/Soniya.webp",
-  },
+    image: "/src/assets/Soniya.webp"},
   {
     name: "Ashwin S",
     role: "Backend Developer",
-    image: "/src/assets/Ashwin.webp",
-  },
+    image: "/src/assets/Ashwin.webp"},
   {
     name: "Vishal HM",
     role: "UI/UX Designer",
-    image: "/src/assets/vishal.webp",
-  },
+    image: "/src/assets/vishal.webp"},
   {
     name: "Tejas K",
     role: "AI Research Engineer",
-    image: "/src/assets/Tejas.webp",
-  },
+    image: "/src/assets/Tejas.webp"},
   {
     name: "Sujala",
-    role: "Talent Acquisition Specialist",
-  },
+    role: "Talent Acquisition Specialist"},
   {
     name: "Kavya",
-    role: "Data Research Expert",
-  },
+    role: "Data Research Expert"},
 ];
 
 export default function TeamSection({ darkMode }: Props) {
@@ -100,14 +86,13 @@ export default function TeamSection({ darkMode }: Props) {
     <SectionWrapper id="team">
       <div className="text-center mb-12 sm:mb-16">
         <p
-          className="text-sm mb-4 tracking-widest uppercase"
-          style={{ color: "#7C3AED" }}
+          className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]"
         >
           Our Team
         </p>
         <h2
           className="text-section-title-home mb-4"
-          style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+          style={{lineHeight: 1.15 }}
         >
           People Who Challenge the Status Quo
         </h2>
@@ -115,8 +100,7 @@ export default function TeamSection({ darkMode }: Props) {
           className="text-sm sm:text-base max-w-2xl mx-auto px-2"
           style={{
             color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.55)",
-            lineHeight: 1.7,
-          }}
+            lineHeight: 1.7}}
         >
           A team united by bold ideas, deep integrity and an unwavering belief that the right technology built by the right people changes everything.
         </p>
@@ -134,8 +118,7 @@ export default function TeamSection({ darkMode }: Props) {
               ? "1px solid rgba(255,255,255,0.15)"
               : "1px solid rgba(0,0,0,0.1)",
             color: darkMode ? "#F8FAFC" : "#0F172A",
-            backdropFilter: "blur(8px)",
-          }}
+            backdropFilter: "blur(8px)"}}
         >
           <ChevronLeft size={22} strokeWidth={1.75} />
         </button>
@@ -149,8 +132,7 @@ export default function TeamSection({ darkMode }: Props) {
             const cardStyle = {
               width: `min(${CARD_W}px, calc(100vw - 7rem))`,
               aspectRatio: `${CARD_W} / ${CARD_H}`,
-              scrollSnapAlign: "start" as const,
-            };
+              scrollSnapAlign: "start" as const};
             const cardInner = (
               <>
                 {member.image ? (
@@ -166,22 +148,20 @@ export default function TeamSection({ darkMode }: Props) {
                     style={{
                       background: darkMode
                         ? "linear-gradient(160deg, rgba(79,70,229,0.22) 0%, rgba(15,23,42,0.95) 55%, rgba(15,23,42,1) 100%)"
-                        : "linear-gradient(160deg, rgba(79,70,229,0.14) 0%, rgba(226,232,240,0.65) 45%, rgba(241,245,249,0.98) 100%)",
-                    }}
+                        : "linear-gradient(160deg, rgba(79,70,229,0.14) 0%, rgba(226,232,240,0.65) 45%, rgba(241,245,249,0.98) 100%)"}}
                   />
                 )}
                 <div
                   className="pointer-events-none absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, transparent 72%)",
-                  }}
+                      "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, transparent 72%)"}}
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-3 p-4 text-left">
                   <div className="min-w-0">
                     <h3
                       className="text-base font-semibold text-white sm:text-lg"
-                      style={{ fontFamily: "'Sora', sans-serif" }}
+                      style={{}}
                     >
                       {member.name}
                     </h3>
@@ -246,8 +226,7 @@ export default function TeamSection({ darkMode }: Props) {
               ? "1px solid rgba(255,255,255,0.15)"
               : "1px solid rgba(0,0,0,0.1)",
             color: darkMode ? "#F8FAFC" : "#0F172A",
-            backdropFilter: "blur(8px)",
-          }}
+            backdropFilter: "blur(8px)"}}
         >
           <ChevronRight size={22} strokeWidth={1.75} />
         </button>

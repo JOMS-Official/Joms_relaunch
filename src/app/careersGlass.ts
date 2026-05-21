@@ -29,3 +29,24 @@ export function careerGlassDeptTag(darkMode: boolean): CSSProperties {
     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
   };
 }
+
+/** Pill badge for listings that are closing soon */
+export function careerClosingSoonTag(darkMode: boolean): CSSProperties {
+  if (darkMode) {
+    return {
+      color: "#FDE68A",
+      border: "1px solid rgba(251, 191, 36, 0.45)",
+      background: "rgba(251, 191, 36, 0.12)",
+    };
+  }
+  return {
+    color: "#92400E",
+    border: "1px solid #D97706",
+    background: "#FEF3C7",
+    boxShadow: "0 1px 2px rgba(180, 83, 9, 0.08)",
+  };
+}
+
+export function careerClosingSoonTextColor(darkMode: boolean): string {
+  return darkMode ? "#FCD34D" : "#B45309";
+}

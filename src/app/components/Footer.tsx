@@ -16,8 +16,7 @@ const footerLinks = [
       { label: "Products", to: "/#products" },
       { label: "Team", to: "/#team" },
       { label: "Careers", to: "/careers" },
-    ],
-  },
+    ]},
   {
     title: "Legal",
     links: [
@@ -25,25 +24,21 @@ const footerLinks = [
       { label: "Terms of Service", to: "/terms-of-service" },
       { label: "Disclaimer", to: "/disclaimer" },
       { label: "Cookies Policy", to: "/cookies-policy" },
-    ],
-  },
+    ]},
   {
     title: "Resources",
-    links: [{ label: "Startup Blogs", to: "/blog" }],
-  },
+    links: [{ label: "Startup Blogs", to: "/blog" }]},
 ];
 
 const socials = [
   {
     icon: Instagram,
     href: "https://www.instagram.com/joms_justonemorestep",
-    label: "JOMS on Instagram",
-  },
+    label: "JOMS on Instagram"},
   {
     icon: Linkedin,
     href: "https://www.linkedin.com/company/justonemorestep/",
-    label: "JOMS on LinkedIn",
-  },
+    label: "JOMS on LinkedIn"},
 ];
 
 export default function Footer({ darkMode }: Props) {
@@ -59,8 +54,7 @@ export default function Footer({ darkMode }: Props) {
       style={{
         borderTop: darkMode
           ? "1px solid rgba(255,255,255,0.06)"
-          : "1px solid rgba(0,0,0,0.06)",
-      }}
+          : "1px solid rgba(0,0,0,0.06)"}}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid items-start sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -95,8 +89,7 @@ export default function Footer({ darkMode }: Props) {
                       : "rgba(0,0,0,0.04)",
                     color: darkMode
                       ? "rgba(248,250,252,0.6)"
-                      : "rgba(2,6,23,0.5)",
-                  }}
+                      : "rgba(2,6,23,0.5)"}}
                 >
                   <s.icon size={16} aria-hidden />
                 </a>
@@ -109,12 +102,9 @@ export default function Footer({ darkMode }: Props) {
             <div key={col.title}>
               <h4
                 className="text-sm mb-4"
-                style={{
-                  fontFamily: "'Sora', sans-serif",
-                  color: darkMode
+                style={{color: darkMode
                     ? "rgba(248,250,252,0.9)"
-                    : "rgba(2,6,23,0.9)",
-                }}
+                    : "rgba(2,6,23,0.9)"}}
               >
                 {col.title}
               </h4>
@@ -128,8 +118,7 @@ export default function Footer({ darkMode }: Props) {
                       style={{
                         color: darkMode
                           ? "rgba(248,250,252,0.5)"
-                          : "rgba(2,6,23,0.5)",
-                      }}
+                          : "rgba(2,6,23,0.5)"}}
                     >
                       {link.label}
                     </Link>
@@ -146,16 +135,14 @@ export default function Footer({ darkMode }: Props) {
           style={{
             borderTop: darkMode
               ? "1px solid rgba(255,255,255,0.06)"
-              : "1px solid rgba(0,0,0,0.06)",
-          }}
+              : "1px solid rgba(0,0,0,0.06)"}}
         >
           <p
             className="text-xs"
             style={{
               color: darkMode
                 ? "rgba(248,250,252,0.4)"
-                : "rgba(2,6,23,0.4)",
-            }}
+                : "rgba(2,6,23,0.4)"}}
           >
             &copy; {new Date().getFullYear()} JOMS — Just One More Step. All rights
             reserved.
@@ -165,8 +152,7 @@ export default function Footer({ darkMode }: Props) {
             style={{
               color: darkMode
                 ? "rgba(248,250,252,0.3)"
-                : "rgba(2,6,23,0.3)",
-            }}
+                : "rgba(2,6,23,0.3)"}}
           >
             Building the future, one step at a time.
           </p>

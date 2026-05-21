@@ -27,20 +27,19 @@ export default function ContactPage() {
     <div className="pt-14 sm:pt-16 lg:pt-20">
       <SectionWrapper className="!pt-8 !pb-6 md:!pt-10 md:!pb-8">
         <div id="connect" className="text-center mb-6 sm:mb-8 scroll-mt-24">
-          <p className="text-sm mb-2 tracking-widest uppercase" style={{ color: "#7C3AED" }}>
+          <p className="text-sm mb-2 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]">
             Contact
           </p>
           <h1
             className="text-section-title mb-3"
-            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
+            style={{lineHeight: 1.1 }}
           >
             Let's{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+                WebkitTextFillColor: "transparent"}}
             >
               Connect
             </span>
@@ -64,7 +63,7 @@ export default function ContactPage() {
                 className="text-center py-12"
               >
                 <CheckCircle size={56} style={{ color: "#50C878" }} className="mx-auto mb-6" />
-                <h3 className="text-2xl mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>
+                <h3 className="text-2xl mb-2" style={{}}>
                   Message Sent!
                 </h3>
                 <p
@@ -95,8 +94,7 @@ export default function ContactPage() {
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
-                      color: darkMode ? "#F8FAFC" : "#020617",
-                    }}
+                      color: darkMode ? "#F8FAFC" : "#020617"}}
                   />
                 </div>
                 <div>
@@ -111,8 +109,7 @@ export default function ContactPage() {
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
-                      color: darkMode ? "#F8FAFC" : "#020617",
-                    }}
+                      color: darkMode ? "#F8FAFC" : "#020617"}}
                   />
                 </div>
                 <div>
@@ -127,8 +124,7 @@ export default function ContactPage() {
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
-                      color: darkMode ? "#F8FAFC" : "#020617",
-                    }}
+                      color: darkMode ? "#F8FAFC" : "#020617"}}
                   />
                 </div>
                 <button
@@ -136,8 +132,7 @@ export default function ContactPage() {
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white text-sm transition-all hover:scale-[1.02]"
                   style={{
                     background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-                    boxShadow: "0 8px 30px rgba(79,70,229,0.4)",
-                  }}
+                    boxShadow: "0 8px 30px rgba(79,70,229,0.4)"}}
                 >
                   <Send size={16} /> Send Message
                 </button>
@@ -156,15 +151,14 @@ export default function ContactPage() {
                   <Mail size={18} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="text-sm mb-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+                  <h4 className="text-sm mb-1" style={{}}>
                     Email Us
                   </h4>
                   <a
                     href="mailto:hello@joms.in"
                     className="text-sm hover:underline hover:opacity-90"
                     style={{
-                      color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
-                    }}
+                      color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)"}}
                   >
                     hello@joms.in
                   </a>
@@ -181,7 +175,7 @@ export default function ContactPage() {
                   <MapPin size={18} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="text-sm mb-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+                  <h4 className="text-sm mb-1" style={{}}>
                     Location
                   </h4>
                   <p
@@ -199,8 +193,7 @@ export default function ContactPage() {
                 className="text-sm italic"
                 style={{
                   color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)",
-                  lineHeight: 1.6,
-                }}
+                  lineHeight: 1.6}}
               >
                 "Every great collaboration starts with a single conversation.
                 We believe the next big thing could begin with your message."

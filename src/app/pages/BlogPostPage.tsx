@@ -54,8 +54,7 @@ export default function BlogPostPage() {
               background: darkMode
                 ? "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(124,58,237,0.85))"
                 : "linear-gradient(135deg, #4F46E5, #7C3AED)",
-              color: "#FFFFFF",
-            }}
+              color: "#FFFFFF"}}
           >
             {post.category}
           </span>
@@ -63,7 +62,7 @@ export default function BlogPostPage() {
 
         <h1
           className="text-section-title lg:text-[calc(2.75rem-1px)] font-bold mb-10"
-          style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+          style={{lineHeight: 1.15 }}
         >
           {post.title}
         </h1>
@@ -73,13 +72,12 @@ export default function BlogPostPage() {
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
               style={{
-                background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-              }}
+                background: "linear-gradient(135deg, #4F46E5, #7C3AED)"}}
             >
               <User size={18} className="text-white" />
             </div>
             <div>
-              <p className="text-sm font-medium" style={{ fontFamily: "'Sora', sans-serif" }}>
+              <p className="text-sm font-medium" style={{}}>
                 {post.author.name}
               </p>
               <p className="text-xs" style={{ color: metaColor }}>
@@ -97,7 +95,7 @@ export default function BlogPostPage() {
 
         <div
           className="space-y-6 text-[1.05rem] leading-[1.85] text-justify"
-          style={{ color: bodyColor, fontFamily: "'Inter', sans-serif" }}
+          style={{ color: bodyColor}}
         >
           {post.paragraphs.map((para, i) => (
             <p
@@ -118,14 +116,13 @@ export default function BlogPostPage() {
         <div
           className="my-14 h-px"
           style={{
-            background: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
-          }}
+            background: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}}
         />
 
         <section>
           <h2
             className="text-section-subtitle font-semibold mb-8"
-            style={{ fontFamily: "'Sora', sans-serif" }}
+            style={{}}
           >
             <span className={darkMode ? "text-white" : "text-slate-900"}>Related </span>
             <span style={{ color: accent }}>Articles</span>
@@ -142,8 +139,7 @@ export default function BlogPostPage() {
                   border: darkMode
                     ? "1px solid rgba(255,255,255,0.08)"
                     : "1px solid rgba(0,0,0,0.06)",
-                  boxShadow: darkMode ? "0 8px 32px rgba(0,0,0,0.25)" : "0 8px 24px rgba(0,0,0,0.06)",
-                }}
+                  boxShadow: darkMode ? "0 8px 32px rgba(0,0,0,0.25)" : "0 8px 24px rgba(0,0,0,0.06)"}}
               >
                 
                 <span
@@ -152,14 +148,13 @@ export default function BlogPostPage() {
                     background: darkMode
                       ? "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(124,58,237,0.85))"
                       : "linear-gradient(135deg, #4F46E5, #7C3AED)",
-                    color: "#FFFFFF",
-                  }}
+                    color: "#FFFFFF"}}
                 >
                   {r.category}
                 </span>
                 <h3
                   className="text-base font-semibold mb-4 leading-snug"
-                  style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#0f172a" }}
+                  style={{color: darkMode ? "#F8FAFC" : "#0f172a" }}
                 >
                   {r.title}
                 </h3>

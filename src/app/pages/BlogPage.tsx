@@ -19,20 +19,19 @@ export default function BlogPage() {
    <div className="pt-8">
       <SectionWrapper>
         <div className="text-center mb-16">
-          <p className="text-sm mb-4 tracking-widest uppercase" style={{ color: "#7C3AED" }}>
+          <p className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]">
             Blogs
           </p>
           <h1
             className="text-section-title-xl mb-6"
-            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
+            style={{lineHeight: 1.1 }}
           >
             Insights &{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+                WebkitTextFillColor: "transparent"}}
             >
               Ideas
             </span>
@@ -65,8 +64,7 @@ export default function BlogPage() {
                     ? "none"
                     : darkMode
                     ? "1px solid rgba(255,255,255,0.1)"
-                    : "1px solid rgba(0,0,0,0.06)",
-              }}
+                    : "1px solid rgba(0,0,0,0.06)"}}
             >
               {c}
             </button>
@@ -86,20 +84,18 @@ export default function BlogPage() {
                   background: darkMode
                     ? "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(124,58,237,0.85))"
                     : "linear-gradient(135deg, #4F46E5, #7C3AED)",
-                  color: "#FFFFFF",
-                }}
+                  color: "#FFFFFF"}}
               >
                 {post.category}
               </span>
-              <h3 className="text-lg mb-3 flex-1" style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.4 }}>
+              <h3 className="text-lg mb-3 flex-1" style={{lineHeight: 1.4 }}>
                 {post.title}
               </h3>
               <p
                 className="text-sm mb-4"
                 style={{
                   color: darkMode ? "rgba(248,250,252,0.55)" : "rgba(2,6,23,0.5)",
-                  lineHeight: 1.7,
-                }}
+                  lineHeight: 1.7}}
               >
                 {post.excerpt}
               </p>

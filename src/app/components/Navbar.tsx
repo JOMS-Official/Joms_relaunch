@@ -43,8 +43,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
         WebkitBackdropFilter: "blur(20px)",
         borderBottom: darkMode
           ? "1px solid rgba(255,255,255,0.08)"
-          : "1px solid rgba(0,0,0,0.06)",
-      }}
+          : "1px solid rgba(0,0,0,0.06)"}}
     >
       <div className="relative mx-auto flex h-12 items-center justify-between gap-3 px-6">
         {/* Keeps layout width; logo is absolutely positioned so a 150×150 mark does not stretch the bar */}
@@ -57,7 +56,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
           to="/"
           aria-label="JOMS — home"
           className="absolute left-6 top-1/2 z-20 flex h-[150px] w-[150px] max-[380px]:h-[min(150px,calc(100vw-8rem))] max-[380px]:w-[min(150px,calc(100vw-8rem))] -translate-y-1/2 items-center justify-start"
-          style={{ fontFamily: "'Sora', sans-serif" }}
+          style={{}}
         >
           <JomsLogoMark darkMode={darkMode} className="max-h-full max-w-full" />
         </Link>
@@ -72,8 +71,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
               className="text-sm transition-colors hover:opacity-100"
               style={{
                 opacity: linkIsActive(link.to) ? 1 : 0.7,
-                color: darkMode ? "#E2E8F0" : "#1E293B",
-              }}
+                color: darkMode ? "#E2E8F0" : "#1E293B"}}
             >
               {link.label}
             </Link>
@@ -87,8 +85,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
             style={{
               background: darkMode
                 ? "rgba(255,255,255,0.1)"
-                : "rgba(0,0,0,0.05)",
-            }}
+                : "rgba(0,0,0,0.05)"}}
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -97,8 +94,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
             style={{
               background: darkMode
                 ? "rgba(255,255,255,0.1)"
-                : "rgba(0,0,0,0.05)",
-            }}
+                : "rgba(0,0,0,0.05)"}}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -124,8 +120,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
                 style={{
                   background: darkMode
                     ? "rgba(255,255,255,0.05)"
-                    : "rgba(0,0,0,0.03)",
-                }}
+                    : "rgba(0,0,0,0.03)"}}
               >
                 {link.label}
               </Link>

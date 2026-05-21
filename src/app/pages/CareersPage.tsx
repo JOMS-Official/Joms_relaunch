@@ -5,7 +5,7 @@ import { Search, MapPin, Clock, X, Briefcase, SlidersHorizontal, ArrowRight } fr
 import GlassCard from "../components/GlassCard";
 import SectionWrapper from "../components/SectionWrapper";
 import { careersJobs } from "../data/careersJobs";
-import { careerGlassDeptTag, careerGlassIconBox } from "../careersGlass";
+import { careerClosingSoonTag, careerGlassDeptTag, careerGlassIconBox } from "../careersGlass";
 
 const departmentOptions = ["All", "Leadership", "Engineering", "Design", "Marketing", "Finance"];
 const jobTypeOptions = ["All", "Full-time", "Internship", "Part-time", "Contract"];
@@ -37,20 +37,19 @@ export default function CareersPage() {
       <SectionWrapper>
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-sm mb-4 tracking-widest uppercase" style={{ color: "#7C3AED" }}>
+          <p className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]">
             Careers
           </p>
           <h1
             className="text-section-title-xl mb-6"
-            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
+            style={{lineHeight: 1.1 }}
           >
             Build the{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+                WebkitTextFillColor: "transparent"}}
             >
               Future With Us
             </span>
@@ -70,8 +69,7 @@ export default function CareersPage() {
                 color: "#34D399",
                 border: "1px solid rgba(52, 211, 153, 0.45)",
                 background: darkMode ? "rgba(52, 211, 153, 0.06)" : "rgba(16, 185, 129, 0.08)",
-                boxShadow: "0 0 20px rgba(52, 211, 153, 0.12)",
-              }}
+                boxShadow: "0 0 20px rgba(52, 211, 153, 0.12)"}}
             >
               Looking for internships? Explore our intern program
               <ArrowRight size={16} strokeWidth={2} />
@@ -85,8 +83,7 @@ export default function CareersPage() {
             className="flex items-center gap-3 flex-1 min-w-0 px-4 py-3 rounded-xl"
             style={{
               background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
-              border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.06)",
-            }}
+              border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.06)"}}
           >
             <Search size={18} style={{ color: darkMode ? "rgba(248,250,252,0.4)" : "rgba(2,6,23,0.4)" }} />
             <input
@@ -106,8 +103,7 @@ export default function CareersPage() {
             style={{
               background: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
               border: darkMode ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(0,0,0,0.08)",
-              color: darkMode ? "#F8FAFC" : "#020617",
-            }}
+              color: darkMode ? "#F8FAFC" : "#020617"}}
           >
             <SlidersHorizontal size={18} style={{ color: "#A78BFA" }} />
             <span>Filters</span>
@@ -158,14 +154,13 @@ export default function CareersPage() {
                     : "1px solid rgba(0,0,0,0.08)",
                   boxShadow: darkMode
                     ? "0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)"
-                    : "0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8)",
-                }}
+                    : "0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8)"}}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-start justify-between gap-2 px-4 pt-4 pb-2 shrink-0">
                   <h2
                     className="text-base font-semibold"
-                    style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                    style={{color: darkMode ? "#F8FAFC" : "#020617" }}
                   >
                     Filter Roles
                   </h2>
@@ -187,20 +182,17 @@ export default function CareersPage() {
                         label: "Department",
                         options: departmentOptions,
                         value: department,
-                        set: setDepartment,
-                      },
+                        set: setDepartment},
                       {
                         label: "Job Type",
                         options: jobTypeOptions,
                         value: jobType,
-                        set: setJobType,
-                      },
+                        set: setJobType},
                       {
                         label: "Location",
                         options: locationOptions,
                         value: locationFilter,
-                        set: setLocationFilter,
-                      },
+                        set: setLocationFilter},
                     ] as const
                   ).map((section, idx) => (
                     <div key={section.label} className={idx > 0 ? "mt-5" : ""}>
@@ -236,8 +228,7 @@ export default function CareersPage() {
                                   ? "none"
                                   : darkMode
                                   ? "1px solid rgba(255,255,255,0.08)"
-                                  : "1px solid rgba(0,0,0,0.06)",
-                              }}
+                                  : "1px solid rgba(0,0,0,0.06)"}}
                             >
                               {opt}
                             </button>
@@ -265,7 +256,7 @@ export default function CareersPage() {
                       />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-lg" style={{ fontFamily: "'Sora', sans-serif" }}>
+                      <h3 className="text-lg" style={{}}>
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap gap-3 mt-2 items-center">
@@ -287,11 +278,7 @@ export default function CareersPage() {
                         {job.listingStatus === "closing_soon" ? (
                           <span
                             className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide"
-                            style={{
-                              color: "#FDE68A",
-                              border: "1px solid rgba(251, 191, 36, 0.45)",
-                              background: "rgba(251, 191, 36, 0.12)",
-                            }}
+                            style={careerClosingSoonTag(darkMode)}
                           >
                             Closing soon
                           </span>
@@ -303,8 +290,7 @@ export default function CareersPage() {
                     className="flex items-center justify-center sm:justify-end shrink-0 rounded-xl p-2 transition-all group-hover:translate-x-0.5"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
-                      border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.06)",
-                    }}
+                      border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.06)"}}
                     aria-hidden
                   >
                     <ArrowRight

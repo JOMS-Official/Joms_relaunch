@@ -14,8 +14,7 @@ import {
   User,
   Phone,
   Building2,
-  Link2,
-} from "lucide-react";
+  Link2} from "lucide-react";
 import GlassCard from "../components/GlassCard";
 import SectionWrapper from "../components/SectionWrapper";
 import applicationSuccessIcon from "../../assets/application-success-icon.png";
@@ -23,25 +22,21 @@ import applicationSuccessIcon from "../../assets/application-success-icon.png";
 const goldDividerStyle: CSSProperties = {
   height: 1,
   background:
-    "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.85) 50%, transparent 100%)",
-};
+    "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.85) 50%, transparent 100%)"};
 
 const highlights = [
   {
     icon: TrendingUp,
     title: "High-Growth Market",
-    description: "We’re operating at the intersection of networking, events and community-driven technology; industries rapidly evolving with the next generation of founders, creators, and professionals.",
-  },
+    description: "We’re operating at the intersection of networking, events and community-driven technology; industries rapidly evolving with the next generation of founders, creators, and professionals."},
   {
     icon: Shield,
     title: "Lean Startup",
-    description: "Built with discipline from day one, we focus on smart execution, sustainable growth, and creating real value before chasing scale.",
-  },
+    description: "Built with discipline from day one, we focus on smart execution, sustainable growth, and creating real value before chasing scale."},
   {
     icon: Globe,
     title: "Global Vision",
-    description: "While our journey starts from India, our ambition is global. We’re designing experiences and ecosystems that can connect ambitious people across borders, industries and communities.",
-  },
+    description: "While our journey starts from India, our ambition is global. We’re designing experiences and ecosystems that can connect ambitious people across borders, industries and communities."},
 ];
 
 export default function InvestorsPage() {
@@ -109,22 +104,20 @@ export default function InvestorsPage() {
             style={{
               background: "rgba(212,175,55,0.1)",
               border: "1px solid rgba(212,175,55,0.3)",
-              color: "#D4AF37",
-            }}
+              color: "#D4AF37"}}
           >
             <Sparkles size={14} /> Invest in the Future
           </motion.div>
           <h1
             className="text-section-title mb-6"
-            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
+            style={{lineHeight: 1.1 }}
           >
             Partner With{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #D4AF37, #B8860B)",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+                WebkitTextFillColor: "transparent"}}
             >
               the Future
             </span>
@@ -135,8 +128,7 @@ export default function InvestorsPage() {
               color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
               lineHeight: 1.8,
               textAlign: "justify",
-              textAlignLast: "center",
-            }}
+              textAlignLast: "center"}}
           >
             We're building more than a product, we're building the infrastructure
             for meaningful connections, ambitious communities and opportunity at
@@ -149,8 +141,7 @@ export default function InvestorsPage() {
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-2xl text-sm font-semibold transition-all hover:scale-[1.02]"
             style={{
               background: "linear-gradient(135deg, #D4AF37, #B8860B)",
-              color: "#0B0E14",
-            }}
+              color: "#0B0E14"}}
           >
             Request Pitch Deck
           </button>
@@ -166,8 +157,7 @@ export default function InvestorsPage() {
                   width: 3,
                   height: 48,
                   background: "linear-gradient(180deg, #D4AF37 0%, rgba(0,0,0,0) 100%)",
-                  borderRadius: 2,
-                }}
+                  borderRadius: 2}}
               />
               <h.icon
                 size={32}
@@ -177,10 +167,7 @@ export default function InvestorsPage() {
               />
               <h3
                 className="text-xl mb-3"
-                style={{
-                  fontFamily: "'Sora', sans-serif",
-                  color: darkMode ? "#F8FAFC" : "#020617",
-                }}
+                style={{color: darkMode ? "#F8FAFC" : "#020617"}}
               >
                 {h.title}
               </h3>
@@ -188,8 +175,7 @@ export default function InvestorsPage() {
                 className="text-sm"
                 style={{
                   color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.6)",
-                  lineHeight: 1.7,
-                }}
+                  lineHeight: 1.7}}
               >
                 {h.description}
               </p>
@@ -202,7 +188,7 @@ export default function InvestorsPage() {
           <div className="w-full" style={goldDividerStyle} aria-hidden />
           <h3
             className="text-section-title-sm my-10 text-center"
-            style={{ fontFamily: "'Sora', sans-serif" }}
+            style={{}}
           >
             <span style={{ color: darkMode ? "#F8FAFC" : "#020617" }}>Why </span>
             <span style={{ color: "#D4AF37" }}>JOMS?</span>
@@ -212,8 +198,7 @@ export default function InvestorsPage() {
               className="text-sm"
               style={{
                 color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
-                lineHeight: 1.8,
-              }}
+                lineHeight: 1.8}}
             >
               The global digital economy is accelerating. Marketplaces, mobile
               platforms, and digital ecosystems are reshaping how billions of
@@ -224,8 +209,7 @@ export default function InvestorsPage() {
               className="text-sm"
               style={{
                 color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
-                lineHeight: 1.8,
-              }}
+                lineHeight: 1.8}}
             >
               JOMS is building the next generation. We're engineering platforms
               from the ground up with modern architectures, intelligent systems,
@@ -236,8 +220,7 @@ export default function InvestorsPage() {
               className="text-sm"
               style={{
                 color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
-                lineHeight: 1.8,
-              }}
+                lineHeight: 1.8}}
             >
               We're looking for investors who think long-term, value
               craftsmanship, and want to partner with a team that's committed
@@ -247,8 +230,7 @@ export default function InvestorsPage() {
               className="text-sm italic pt-2"
               style={{
                 color: darkMode ? "#94A3B8" : "rgba(2,6,23,0.65)",
-                lineHeight: 1.8,
-              }}
+                lineHeight: 1.8}}
             >
               &ldquo;Every great collaboration starts with a single conversation. We believe the next
               big thing could begin with your message.&rdquo;
@@ -272,8 +254,7 @@ export default function InvestorsPage() {
                 style={{
                   background: "rgba(124, 58, 237, 0.2)",
                   border: "1px solid rgba(167, 139, 250, 0.35)",
-                  boxShadow: "0 0 20px rgba(124, 58, 237, 0.15)",
-                }}
+                  boxShadow: "0 0 20px rgba(124, 58, 237, 0.15)"}}
               >
                 <Mail size={20} style={{ color: "#A78BFA" }} strokeWidth={1.75} />
               </div>
@@ -288,8 +269,7 @@ export default function InvestorsPage() {
                   href="mailto:hello@joms.in"
                   className="text-sm transition-opacity hover:opacity-90 hover:underline"
                   style={{
-                    color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
-                  }}
+                    color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)"}}
                 >
                   hello@joms.in
                 </a>
@@ -303,8 +283,7 @@ export default function InvestorsPage() {
                 style={{
                   background: "rgba(124, 58, 237, 0.2)",
                   border: "1px solid rgba(167, 139, 250, 0.35)",
-                  boxShadow: "0 0 20px rgba(124, 58, 237, 0.15)",
-                }}
+                  boxShadow: "0 0 20px rgba(124, 58, 237, 0.15)"}}
               >
                 <MapPin size={20} style={{ color: "#A78BFA" }} strokeWidth={1.75} />
               </div>
@@ -349,13 +328,11 @@ export default function InvestorsPage() {
                   ? {
                       background: "#0B1120",
                       border: "1px solid rgba(255,255,255,0.08)",
-                      boxShadow: "0 24px 60px rgba(0,0,0,0.55)",
-                    }
+                      boxShadow: "0 24px 60px rgba(0,0,0,0.55)"}
                   : {
                       background: darkMode ? "rgba(15,23,42,0.98)" : "rgba(255,255,255,0.98)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
-                      boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)",
-                    }
+                      boxShadow: darkMode ? "0 20px 50px rgba(0,0,0,0.45)" : "0 20px 50px rgba(0,0,0,0.1)"}
               }
             >
               <button
@@ -390,7 +367,7 @@ export default function InvestorsPage() {
                   </div>
                   <h3
                     className="mb-2 text-[26px] font-bold leading-tight text-white"
-                    style={{ fontFamily: "'Sora', sans-serif" }}
+                    style={{}}
                   >
                     Request Sent!
                   </h3>
@@ -409,15 +386,14 @@ export default function InvestorsPage() {
                       style={{
                         background: "rgba(212,175,55,0.12)",
                         border: "1px solid rgba(212,175,55,0.45)",
-                        boxShadow: "0 0 16px rgba(212,175,55,0.12)",
-                      }}
+                        boxShadow: "0 0 16px rgba(212,175,55,0.12)"}}
                     >
                       <FileText size={20} style={{ color: "#D4AF37" }} strokeWidth={1.75} />
                     </div>
                     <div className="min-w-0 pt-0.5 text-left">
                       <h3
                         className="text-[16px] font-semibold leading-snug"
-                        style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                        style={{color: darkMode ? "#F8FAFC" : "#020617" }}
                       >
                         Request Pitch Deck
                       </h3>
@@ -549,8 +525,7 @@ export default function InvestorsPage() {
                             : darkMode
                               ? "rgba(255,255,255,0.12)"
                               : "rgba(0,0,0,0.1)",
-                          boxShadow: canSubmitPitch ? "0 8px 24px rgba(212,175,55,0.35)" : "none",
-                        }}
+                          boxShadow: canSubmitPitch ? "0 8px 24px rgba(212,175,55,0.35)" : "none"}}
                       >
                         Request Pitch Deck
                       </button>
