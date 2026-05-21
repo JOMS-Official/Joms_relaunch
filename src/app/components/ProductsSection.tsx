@@ -120,10 +120,12 @@ export default function ProductsSection({ darkMode }: Props) {
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={selectedIndex}
-                className="text-sm sm:text-base text-justify"
+                className="text-sm sm:text-base"
                 style={{
                   color: muted,
                   lineHeight: 1.8,
+                  textAlign: "justify",
+                  textAlignLast: "center",
                 }}
                 variants={textBlurbVariants}
                 initial="initial"
