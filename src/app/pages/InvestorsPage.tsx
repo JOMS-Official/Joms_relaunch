@@ -98,7 +98,7 @@ export default function InvestorsPage() {
     (darkMode ? "text-slate-500" : "text-slate-600");
 
   return (
-    <div className="pt-8">
+    <div className="pt-14 sm:pt-16 lg:pt-20">
       <SectionWrapper>
         {/* Header */}
         <div className="text-center mb-16">
@@ -130,8 +130,13 @@ export default function InvestorsPage() {
             </span>
           </h1>
           <p
-            className="max-w-2xl mx-auto text-lg mb-10"
-            style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}
+            className="max-w-2xl mx-auto text-base mb-10"
+            style={{
+              color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
+              lineHeight: 1.8,
+              textAlign: "justify",
+              textAlignLast: "center",
+            }}
           >
             We're building more than a product, we're building the infrastructure
             for meaningful connections, ambitious communities and opportunity at
@@ -145,7 +150,6 @@ export default function InvestorsPage() {
             style={{
               background: "linear-gradient(135deg, #D4AF37, #B8860B)",
               color: "#0B0E14",
-              boxShadow: "0 8px 30px rgba(212,175,55,0.35)",
             }}
           >
             Request Pitch Deck
