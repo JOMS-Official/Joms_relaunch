@@ -58,11 +58,12 @@ const teamMembers: {
   {
     name: "Soniya Patil",
     role: "Front-end Developer",
+    image: "/src/assets/Soniya.webp",
   },
   {
     name: "Ashwin S",
     role: "Backend Developer",
-    image: "/src/assets/Ashwin.jpg",
+    image: "/src/assets/Ashwin.webp",
   },
   {
     name: "Vishal HM",
@@ -72,7 +73,7 @@ const teamMembers: {
   {
     name: "Tejas K",
     role: "AI Research Engineer",
-    image: "/src/assets/unnamed.webp",
+    image: "/src/assets/Tejas.webp",
   },
   {
     name: "Sujala",
