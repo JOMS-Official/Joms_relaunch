@@ -39,25 +39,25 @@ export default function BlogPostPage() {
   return (
     <div className="pt-24 pb-20 px-6 min-h-[70vh]">
       <article className="max-w-[800px] mx-auto">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-2 text-sm mb-10 transition-opacity hover:opacity-90"
-          style={{ color: "#A78BFA" }}
-        >
-          <ArrowLeft size={16} />
-          Back to Blog
-        </Link>
-
-        <div className="w-10 h-1 rounded-full mb-4" style={{ background: accent }} />
-        <span
-          className="text-xs px-3 py-1 rounded-full inline-block mb-6"
+        <div className="flex items-center justify-between mb-10">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-90"
+            style={{ color: "#A78BFA" }}
+          >
+            <ArrowLeft size={16} />
+            Back to Blog
+          </Link>
+          <span
+            className="text-xs px-3 py-1 rounded-full inline-block"
           style={{
             background: darkMode ? "rgba(124, 77, 255, 0.2)" : "rgba(124, 77, 255, 0.12)",
             color: accent,
           }}
         >
           {post.category}
-        </span>
+          </span>
+        </div>
 
         <h1
           className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mb-10"
@@ -143,10 +143,7 @@ export default function BlogPostPage() {
                   boxShadow: darkMode ? "0 8px 32px rgba(0,0,0,0.25)" : "0 8px 24px rgba(0,0,0,0.06)",
                 }}
               >
-                <div
-                  className="h-1 rounded-full mb-5 w-14"
-                  style={{ background: r.accentLine }}
-                />
+                
                 <span
                   className="text-xs px-3 py-1 rounded-full inline-block mb-3"
                   style={{

@@ -74,12 +74,12 @@ export default function BlogPage() {
         </div>
 
         {/* Blog grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div key={category} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((post) => (
-            <Link key={post.id} to={`/blog/${post.id}`} className="block">
+  <Link key={post.id} to={`/blog/${post.id}`} className="block transition-opacity duration-300 animate-fadeIn">
             <GlassCard darkMode={darkMode} className="group flex flex-col cursor-pointer h-full">
               {/* Color header bar */}
-              <div className="h-1.5 rounded-full mb-6 w-16" style={{ background: post.gradient }} />
+              
               <span
                 className="text-xs px-3 py-1 rounded-full w-fit mb-4"
                 style={{
