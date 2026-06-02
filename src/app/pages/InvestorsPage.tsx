@@ -115,7 +115,7 @@ export default function InvestorsPage() {
             <Sparkles size={14} /> Invest in the Future
           </motion.div>
           <h1
-            className="text-3xl sm:text-4xl lg:text-5xl mb-6"
+            className="text-section-title mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Partner With{" "}
@@ -197,7 +197,7 @@ export default function InvestorsPage() {
         <div className="max-w-3xl mx-auto w-full mb-10">
           <div className="w-full" style={goldDividerStyle} aria-hidden />
           <h3
-            className="text-2xl sm:text-3xl my-10 text-center"
+            className="text-section-title-sm my-10 text-center"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
             <span style={{ color: darkMode ? "#F8FAFC" : "#020617" }}>Why </span>
@@ -251,7 +251,7 @@ export default function InvestorsPage() {
             </p>
             <p
               className="text-sm pt-1"
-              style={{ color: "#A78BFA", fontStyle: "normal" }}
+              style={{ color: darkMode ? "#FFFFFF" : "#020617", fontStyle: "normal" }}
             >
               — JOMS Team
             </p>
@@ -281,11 +281,13 @@ export default function InvestorsPage() {
                   Email Us
                 </p>
                 <a
-                  href="mailto:hello@joms.co"
-                  className="text-sm transition-opacity hover:opacity-90"
-                  style={{ color: "#A78BFA" }}
+                  href="mailto:hello@joms.in"
+                  className="text-sm transition-opacity hover:opacity-90 hover:underline"
+                  style={{
+                    color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)",
+                  }}
                 >
-                  hello@joms.co
+                  hello@joms.in
                 </a>
               </div>
             </div>

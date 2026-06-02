@@ -1,6 +1,6 @@
-import { useCallback, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { Link } from "react-router";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { SWAROOP_CARD_IMAGE, SWAROOP_SLUG } from "../data/teamMemberProfiles";
@@ -9,51 +9,78 @@ interface Props {
   darkMode: boolean;
 }
 
-const CARD_W = 260;
-const CARD_GAP = 16;
+const CARD_W = 220;
+const CARD_H = (346.66 * CARD_W) / 260;
+const CARD_GAP = 14;
 
 const teamMembers: {
   name: string;
   role: string;
-  image: string;
+  /** Omit until a portrait is available; card shows an empty placeholder slot. */
+  image?: string;
   slug?: string;
 }[] = [
   {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
-    image:  "/src/assets/Swaroop.jpg",
+    image: "/src/assets/Swaroop.jpg",
     slug: SWAROOP_SLUG,
   },
-   {
-    name: "Bhavana Gopala ",
-    role: "Head Of Operations",
-    image:
-      "/src/assets/Bhavana.webp",
+  {
+    name: "Bhavana G",
+    role: "Head of Operations",
+    image: "/src/assets/Bhavana.webp",
   },
- 
+  {
+    name: "Amarnath Bagineni",
+    role: "Chief Technology Officer",
+  },
+  {
+    name: "Sangeeta M",
+    role: "Head of Partnerships & Growth",
+  },
+  {
+    name: "Punith C A",
+    role: "Finance Manager",
+  },
+  {
+    name: "Srinivas C",
+    role: "Senior Data Architect",
+  },
+  {
+    name: "Deepak",
+    role: "Senior Mobile Architect",
+  },
+  {
+    name: "Megha K",
+    role: "Senior Data Scientist",
+  },
+  {
+    name: "Soniya Patil",
+    role: "Front-end Developer",
+  },
+  {
+    name: "Ashwin S",
+    role: "Backend Developer",
+    image: "/src/assets/Ashwin.jpg",
+  },
   {
     name: "Vishal HM",
-    role: "UI/UX Developer",
-    image:
-      "/src/assets/vishal.webp",
+    role: "UI/UX Designer",
+    image: "/src/assets/vishal.webp",
   },
   {
-    name: "Ashwin S ",
-    role: "Backend Developer",
-    image:
-      "/src/assets/Ashwin.jpg",
-  },
-   {
-    name: "Tejas K ",
-    role: "Research Engineer",
-    image:
-      "/src/assets/unnamed.webp",
+    name: "Tejas K",
+    role: "AI Research Engineer",
+    image: "/src/assets/unnamed.webp",
   },
   {
-    name: "Maya Patel",
-    role: "Product Manager",
-    image:
-      "https://images.unsplash.com/photo-1659353220597-71b8c6a56259?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    name: "Sujala",
+    role: "Talent Acquisition Specialist",
+  },
+  {
+    name: "Kavya",
+    role: "Data Research Expert",
   },
 ];
 
@@ -78,7 +105,7 @@ export default function TeamSection({ darkMode }: Props) {
           Our Team
         </p>
         <h2
-          className="text-3xl sm:text-4xl lg:text-5xl mb-4"
+          className="text-section-title-home mb-4"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
           People Who Challenge the Status Quo
@@ -119,17 +146,29 @@ export default function TeamSection({ darkMode }: Props) {
         >
           {teamMembers.map((member) => {
             const cardStyle = {
-              width: "min(260px, calc(100vw - 7rem))",
-              aspectRatio: `${CARD_W} / 346.66`,
+              width: `min(${CARD_W}px, calc(100vw - 7rem))`,
+              aspectRatio: `${CARD_W} / ${CARD_H}`,
               scrollSnapAlign: "start" as const,
             };
             const cardInner = (
               <>
-                <ImageWithFallback
-                  src={member.image}
-                  alt={member.name}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+                {member.image ? (
+                  <ImageWithFallback
+                    src={member.image}
+                    alt={member.name}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full"
+                    style={{
+                      background: darkMode
+                        ? "linear-gradient(160deg, rgba(79,70,229,0.22) 0%, rgba(15,23,42,0.95) 55%, rgba(15,23,42,1) 100%)"
+                        : "linear-gradient(160deg, rgba(79,70,229,0.14) 0%, rgba(226,232,240,0.65) 45%, rgba(241,245,249,0.98) 100%)",
+                    }}
+                  />
+                )}
                 <div
                   className="pointer-events-none absolute inset-0"
                   style={{
@@ -154,11 +193,19 @@ export default function TeamSection({ darkMode }: Props) {
                   </div>
                   {member.slug ? (
                     <div
-                      className="pointer-events-none flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-transform group-hover:translate-x-0.5"
-                      style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.35)" }}
+                      className="pointer-events-none flex shrink-0 flex-col items-end justify-end self-end"
                       aria-hidden
                     >
-                      <ArrowRight size={18} strokeWidth={2.25} />
+                      <div
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.35)" }}
+                      >
+                        <ArrowUpRight
+                          size={19}
+                          strokeWidth={2}
+                          className="shrink-0"
+                        />
+                      </div>
                     </div>
                   ) : null}
                 </div>

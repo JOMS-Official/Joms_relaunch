@@ -25,7 +25,7 @@ export default function BlogPostPage() {
           className="inline-flex items-center gap-2 mt-6 text-sm"
           style={{ color: accent }}
         >
-          <ArrowLeft size={16} /> Back to Blog
+          <ArrowLeft size={16} /> Back to Blogs
         </Link>
       </div>
     );
@@ -46,21 +46,23 @@ export default function BlogPostPage() {
             style={{ color: "#A78BFA" }}
           >
             <ArrowLeft size={16} />
-            Back to Blog
+            Back to Blogs
           </Link>
           <span
-            className="text-xs px-3 py-1 rounded-full inline-block"
-          style={{
-            background: darkMode ? "rgba(124, 77, 255, 0.2)" : "rgba(124, 77, 255, 0.12)",
-            color: accent,
-          }}
-        >
-          {post.category}
+            className="text-xs px-3 py-1 rounded-full inline-block font-medium"
+            style={{
+              background: darkMode
+                ? "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(124,58,237,0.85))"
+                : "linear-gradient(135deg, #4F46E5, #7C3AED)",
+              color: "#FFFFFF",
+            }}
+          >
+            {post.category}
           </span>
         </div>
 
         <h1
-          className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mb-10"
+          className="text-section-title lg:text-[calc(2.75rem-1px)] font-bold mb-10"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
           {post.title}
@@ -94,7 +96,7 @@ export default function BlogPostPage() {
         </div>
 
         <div
-          className="space-y-6 text-[1.05rem] leading-[1.85]"
+          className="space-y-6 text-[1.05rem] leading-[1.85] text-justify"
           style={{ color: bodyColor, fontFamily: "'Inter', sans-serif" }}
         >
           {post.paragraphs.map((para, i) => (
@@ -122,7 +124,7 @@ export default function BlogPostPage() {
 
         <section>
           <h2
-            className="text-xl sm:text-2xl font-semibold mb-8"
+            className="text-section-subtitle font-semibold mb-8"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
             <span className={darkMode ? "text-white" : "text-slate-900"}>Related </span>
@@ -145,10 +147,12 @@ export default function BlogPostPage() {
               >
                 
                 <span
-                  className="text-xs px-3 py-1 rounded-full inline-block mb-3"
+                  className="text-xs px-3 py-1 rounded-full inline-block mb-3 font-medium"
                   style={{
-                    background: darkMode ? "rgba(124, 77, 255, 0.2)" : "rgba(124, 77, 255, 0.1)",
-                    color: accent,
+                    background: darkMode
+                      ? "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(124,58,237,0.85))"
+                      : "linear-gradient(135deg, #4F46E5, #7C3AED)",
+                    color: "#FFFFFF",
                   }}
                 >
                   {r.category}

@@ -15,7 +15,7 @@ const pillars = [
   {
     title: "Technology that Scales",
     body:
-      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve—robust, adaptive and future-ready.",
+      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve, robust, adaptive and future-ready.",
   },
   {
     title: "Impact that Endures",
@@ -42,7 +42,7 @@ export default function FutureSection({ darkMode }: Props) {
             The Future We're Building
           </motion.p>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl mb-6"
+            className="text-section-title-home mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
           >
             Innovation Built {" "}
@@ -151,12 +151,12 @@ export default function FutureSection({ darkMode }: Props) {
                 }}
               />
             ))}
-            {/* Center glow */}
+            {/* Center glow — highlight biased right to match dot orbit */}
             <div
               className="absolute inset-24 rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle, rgba(79,70,229,0.5), rgba(124,58,237,0.3), transparent 70%)",
+                  "radial-gradient(circle at 70% 40%, rgba(79,70,229,0.5), rgba(124,58,237,0.3), transparent 70%)",
                 boxShadow: "0 0 80px rgba(79,70,229,0.3)",
               }}
             />
@@ -177,7 +177,7 @@ export default function FutureSection({ darkMode }: Props) {
                 style={{
                   background: "#7C3AED",
                   top: `${20 + i * 12}%`,
-                  left: `${15 + i * 13}%`,
+                  right: `${15 + i * 13}%`,
                   boxShadow: "0 0 10px rgba(124,58,237,0.5)",
                 }}
               />

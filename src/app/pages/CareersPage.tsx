@@ -7,9 +7,9 @@ import SectionWrapper from "../components/SectionWrapper";
 import { careersJobs } from "../data/careersJobs";
 import { careerGlassDeptTag, careerGlassIconBox } from "../careersGlass";
 
-const departmentOptions = ["All", "Engineering", "Design", "Marketing"];
-const jobTypeOptions = ["All", "Full-time", "Part-time", "Contract"];
-const locationOptions = ["All", "Remote", "Hybrid", "On-site"];
+const departmentOptions = ["All", "Leadership", "Engineering", "Design", "Marketing", "Finance"];
+const jobTypeOptions = ["All", "Full-time", "Internship", "Part-time", "Contract"];
+const locationOptions = ["All", "Remote", "Hybrid", "On-site", "Bangalore"];
 
 export default function CareersPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
@@ -41,7 +41,7 @@ export default function CareersPage() {
             Careers
           </p>
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl mb-6"
+            className="text-section-title-xl mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Build the{" "}
@@ -268,7 +268,7 @@ export default function CareersPage() {
                       <h3 className="text-lg" style={{ fontFamily: "'Sora', sans-serif" }}>
                         {job.title}
                       </h3>
-                      <div className="flex flex-wrap gap-3 mt-2">
+                      <div className="flex flex-wrap gap-3 mt-2 items-center">
                         <span
                           className="inline-flex items-center gap-1 text-xs"
                           style={{ color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)" }}
@@ -284,6 +284,18 @@ export default function CareersPage() {
                         <span className="px-2.5 py-0.5 rounded-full text-xs font-medium" style={careerGlassDeptTag(darkMode)}>
                           {job.department}
                         </span>
+                        {job.listingStatus === "closing_soon" ? (
+                          <span
+                            className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide"
+                            style={{
+                              color: "#FDE68A",
+                              border: "1px solid rgba(251, 191, 36, 0.45)",
+                              background: "rgba(251, 191, 36, 0.12)",
+                            }}
+                          >
+                            Closing soon
+                          </span>
+                        ) : null}
                       </div>
                     </div>
                   </div>

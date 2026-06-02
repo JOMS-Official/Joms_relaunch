@@ -20,10 +20,10 @@ export default function BlogPage() {
       <SectionWrapper>
         <div className="text-center mb-16">
           <p className="text-sm mb-4 tracking-widest uppercase" style={{ color: "#7C3AED" }}>
-            Blog
+            Blogs
           </p>
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl mb-6"
+            className="text-section-title-xl mb-6"
             style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
           >
             Insights &{" "}
@@ -73,7 +73,7 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* Blog grid */}
+        {/* Blogs grid */}
         <div key={category} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((post) => (
   <Link key={post.id} to={`/blog/${post.id}`} className="block transition-opacity duration-300 animate-fadeIn">
@@ -81,10 +81,12 @@ export default function BlogPage() {
               {/* Color header bar */}
               
               <span
-                className="text-xs px-3 py-1 rounded-full w-fit mb-4"
+                className="text-xs px-3 py-1 rounded-full w-fit mb-4 font-medium"
                 style={{
-                  background: darkMode ? "rgba(79,70,229,0.15)" : "rgba(79,70,229,0.08)",
-                  color: "#7C3AED",
+                  background: darkMode
+                    ? "linear-gradient(135deg, rgba(79,70,229,0.92), rgba(124,58,237,0.85))"
+                    : "linear-gradient(135deg, #4F46E5, #7C3AED)",
+                  color: "#FFFFFF",
                 }}
               >
                 {post.category}

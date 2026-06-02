@@ -1,11 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import JomsLogoMark from "./JomsLogoMark";
+import { useHomeSectionNav } from "../hooks/useHomeSectionNav";
 
 const navLinks = [
   { label: "Home", to: "/" },
-  { label: "Blog", to: "/blog" },
+  { label: "Blogs", to: "/blog" },
   { label: "Careers", to: "/careers" },
 ];
 
@@ -17,6 +19,7 @@ interface NavbarProps {
 export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { goToSection } = useHomeSectionNav();
 
   const linkIsActive = (to: string) => {
     if (to === "/") return location.pathname === "/";
@@ -26,19 +29,14 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
     return location.pathname === to;
   };
 
-  const handleNavClick = (to: string) => {
+  const handleNavClick = (e: React.MouseEvent, to: string) => {
     setMobileOpen(false);
-    if (to.startsWith("/#")) {
-      const id = to.replace("/#", "");
-      if (location.pathname === "/") {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    if (goToSection(to)) e.preventDefault();
   };
 
   return (
     <nav
-      className="fixed top-0 left-0 z-50 w-full px-6 py-3"
+      className="fixed top-0 left-0 z-50 w-full overflow-visible py-3"
       style={{
         background: darkMode ? "rgba(15,23,42,0.85)" : "rgba(255,255,255,0.85)",
         backdropFilter: "blur(20px)",
@@ -48,40 +46,29 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
           : "1px solid rgba(0,0,0,0.06)",
       }}
     >
-      <div className="flex items-center justify-between">
+      <div className="relative mx-auto flex h-12 items-center justify-between gap-3 px-6">
+        {/* Keeps layout width; logo is absolutely positioned so a 150×150 mark does not stretch the bar */}
+        <div
+          className="w-[150px] shrink-0 max-[380px]:w-[min(150px,calc(100vw-8rem))]"
+          aria-hidden
+        />
+
         <Link
           to="/"
-          className="flex items-center gap-2"
+          aria-label="JOMS — home"
+          className="absolute left-6 top-1/2 z-20 flex h-[150px] w-[150px] max-[380px]:h-[min(150px,calc(100vw-8rem))] max-[380px]:w-[min(150px,calc(100vw-8rem))] -translate-y-1/2 items-center justify-start"
           style={{ fontFamily: "'Sora', sans-serif" }}
         >
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
-            style={{
-              background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-            }}
-          >
-            <span className="text-sm" style={{ fontFamily: "'Sora', sans-serif" }}>J</span>
-          </div>
-          <span
-            className="text-xl"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-              background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            JOMS
-          </span>
+          <JomsLogoMark darkMode={darkMode} className="max-h-full max-w-full" />
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-10 xl:gap-12">
           {navLinks.map((link) => (
             <Link
               key={link.label}
-              to={link.to.startsWith("/#") && location.pathname === "/" ? link.to : link.to.startsWith("/#") ? "/" : link.to}
-              onClick={() => handleNavClick(link.to)}
+              to={link.to}
+              onClick={(e) => handleNavClick(e, link.to)}
               className="text-sm transition-colors hover:opacity-100"
               style={{
                 opacity: linkIsActive(link.to) ? 1 : 0.7,
@@ -126,13 +113,13 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden mt-4 pb-4 flex flex-col gap-3 overflow-hidden"
+            className="lg:hidden mt-4 pb-4 flex flex-col gap-4 overflow-hidden"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                to={link.to.startsWith("/#") ? "/" : link.to}
-                onClick={() => handleNavClick(link.to)}
+                to={link.to}
+                onClick={(e) => handleNavClick(e, link.to)}
                 className="text-sm py-2 px-3 rounded-lg transition-all"
                 style={{
                   background: darkMode

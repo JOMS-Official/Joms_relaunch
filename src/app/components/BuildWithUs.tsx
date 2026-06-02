@@ -1,3 +1,4 @@
+import React from "react";
 import { Code, TrendingUp, Users, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import SectionWrapper from "./SectionWrapper";
@@ -50,16 +51,16 @@ export default function BuildWithUs({ darkMode }: Props) {
           Build With Us
         </p>
         <h2
-          className="text-3xl sm:text-4xl lg:text-5xl"
+          className="text-section-title-home"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
           Your Next Move Starts Here
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-12 lg:gap-20">
+      <div className="grid md:grid-cols-3 gap-12 lg:gap-20 items-stretch">
         {cards.map((card) => (
-          <div key={card.title} className="relative pl-6">
+          <div key={card.title} className="relative flex h-full flex-col pl-6">
             <div
               className="absolute left-0 top-0"
               style={{
@@ -82,7 +83,7 @@ export default function BuildWithUs({ darkMode }: Props) {
               {card.title}
             </h3>
             <p
-              className="text-sm mb-6"
+              className="text-sm mb-6 flex-1"
               style={{
                 color: darkMode
                   ? "rgba(248,250,252,0.6)"
@@ -94,7 +95,7 @@ export default function BuildWithUs({ darkMode }: Props) {
             </p>
             <Link
               to={card.link}
-              className="inline-flex items-center gap-1.5 text-sm font-medium transition-opacity hover:opacity-90"
+              className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium transition-opacity hover:opacity-90"
               style={{ color: card.accentColor }}
             >
               {card.cta}

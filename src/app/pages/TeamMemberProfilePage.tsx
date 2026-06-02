@@ -24,16 +24,19 @@ function renderBlock(
   const headingColor = darkMode ? "#F1F5F9" : "#0f172a";
 
   if (block.kind === "heading") {
-    const leadAccent = "#7C3AED";
+    const jomsFirstLetterColor = darkMode ? "#FFFFFF" : headingColor;
 
     const headingBody =
       block.accentFirstLetter && block.text.length > 0 ? (
         (() => {
+          const dashIdx = block.text.indexOf(" - ");
           const colonIdx = block.text.indexOf(":");
-          if (colonIdx !== -1) {
-            const beforeColon = block.text.slice(0, colonIdx).trimEnd();
-            const fromColon = block.text.slice(colonIdx);
-            const words = beforeColon.split(/\s+/).filter(Boolean);
+          const splitIdx =
+            dashIdx !== -1 ? dashIdx : colonIdx !== -1 ? colonIdx : -1;
+          if (splitIdx !== -1) {
+            const beforeSep = block.text.slice(0, splitIdx).trimEnd();
+            const fromSep = block.text.slice(splitIdx);
+            const words = beforeSep.split(/\s+/).filter(Boolean);
             return (
               <>
                 {words.map((word, i) => (
@@ -41,19 +44,19 @@ function renderBlock(
                     {i > 0 ? " " : null}
                     {word.length > 0 ? (
                       <>
-                        <span style={{ color: leadAccent }}>{word[0]}</span>
+                        <span style={{ color: jomsFirstLetterColor }}>{word[0]}</span>
                         {word.slice(1)}
                       </>
                     ) : null}
                   </React.Fragment>
                 ))}
-                <span style={{ color: headingColor }}>{fromColon}</span>
+                <span style={{ color: headingColor }}>{fromSep}</span>
               </>
             );
           }
           return (
             <>
-              <span style={{ color: leadAccent }}>{block.text[0]}</span>
+              <span style={{ color: jomsFirstLetterColor }}>{block.text[0]}</span>
               {block.text.slice(1)}
             </>
           );
@@ -65,7 +68,7 @@ function renderBlock(
     return (
       <h2
         key={index}
-        className="text-xl sm:text-2xl font-semibold tracking-tight mt-10 sm:mt-12 mb-4 scroll-mt-28"
+        className="text-section-subtitle font-semibold tracking-tight mt-10 sm:mt-12 mb-4 scroll-mt-28"
         style={{
           fontFamily: "'Sora', sans-serif",
           lineHeight: 1.25,
@@ -78,11 +81,23 @@ function renderBlock(
   }
 
   if (block.kind === "bullets") {
+    const emphasisWhite = block.emphasis === "white";
+    const bulletColor = emphasisWhite
+      ? darkMode
+        ? "#FFFFFF"
+        : "#0f172a"
+      : muted;
+    const markerClass = emphasisWhite
+      ? darkMode
+        ? "marker:text-white"
+        : "marker:text-slate-900"
+      : "marker:text-violet-500";
+
     return (
       <ul
         key={index}
-        className="list-disc pl-6 sm:pl-7 space-y-2.5 my-4 marker:text-violet-500"
-        style={{ color: muted }}
+        className={`list-disc pl-6 sm:pl-7 space-y-2.5 my-4 ${markerClass}`}
+        style={{ color: bulletColor }}
       >
         {block.items.map((item, j) => (
           <li key={j} className="pl-1">
@@ -142,19 +157,19 @@ export default function TeamMemberProfilePage() {
         </Link>
 
         <header className="flex flex-col sm:flex-row gap-8 sm:gap-10 mb-10 sm:mb-12">
-          <div className="shrink-0 mx-auto sm:mx-0 w-full max-w-[260px] sm:max-w-[280px]">
+          <div className="shrink-0 mx-auto sm:mx-0 w-full max-w-[200px] sm:max-w-[220px]">
             <img
               src={profile.image}
               alt={profile.name}
-              className="w-full rounded-2xl object-cover object-center shadow-xl aspect-[260/346.66]"
+              className="w-full rounded-2xl object-cover object-center shadow-xl aspect-[220/293]"
               style={{
                 border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.08)",
               }}
             />
           </div>
-          <div className="flex-1 min-w-0 text-center sm:text-left pt-0 sm:pt-2">
+          <div className="flex flex-col items-start text-left pt-0 sm:pt-2 flex-1 min-w-0">
             <h1
-              className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold mb-2"
+              className="text-section-title lg:text-[calc(2.5rem-1px)] font-bold mb-2"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 lineHeight: 1.15,
@@ -203,7 +218,7 @@ export default function TeamMemberProfilePage() {
         />
 
         <article
-          className="space-y-5 text-[1.05rem] leading-[1.85]"
+          className="space-y-5 text-[1.05rem] leading-[1.85] text-justify"
           style={{
             fontFamily: "'Inter', sans-serif",
           }}

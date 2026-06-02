@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
+import JomsLogoMark from "./JomsLogoMark";
+import { useHomeSectionNav } from "../hooks/useHomeSectionNav";
 
 interface Props {
   darkMode: boolean;
@@ -14,36 +16,43 @@ const footerLinks = [
       { label: "Products", to: "/#products" },
       { label: "Team", to: "/#team" },
       { label: "Careers", to: "/careers" },
-      { label: "Blog", to: "/blog" },
     ],
   },
   {
     title: "Legal",
     links: [
       { label: "Privacy Policy", to: "/privacy" },
-      { label: "Terms Of services", to: "/blog" },
-      { label: "Disclaimers", to: "/blog" },
-      { label: "Cookies Policy", to: "/blog" },
+      { label: "Terms of Service", to: "/terms-of-service" },
+      { label: "Disclaimer", to: "/disclaimer" },
+      { label: "Cookies Policy", to: "/cookies-policy" },
     ],
   },
   {
     title: "Resources",
-    links: [
-      { label: "Startup Blogs", to: "/blog" },
-      { label: "Tech Insights", to: "/contact" },
-      { label: "Pitch Deck", to: "/blog" },
-    ],
+    links: [{ label: "Startup Blogs", to: "/blog" }],
   },
 ];
 
 const socials = [
-  { icon: Twitter, href: "https://twitter.com" },
-  { icon: Linkedin, href: "https://linkedin.com" },
-  { icon: Github, href: "https://github.com" },
-  { icon: Instagram, href: "https://instagram.com" },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/joms_justonemorestep",
+    label: "JOMS on Instagram",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/justonemorestep/",
+    label: "JOMS on LinkedIn",
+  },
 ];
 
 export default function Footer({ darkMode }: Props) {
+  const { goToSection } = useHomeSectionNav();
+
+  const handleFooterLinkClick = (e: React.MouseEvent, to: string) => {
+    if (goToSection(to)) e.preventDefault();
+  };
+
   return (
     <footer
       className="mt-20 pt-16 pb-8 px-4 sm:px-6 lg:px-8"
@@ -54,49 +63,32 @@ export default function Footer({ darkMode }: Props) {
       }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid items-start sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
-                style={{
-                  background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-                }}
-              >
-                <span className="text-sm" style={{ fontFamily: "'Sora', sans-serif" }}>J</span>
-              </div>
-              <span
-                className="text-xl"
-                style={{
-                  fontFamily: "'Sora', sans-serif",
-                  background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                JOMS
-              </span>
-            </div>
-            <p
-              className="text-sm mb-6"
-              style={{
-                color: darkMode
-                  ? "rgba(248,250,252,0.5)"
-                  : "rgba(2,6,23,0.5)",
-                lineHeight: 1.7,
-              }}
+          <div className="min-w-0 flex flex-col">
+            <Link
+              to="/"
+              aria-label="JOMS — home"
+              className="relative z-0 -mt-14 block h-[150px] w-[150px] max-w-full leading-none sm:-mt-16"
             >
-              One Step Closer to the Future.
-            </p>
-            <div className="flex gap-3">
-              {socials.map((s, i) => (
+              <JomsLogoMark
+                darkMode={darkMode}
+                className="h-[150px] w-[150px] object-contain object-left object-top"
+              />
+            </Link>
+            <div className="relative z-10 -mt-10 flex gap-3 sm:-mt-11">
+              {socials.map((s) => (
                 <a
-                  key={i}
+                  key={s.href}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                  aria-label={s.label}
+                  className="relative z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg transition-all hover:scale-110"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(s.href, "_blank", "noopener,noreferrer");
+                  }}
                   style={{
                     background: darkMode
                       ? "rgba(255,255,255,0.06)"
@@ -106,7 +98,7 @@ export default function Footer({ darkMode }: Props) {
                       : "rgba(2,6,23,0.5)",
                   }}
                 >
-                  <s.icon size={16} />
+                  <s.icon size={16} aria-hidden />
                 </a>
               ))}
             </div>
@@ -131,6 +123,7 @@ export default function Footer({ darkMode }: Props) {
                   <li key={link.label}>
                     <Link
                       to={link.to}
+                      onClick={(e) => handleFooterLinkClick(e, link.to)}
                       className="text-sm transition-colors hover:opacity-100"
                       style={{
                         color: darkMode

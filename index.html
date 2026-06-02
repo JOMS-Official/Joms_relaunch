@@ -1,11 +1,27 @@
 
   <!DOCTYPE html>
-  <html lang="en">
+  <!-- class="dark" matches Layout default (darkMode true) so first paint is not white before React runs -->
+  <html lang="en" class="dark">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>JOMS_Official_Website</title>
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+      <style>
+        html,
+        body,
+        #root {
+          height: 100%;
+          margin: 0;
+        }
+        /* Avoid white flash on refresh before bundled CSS loads */
+        html.dark {
+          background-color: #020617;
+          color: #f8fafc;
+        }
+        html.dark body {
+          background-color: transparent;
+        }
+      </style>
     </head>
 
     <body>

@@ -178,9 +178,127 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+
+  /**
+   * Fully justified body copy (straight left & right edges), site-wide.
+   * Section intros and other UI blocks keep center alignment via .text-center.
+   */
+  .site-main p,
+  .site-main article p,
+  .site-main li {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .site-main .text-center p,
+  .site-main .text-center li {
+    text-align: center;
+  }
 }
 
 @layer utilities {
+  /** Section / page titles: Tailwind scale minus 1px */
+  .text-section-title {
+    font-size: calc(1.875rem - 1px);
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .text-section-title {
+      font-size: calc(2.25rem - 1px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-section-title {
+      font-size: calc(3rem - 1px);
+    }
+  }
+
+  .text-section-title-xl {
+    font-size: calc(2.25rem - 1px);
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .text-section-title-xl {
+      font-size: calc(3rem - 1px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-section-title-xl {
+      font-size: calc(3.75rem - 1px);
+    }
+  }
+
+  /** Home page section h2: one extra px smaller than site default */
+  .text-section-title-home {
+    font-size: calc(1.875rem - 2px);
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .text-section-title-home {
+      font-size: calc(2.25rem - 2px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-section-title-home {
+      font-size: calc(3rem - 2px);
+    }
+  }
+
+  .text-section-title-home-xl {
+    font-size: calc(2.25rem - 2px);
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .text-section-title-home-xl {
+      font-size: calc(3rem - 2px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-section-title-home-xl {
+      font-size: calc(3.75rem - 2px);
+    }
+  }
+
+  .text-section-title-sm {
+    font-size: calc(1.5rem - 1px);
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .text-section-title-sm {
+      font-size: calc(1.875rem - 1px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-section-title-sm {
+      font-size: calc(2.25rem - 1px);
+    }
+  }
+
+  .text-section-title-compact {
+    font-size: calc(1.875rem - 1px);
+    line-height: 1.15;
+  }
+  @media (min-width: 640px) {
+    .text-section-title-compact {
+      font-size: calc(2.25rem - 1px);
+    }
+  }
+
+  .text-section-subtitle {
+    font-size: calc(1.25rem - 1px);
+    line-height: 1.25;
+  }
+  @media (min-width: 640px) {
+    .text-section-subtitle {
+      font-size: calc(1.5rem - 1px);
+    }
+  }
+  @media (min-width: 1024px) {
+    .text-section-subtitle-lg {
+      font-size: calc(1.875rem - 1px);
+    }
+  }
+
   /** Scroll still works; bar hidden in Chromium, Firefox, legacy Edge */
   .scrollbar-hide {
     -ms-overflow-style: none;

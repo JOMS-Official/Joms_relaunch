@@ -1,14 +1,30 @@
-import { useState, useEffect } from "react";
-import { Outlet } from "react-router";
+import { useState, useLayoutEffect, useEffect } from "react";
+import { Outlet, useLocation } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { scrollToHomeSection } from "../utils/homeSectionNav";
 
 export default function Layout() {
   const [darkMode, setDarkMode] = useState(true);
+  const location = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
+
+  // Reset scroll on route changes; skip when landing on home with a section hash (Vision, Team, etc.).
+  useLayoutEffect(() => {
+    if (location.pathname === "/" && location.hash) return;
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.search, location.hash]);
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) return;
+    const id = location.hash.replace(/^#/, "");
+    if (!id) return;
+    const timer = window.setTimeout(() => scrollToHomeSection(id), 50);
+    return () => window.clearTimeout(timer);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className={darkMode ? "dark" : ""}>
@@ -23,7 +39,9 @@ export default function Layout() {
         }}
       >
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <Outlet context={{ darkMode }} />
+        <main className="site-main">
+          <Outlet context={{ darkMode }} />
+        </main>
         <Footer darkMode={darkMode} />
       </div>
     </div>

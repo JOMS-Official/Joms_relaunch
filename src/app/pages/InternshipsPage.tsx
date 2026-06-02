@@ -21,11 +21,11 @@ const green = "#34D399";
 const muted = (dark: boolean) => (dark ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.55)");
 const subtext = "#94A3B8";
 
-function internDeptTag(): React.CSSProperties {
+function internDeptTag(dark: boolean): React.CSSProperties {
   return {
     background: "rgba(52, 211, 153, 0.12)",
     border: "1px solid rgba(52, 211, 153, 0.45)",
-    color: "#6EE7B7",
+    color: dark ? "#FFFFFF" : "#065f46",
     boxShadow: "0 0 16px rgba(52, 211, 153, 0.12)",
   };
 }
@@ -58,7 +58,7 @@ const applySteps = [
   "Click on a role to view the full description and requirements.",
   "Click “Apply Now” and complete the application form with accurate details.",
   "Upload your resume and any optional links we should review.",
-  "Submit and watch your inbox—we’ll follow up if there’s a mutual fit.",
+  "Submit and watch your inbox and we'll follow up if there's a mutual fit.",
 ];
 
 export default function InternshipsPage() {
@@ -80,9 +80,9 @@ export default function InternshipsPage() {
       : "bg-white/80 border-black/[0.06] shadow-sm");
 
   return (
-    <div className="pt-35">
+    <div className="pt-35 [&_p]:!text-left">
       {/* Hero */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-16 md:pb-20 text-center">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-12 md:pb-16 text-center">
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6"
           style={{
@@ -96,7 +96,7 @@ export default function InternshipsPage() {
           Internship Program
         </div>
         <h1
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
+          className="text-section-title font-bold mb-6"
           style={{
             fontFamily: "'Sora', sans-serif",
             lineHeight: 1.1,
@@ -105,21 +105,21 @@ export default function InternshipsPage() {
         >
           Internships for Builders and Problem Solvers
         </h1>
-        <p className="max-w-2xl mx-auto text-lg mb-10" style={{ color: darkMode ? muted(true) : subtext }}>
+        <p className="max-w-2xl mx-auto text-lg mb-10 !text-center" style={{ color: darkMode ? muted(true) : subtext }}>
           Build skills that matter through hands-on internships designed for curious thinkers, creators, and future
           entrepreneurs.
         </p>
         <button
           type="button"
           onClick={scrollToOpenings}
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-white text-sm font-semibold transition-transform hover:scale-[1.02] shadow-lg"
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-semibold text-[#020617] transition-transform hover:scale-[1.02]"
           style={{
             background: "linear-gradient(90deg, #34D399, #38BDF8)",
-            boxShadow: "0 12px 32px rgba(52, 211, 153, 0.35)",
+            color: "#020617",
           }}
         >
           Explore Internships
-          <ArrowRight size={18} strokeWidth={2} />
+          <ArrowRight size={18} strokeWidth={2} className="text-[#020617]" />
         </button>
       </section>
 
@@ -158,7 +158,7 @@ export default function InternshipsPage() {
       </SectionWrapper>
 
       {/* Duration & qualifications */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 md:pb-24">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-14 md:pb-20">
         <div className="grid md:grid-cols-2 gap-6">
           <div className={glassPanel}>
             <div className="flex items-start gap-4">
@@ -216,11 +216,11 @@ export default function InternshipsPage() {
       </section>
 
       {/* How to apply */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 md:pb-24">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-14 md:pb-20">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-start">
           <div>
             <h2
-              className="text-2xl sm:text-3xl font-bold mb-4"
+              className="text-section-title-sm font-bold mb-4"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 lineHeight: 1.2,
@@ -266,16 +266,16 @@ export default function InternshipsPage() {
       </section>
 
       {/* Open positions */}
-      <SectionWrapper id="open-positions" className="!pt-0 !pb-24 md:!pb-32">
+      <SectionWrapper id="open-positions" className="!pt-0 !pb-16 md:!pb-24">
         <div className="text-center mb-12">
           <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-3"
+            className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 !text-center"
             style={{ color: green }}
           >
             Open Positions
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-bold"
+            className="text-section-title-compact font-bold"
             style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
           >
             Available Internships
@@ -299,7 +299,7 @@ export default function InternshipsPage() {
                       <h3 className="text-lg" style={{ fontFamily: "'Sora', sans-serif" }}>
                         {job.title}
                       </h3>
-                      <div className="flex flex-wrap gap-3 mt-2">
+                      <div className="flex flex-wrap gap-3 mt-2 items-center">
                         <span
                           className="inline-flex items-center gap-1 text-xs"
                           style={{ color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)" }}
@@ -312,9 +312,21 @@ export default function InternshipsPage() {
                         >
                           <Clock size={12} /> {job.type}
                         </span>
-                        <span className="px-2.5 py-0.5 rounded-full text-xs font-medium" style={internDeptTag()}>
+                        <span className="px-2.5 py-0.5 rounded-full text-xs font-medium" style={internDeptTag(darkMode)}>
                           {job.department}
                         </span>
+                        {job.listingStatus === "closing_soon" ? (
+                          <span
+                            className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide"
+                            style={{
+                              color: "#FDE68A",
+                              border: "1px solid rgba(251, 191, 36, 0.45)",
+                              background: "rgba(251, 191, 36, 0.12)",
+                            }}
+                          >
+                            Closing soon
+                          </span>
+                        ) : null}
                       </div>
                     </div>
                   </div>
