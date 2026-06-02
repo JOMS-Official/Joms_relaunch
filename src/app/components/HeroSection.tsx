@@ -182,7 +182,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
                     ease: "linear",
                     delay: i * 0.5,
                   }}
-                  className="absolute -top-2 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl text-xs whitespace-nowrap"
+                  className="absolute -top-8 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl text-xs whitespace-nowrap"
                   style={{
                     background: darkMode
                       ? "rgba(255,255,255,0.08)"

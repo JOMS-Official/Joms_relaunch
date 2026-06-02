@@ -20,7 +20,7 @@ export const teamMemberProfiles: TeamMemberProfile[] = [
     name: "Swaroop Jayaram",
     roleShort: "Founder & CEO",
     roleDisplay: "FOUNDER & CEO",
-    image: SWAROOP_CARD_IMAGE,
+    image: "/src/assets/Swaroop.jpg",
     linkedinUrl: "https://www.linkedin.com/",
     paragraphs: [
       "Swaroop Jayaram is the Founder & CEO of JOMS (Just One More Step). His career has been shaped by a simple belief: meaningful progress comes from consistent, intentional steps forward—not from noise or shortcuts, but from clarity, discipline, and the courage to build what should exist.",

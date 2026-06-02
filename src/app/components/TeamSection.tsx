@@ -21,26 +21,33 @@ const teamMembers: {
   {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
-    image: SWAROOP_CARD_IMAGE,
+    image:  "/src/assets/Swaroop.jpg",
     slug: SWAROOP_SLUG,
   },
-  {
-    name: "Ananya Reddy",
-    role: "Director of Operations",
+   {
+    name: "Bhavana Gopala ",
+    role: "Head Of Operations",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=520&h=700&fit=crop&q=80",
+      "/src/assets/Bhavana.webp",
+  },
+ 
+  {
+    name: "Vishal HM",
+    role: "UI/UX Developer",
+    image:
+      "/src/assets/vishal.webp",
   },
   {
-    name: "Priya Sharma",
-    role: "Lead Engineer",
+    name: "Ashwin S ",
+    role: "Backend Developer",
     image:
-      "https://images.unsplash.com/photo-1712174766230-cb7304feaafe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "/src/assets/Ashwin.jpg",
   },
-  {
-    name: "Alex Chen",
-    role: "Product Designer",
+   {
+    name: "Tejas K ",
+    role: "Research Engineer",
     image:
-      "https://images.unsplash.com/photo-1761522001672-5f1d45ce1b10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      "/src/assets/unnamed.webp",
   },
   {
     name: "Maya Patel",
