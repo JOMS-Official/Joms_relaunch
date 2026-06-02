@@ -9,7 +9,6 @@ import {
   GraduationCap,
   MapPin,
   Rocket,
-  Sparkles,
   Target,
   User,
 } from "lucide-react";
@@ -33,24 +32,24 @@ function internDeptTag(): React.CSSProperties {
 
 const features = [
   {
-    icon: Sparkles,
-    title: "Why JOMS",
-    body: "Work on real products with a team that values craft, clarity, and ownership from day one.",
+    icon: User,
+    title: "Dedicated Mentorship",
+    body: "Learn closely from founders, innovators and industry professionals who guide your growth at every step.",
+  },
+  {
+    icon: Briefcase,
+    title: "Build Real Things",
+    body: "Solve real problems, collaborate with cross-functional teams and gain hands-on experience that goes beyond classroom learning.",
   },
   {
     icon: Rocket,
-    title: "Accelerate Your Career",
-    body: "Ship meaningful work early—features, fixes, and experiments that users actually touch.",
+    title: "Grow Faster",
+    body: "Build practical skills, strengthen your portfolio and gain real-world exposure that helps you stand out from day one.",
   },
   {
     icon: Target,
-    title: "Dedicated Mentorship",
-    body: "Regular 1:1s and code or design reviews so you grow faster than in a classroom alone.",
-  },
-  {
-    icon: User,
     title: "Path to Full-Time",
-    body: "Strong performers are considered for return offers and full-time roles as we scale.",
+    body: "Top-performing interns get the opportunity to transition into full-time roles and continue building with us.",
   },
 ];
 
@@ -97,18 +96,18 @@ export default function InternshipsPage() {
           Internship Program
         </div>
         <h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
           style={{
             fontFamily: "'Sora', sans-serif",
             lineHeight: 1.1,
             color: darkMode ? "#F8FAFC" : "#020617",
           }}
         >
-          Intern With Us
+          Internships for Builders and Problem Solvers
         </h1>
         <p className="max-w-2xl mx-auto text-lg mb-10" style={{ color: darkMode ? muted(true) : subtext }}>
-          Launch your career at JOMS. Get hands-on experience building next-generation digital platforms
-          alongside industry professionals.
+          Build skills that matter through hands-on internships designed for curious thinkers, creators, and future
+          entrepreneurs.
         </p>
         <button
           type="button"
@@ -182,8 +181,7 @@ export default function InternshipsPage() {
                   Duration
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: subtext }}>
-                  3–6 months, flexible start dates with both part-time and full-time options depending on the role
-                  and your schedule.
+                3-6 months, flexible start dates with both part-time and full-time options based on your university guidelines.
                 </p>
               </div>
             </div>
@@ -209,8 +207,7 @@ export default function InternshipsPage() {
                   Qualifications
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: subtext }}>
-                  Currently enrolled or recently graduated. Strong communication and a genuine interest in tech,
-                  design, or growth—exact requirements vary by role.
+                Currently enrolled or recently graduated. Strong communication and genuine interest in technology, creative problem solving and designs.
                 </p>
               </div>
             </div>

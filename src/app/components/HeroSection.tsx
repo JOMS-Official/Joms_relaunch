@@ -7,10 +7,11 @@ interface HeroProps {
   darkMode: boolean;
 }
 
+/** Tighter arc (~44° apart) so the three pills sit closer together; full 360/3 would spread them farther. */
 const orbitCards = [
-  { label: "Mobile Platforms", angle: 0 },
-  { label: "Marketplace Ecosystem", angle: 120 },
-  { label: "Future Products (Beta)", angle: 240 },
+  { label: "The Right People", angle: 0 },
+  { label: "In The Right Place", angle: 44 },
+  { label: "At The Right Time", angle: 88 },
 ];
 
 export default function HeroSection({ darkMode }: HeroProps) {
@@ -81,13 +82,13 @@ export default function HeroSection({ darkMode }: HeroProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6"
             style={{
               fontFamily: "'Sora', sans-serif",
               lineHeight: 1.1,
             }}
           >
-            Building the Future.{" "}
+            Every Opportunity is{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED, #2563EB)",
@@ -95,8 +96,12 @@ export default function HeroSection({ darkMode }: HeroProps) {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              One Step at a Time.
+              Just One More Step
+
+      
+
             </span>
+            Away
           </motion.h1>
 
           <motion.p
@@ -109,9 +114,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
               lineHeight: 1.7,
             }}
           >
-            JOMS is building the next generation of digital platforms — from
-            intelligent mobile applications to scalable marketplaces designed
-            for the future.
+            JOMS is redefining startup eco-system with an all-in-one platform that helps founders validate ideas, build products, connect and scale efficiently. 
           </motion.p>
 
           <motion.div
@@ -128,7 +131,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
                 boxShadow: "0 8px 30px rgba(79,70,229,0.4)",
               }}
             >
-              Contact Us
+              Get in Touch
             </Link>
           </motion.div>
         </div>
@@ -159,30 +162,28 @@ export default function HeroSection({ darkMode }: HeroProps) {
             />
 
             {/* Orbiting cards */}
-            {orbitCards.map((card, i) => (
+            {orbitCards.map((card) => (
               <motion.div
                 key={card.label}
-                animate={{ rotate: 360 }}
+                initial={{ rotate: card.angle }}
+                animate={{ rotate: card.angle + 360 }}
                 transition={{
                   duration: 20,
                   repeat: Infinity,
                   ease: "linear",
-                  delay: i * 0.5,
                 }}
                 className="absolute inset-0"
-                style={{
-                  transform: `rotate(${card.angle}deg)`,
-                }}
+                style={{ transformOrigin: "50% 50%" }}
               >
                 <motion.div
-                  animate={{ rotate: -360 }}
+                  initial={{ rotate: -card.angle }}
+                  animate={{ rotate: -card.angle - 360 }}
                   transition={{
                     duration: 20,
                     repeat: Infinity,
                     ease: "linear",
-                    delay: i * 0.5,
                   }}
-                  className="absolute -top-8 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl text-xs whitespace-nowrap"
+                  className="absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs text-center whitespace-nowrap"
                   style={{
                     background: darkMode
                       ? "rgba(255,255,255,0.08)"

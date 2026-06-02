@@ -11,8 +11,8 @@ const cards = [
     icon: Code,
     title: "For Builders",
     description:
-      "Join a team that's building the future of digital platforms. We value craft, ownership, and ambition.",
-    cta: "Explore Careers",
+      "You love building things that matter. We're assembling a team of doers, makers and relentless problem-solvers who want their work to leave a mark. If that's you, we want to hear from you",
+    cta: "View Open Roles",
     link: "/careers",
     lineGradient: "linear-gradient(180deg, #6366F1 0%, rgba(0,0,0,0) 100%)",
     accentColor: "#818CF8",
@@ -21,8 +21,8 @@ const cards = [
     icon: TrendingUp,
     title: "For Investors",
     description:
-      "Partner with a team that has a bold vision and the execution to match. Learn about the opportunity.",
-    cta: "Request Pitch Deck",
+      "We’re early, intentional, and building for the long game. If you believe in backing founders and ideas with genuine conviction not just traction metrics let's talk.",
+    cta: "Start a Conversation",
     link: "/investors",
     lineGradient: "linear-gradient(180deg, #D4AF37 0%, rgba(0,0,0,0) 100%)",
     accentColor: "#E5C158",
@@ -31,8 +31,8 @@ const cards = [
     icon: Users,
     title: "For Collaborators",
     description:
-      "Whether you're a potential partner, advisor, or enthusiast — we'd love to hear from you.",
-    cta: "Contact Us",
+      "Strategic alliances. Creative partnerships. Shared missions. If you see an opportunity where our worlds overlap, so do we.",
+    cta: "Explore Partnership ",
     link: "/contact",
     lineGradient: "linear-gradient(180deg, #3B82F6 0%, rgba(0,0,0,0) 100%)",
     accentColor: "#60A5FA",
@@ -53,7 +53,7 @@ export default function BuildWithUs({ darkMode }: Props) {
           className="text-3xl sm:text-4xl lg:text-5xl"
           style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
         >
-          The Next Big Platform Could Start Here
+          Your Next Move Starts Here
         </h2>
       </div>
 
