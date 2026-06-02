@@ -10,18 +10,15 @@ const pillars = [
   {
     title: "Human-Centred by Design",
     body:
-      "Every product we build begins with one question: what does the person at the other end actually need? Not what's impressive but what's meaningful.",
-  },
+      "Every product we build begins with one question: what does the person at the other end actually need? Not what's impressive but what's meaningful."},
   {
     title: "Technology that Scales",
     body:
-      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve, robust, adaptive and future-ready.",
-  },
+      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve, robust, adaptive and future-ready."},
   {
     title: "Impact that Endures",
     body:
-      "We don't measure success in downloads alone. We measure it in the value we create for real people, real businesses and the world around us.",
-  },
+      "We don't measure success in downloads alone. We measure it in the value we create for real people, real businesses and the world around us."},
 ];
 
 export default function FutureSection({ darkMode }: Props) {
@@ -36,22 +33,20 @@ export default function FutureSection({ darkMode }: Props) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-sm mb-4 tracking-widest uppercase"
-            style={{ color: "#7C3AED" }}
+            className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]"
           >
             The Future We're Building
           </motion.p>
           <h2
             className="text-section-title-home mb-6"
-            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+            style={{lineHeight: 1.15 }}
           >
             Innovation Built {" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+                WebkitTextFillColor: "transparent"}}
             >
               Around Entrepreneurs
             </span>
@@ -60,18 +55,14 @@ export default function FutureSection({ darkMode }: Props) {
             className="text-lg mb-8"
             style={{
               color: muted,
-              lineHeight: 1.8,
-            }}
+              lineHeight: 1.8}}
           >
             JOMS is building the infrastructure entrepreneurs need to transform ideas into scalable products and sustainable businesses.
           </p>
 
           <h3
             className="text-lg sm:text-xl font-semibold mb-6"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-              color: darkMode ? "rgba(248,250,252,0.95)" : "rgb(15,23,42)",
-            }}
+            style={{color: darkMode ? "rgba(248,250,252,0.95)" : "rgb(15,23,42)"}}
           >
             Our products revolve around these three pillars:
           </h3>
@@ -97,8 +88,7 @@ export default function FutureSection({ darkMode }: Props) {
                       darkMode
                         ? "rgba(124,58,237,0.45)"
                         : "rgba(79,70,229,0.25)"
-                    }`,
-                  }}
+                    }`}}
                   aria-hidden
                 >
                   {index + 1}
@@ -106,12 +96,9 @@ export default function FutureSection({ darkMode }: Props) {
                 <div className="min-w-0 pt-0.5">
                   <p
                     className="font-semibold text-base sm:text-lg mb-1.5"
-                    style={{
-                      fontFamily: "'Sora', sans-serif",
-                      color: darkMode
+                    style={{color: darkMode
                         ? "rgba(248,250,252,0.95)"
-                        : "rgb(15,23,42)",
-                    }}
+                        : "rgb(15,23,42)"}}
                   >
                     {pillar.title}
                   </p>
@@ -138,8 +125,7 @@ export default function FutureSection({ darkMode }: Props) {
                 transition={{
                   duration: 15 + i * 5,
                   repeat: Infinity,
-                  ease: "linear",
-                }}
+                  ease: "linear"}}
                 className="absolute rounded-full"
                 style={{
                   inset: `${i * 30}px`,
@@ -147,8 +133,7 @@ export default function FutureSection({ darkMode }: Props) {
                     darkMode
                       ? `rgba(124,58,237,${0.3 - i * 0.08})`
                       : `rgba(79,70,229,${0.2 - i * 0.05})`
-                  }`,
-                }}
+                  }`}}
               />
             ))}
             {/* Center glow — highlight biased right to match dot orbit */}
@@ -157,8 +142,7 @@ export default function FutureSection({ darkMode }: Props) {
               style={{
                 background:
                   "radial-gradient(circle at 70% 40%, rgba(79,70,229,0.5), rgba(124,58,237,0.3), transparent 70%)",
-                boxShadow: "0 0 80px rgba(79,70,229,0.3)",
-              }}
+                boxShadow: "0 0 80px rgba(79,70,229,0.3)"}}
             />
             {/* Floating dots */}
             {[...Array(6)].map((_, i) => (
@@ -166,20 +150,17 @@ export default function FutureSection({ darkMode }: Props) {
                 key={i}
                 animate={{
                   y: [0, -10, 0],
-                  opacity: [0.4, 1, 0.4],
-                }}
+                  opacity: [0.4, 1, 0.4]}}
                 transition={{
                   duration: 2 + i * 0.5,
                   repeat: Infinity,
-                  delay: i * 0.3,
-                }}
+                  delay: i * 0.3}}
                 className="absolute w-2 h-2 rounded-full"
                 style={{
                   background: "#7C3AED",
                   top: `${20 + i * 12}%`,
                   right: `${15 + i * 13}%`,
-                  boxShadow: "0 0 10px rgba(124,58,237,0.5)",
-                }}
+                  boxShadow: "0 0 10px rgba(124,58,237,0.5)"}}
               />
             ))}
           </div>

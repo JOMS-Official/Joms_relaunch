@@ -22,7 +22,7 @@ export function LegalPageShell({ darkMode, title, metaLine, children }: LegalPag
       <div className="max-w-3xl mx-auto text-left">
         <h1
           className="text-section-title-compact font-bold mb-3"
-          style={{ fontFamily: "'Sora', sans-serif", color: heading }}
+          style={{color: heading }}
         >
           {title}
         </h1>
@@ -32,12 +32,11 @@ export function LegalPageShell({ darkMode, title, metaLine, children }: LegalPag
         <div
           className="h-px w-full mb-10"
           style={{
-            background: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-          }}
+            background: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}}
         />
         <article
           className="space-y-10 text-[15px] leading-[1.8] text-justify"
-          style={{ color: body, fontFamily: "'Inter', sans-serif" }}
+          style={{ color: body}}
         >
           {children}
         </article>
@@ -56,7 +55,7 @@ export function LegalH2({ darkMode, children }: LegalH2Props) {
   return (
     <h2
       className="text-[calc(1.125rem-1px)] font-semibold"
-      style={{ fontFamily: "'Sora', sans-serif", color: sectionTitle }}
+      style={{color: sectionTitle }}
     >
       {children}
     </h2>

@@ -15,22 +15,20 @@ export default function FounderSection({ darkMode }: Props) {
     <SectionWrapper id="founder">
       <div className="text-center mb-16">
         <p
-          className="text-sm mb-4 tracking-widest uppercase"
-          style={{ color: "#7C3AED" }}
+          className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]"
         >
           Leadership
         </p>
         <h2
           className="text-3xl sm:text-4xl lg:text-5xl"
-          style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+          style={{lineHeight: 1.15 }}
         >
           Meet the{" "}
           <span
             style={{
               background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
               WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
+              WebkitTextFillColor: "transparent"}}
           >
             Founder
           </span>
@@ -44,8 +42,7 @@ export default function FounderSection({ darkMode }: Props) {
               className="w-32 h-32 rounded-2xl overflow-hidden"
               style={{
                 border: "2px solid rgba(79,70,229,0.3)",
-                boxShadow: "0 0 30px rgba(79,70,229,0.2)",
-              }}
+                boxShadow: "0 0 30px rgba(79,70,229,0.2)"}}
             >
               <ImageWithFallback
                 src={FOUNDER_IMAGE}
@@ -57,7 +54,7 @@ export default function FounderSection({ darkMode }: Props) {
           <div className="flex-1 text-center md:text-left">
             <h3
               className="text-2xl mb-1"
-              style={{ fontFamily: "'Sora', sans-serif" }}
+              style={{}}
             >
               Swaroop Jayaram
             </h3>
@@ -79,8 +76,7 @@ export default function FounderSection({ darkMode }: Props) {
                   color: darkMode
                     ? "rgba(248,250,252,0.7)"
                     : "rgba(2,6,23,0.6)",
-                  lineHeight: 1.7,
-                }}
+                  lineHeight: 1.7}}
               >
                 Building products that move humanity one step closer to the
                 future.
@@ -96,8 +92,7 @@ export default function FounderSection({ darkMode }: Props) {
                   ? "rgba(79,70,229,0.15)"
                   : "rgba(79,70,229,0.08)",
                 border: "1px solid rgba(79,70,229,0.2)",
-                color: "#7C3AED",
-              }}
+                color: "#7C3AED"}}
             >
               <Linkedin size={16} /> Connect on LinkedIn
             </a>

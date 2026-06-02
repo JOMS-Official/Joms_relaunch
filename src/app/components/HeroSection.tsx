@@ -16,8 +16,7 @@ const orbitCards = [
 function OrbitPill({
   label,
   angle,
-  darkMode,
-}: {
+  darkMode}: {
   label: string;
   angle: number;
   darkMode: boolean;
@@ -41,8 +40,7 @@ function OrbitPill({
             ? "1px solid rgba(255,255,255,0.15)"
             : "1px solid rgba(0,0,0,0.08)",
           boxShadow: "0 4px 20px rgba(79,70,229,0.2)",
-          color: darkMode ? "#ffffff" : "#111111",
-        }}
+          color: darkMode ? "#ffffff" : "#111111"}}
       >
         {label}
       </motion.div>
@@ -59,24 +57,21 @@ export default function HeroSection({ darkMode }: HeroProps) {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(79,70,229,0.4), transparent 70%)",
-        }}
+          background: "radial-gradient(circle, rgba(79,70,229,0.4), transparent 70%)"}}
       />
       <motion.div
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)",
-        }}
+          background: "radial-gradient(circle, rgba(124,58,237,0.4), transparent 70%)"}}
       />
       <motion.div
         animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.3, 0.15] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/3 right-1/3 w-64 h-64 rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%)",
-        }}
+          background: "radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%)"}}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
@@ -97,8 +92,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
                 border: darkMode
                   ? "1px solid rgba(255,255,255,0.14)"
                   : "1px solid rgba(255,255,255,0.22)",
-                color: "#FFFFFF",
-              }}
+                color: "#FFFFFF"}}
             >
               <Sparkles size={14} className="shrink-0 text-white" strokeWidth={2} style={{ color: "#FFFFFF" }} />
               Just One More Step
@@ -110,15 +104,14 @@ export default function HeroSection({ darkMode }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-6 text-center lg:text-left"
-            style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.1 }}
+            style={{lineHeight: 1.1 }}
           >
             Every Opportunity is{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED, #2563EB)",
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+                WebkitTextFillColor: "transparent"}}
             >
               Just One More Step
             </span>{" "}
@@ -132,8 +125,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
             className="text-lg sm:text-xl mb-10 max-w-xl w-full mx-auto lg:mx-0 text-justify"
             style={{
               color: darkMode ? "rgba(248,250,252,0.7)" : "rgba(2,6,23,0.6)",
-              lineHeight: 1.7,
-            }}
+              lineHeight: 1.7}}
           >
             JOMS is redefining startup eco-system with an all-in-one platform
             that helps founders validate ideas, build products, connect and
@@ -151,8 +143,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
               className="inline-flex items-center justify-center px-8 py-4 rounded-2xl text-white transition-all hover:scale-105"
               style={{
                 background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-                boxShadow: "0 8px 30px rgba(79,70,229,0.4)",
-              }}
+                boxShadow: "0 8px 30px rgba(79,70,229,0.4)"}}
             >
               Get in Touch
             </Link>
@@ -171,8 +162,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
                 background:
                   "radial-gradient(circle at 30% 30%, rgba(79,70,229,0.6), rgba(124,58,237,0.4), rgba(37,99,235,0.2), transparent 70%)",
                 boxShadow:
-                  "0 0 60px rgba(79,70,229,0.3), inset 0 0 60px rgba(124,58,237,0.2)",
-              }}
+                  "0 0 60px rgba(79,70,229,0.3), inset 0 0 60px rgba(124,58,237,0.2)"}}
             />
             <motion.div
               animate={{ rotate: -360 }}
@@ -180,8 +170,7 @@ export default function HeroSection({ darkMode }: HeroProps) {
               className="absolute inset-28 rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle at 70% 30%, rgba(124,58,237,0.5), transparent 60%)",
-              }}
+                  "radial-gradient(circle at 70% 30%, rgba(124,58,237,0.5), transparent 60%)"}}
             />
 
             {/* Orbiting pills */}

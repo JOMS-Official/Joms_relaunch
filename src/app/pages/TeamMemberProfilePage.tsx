@@ -3,8 +3,7 @@ import { Link, useOutletContext, useParams } from "react-router";
 import { ArrowLeft, Linkedin } from "lucide-react";
 import {
   getTeamMemberProfileBySlug,
-  type TeamProfileBlock,
-} from "../data/teamMemberProfiles";
+  type TeamProfileBlock} from "../data/teamMemberProfiles";
 
 const accent = "#A78BFA";
 const bodyMuted = "#D1D5DB";
@@ -69,11 +68,8 @@ function renderBlock(
       <h2
         key={index}
         className="text-section-subtitle font-semibold tracking-tight mt-10 sm:mt-12 mb-4 scroll-mt-28"
-        style={{
-          fontFamily: "'Sora', sans-serif",
-          lineHeight: 1.25,
-          color: headingColor,
-        }}
+        style={{lineHeight: 1.25,
+          color: headingColor}}
       >
         {headingBody}
       </h2>
@@ -163,18 +159,14 @@ export default function TeamMemberProfilePage() {
               alt={profile.name}
               className="w-full rounded-2xl object-cover object-center shadow-xl aspect-[220/293]"
               style={{
-                border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.08)",
-              }}
+                border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.08)"}}
             />
           </div>
           <div className="flex flex-col items-start text-left pt-0 sm:pt-2 flex-1 min-w-0">
             <h1
               className="text-section-title lg:text-[calc(2.5rem-1px)] font-bold mb-2"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-                lineHeight: 1.15,
-                color: darkMode ? "#FFFFFF" : "#020617",
-              }}
+              style={{lineHeight: 1.15,
+                color: darkMode ? "#FFFFFF" : "#020617"}}
             >
               {profile.name}
             </h1>
@@ -187,9 +179,7 @@ export default function TeamMemberProfilePage() {
             <p
               className="text-sm sm:text-base mb-6"
               style={{
-                color: darkMode ? "rgba(226,232,240,0.85)" : "rgba(2,6,23,0.65)",
-                fontFamily: "'Inter', sans-serif",
-              }}
+                color: darkMode ? "rgba(226,232,240,0.85)" : "rgba(2,6,23,0.65)"}}
             >
               {profile.company}
             </p>
@@ -201,8 +191,7 @@ export default function TeamMemberProfilePage() {
               style={{
                 background: darkMode ? "rgba(124, 58, 237, 0.18)" : "rgba(124, 58, 237, 0.1)",
                 border: darkMode ? "1px solid rgba(167, 139, 250, 0.35)" : "1px solid rgba(124, 58, 237, 0.25)",
-                color: accent,
-              }}
+                color: accent}}
             >
               <Linkedin size={16} strokeWidth={1.75} />
               Connect on LinkedIn
@@ -213,20 +202,16 @@ export default function TeamMemberProfilePage() {
         <div
           className="h-px w-full mb-10 sm:mb-12"
           style={{
-            background: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-          }}
+            background: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}}
         />
 
         <article
           className="space-y-5 text-[1.05rem] leading-[1.85] text-justify"
-          style={{
-            fontFamily: "'Inter', sans-serif",
-          }}
+          style={{}}
         >
           {profile.content.map((block, i) =>
             renderBlock(block, i, darkMode, {
-              useDropCap: block.kind === "paragraph" && i === firstParagraphIndex,
-            }),
+              useDropCap: block.kind === "paragraph" && i === firstParagraphIndex}),
           )}
         </article>
       </div>

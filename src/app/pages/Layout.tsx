@@ -29,14 +29,12 @@ export default function Layout() {
   return (
     <div className={darkMode ? "dark" : ""}>
       <div
-        className="min-h-screen transition-colors duration-500"
+        className="min-h-screen font-sans transition-colors duration-500"
         style={{
-          fontFamily: "'Inter', sans-serif",
           background: darkMode
             ? "linear-gradient(135deg, #020617 0%, #0F172A 50%, #020617 100%)"
             : "#F8FAFC",
-          color: darkMode ? "#F8FAFC" : "#020617",
-        }}
+          color: darkMode ? "#F8FAFC" : "#020617"}}
       >
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main className="site-main">

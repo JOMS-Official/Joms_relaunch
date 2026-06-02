@@ -69,17 +69,13 @@ export default function ProductsSection({ darkMode }: Props) {
         style={{
           background: darkMode
             ? "linear-gradient(90deg, transparent 0%, rgba(79,70,229,0.5) 50%, transparent 100%)"
-            : "linear-gradient(90deg, transparent 0%, rgba(79,70,229,0.3) 50%, transparent 100%)",
-        }}
+            : "linear-gradient(90deg, transparent 0%, rgba(79,70,229,0.3) 50%, transparent 100%)"}}
       />
 
       <div className="flex flex-col items-center py-12">
         <h2
           className="text-center text-section-title-home sm:text-section-title-home-xl mb-5 whitespace-nowrap max-w-full"
-          style={{
-            fontFamily: "'Sora', sans-serif",
-            lineHeight: 1.15,
-          }}
+          style={{lineHeight: 1.15}}
         >
           Launching Soon
         </h2>
@@ -89,9 +85,7 @@ export default function ProductsSection({ darkMode }: Props) {
           className="inline-flex items-center justify-center px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl text-white text-sm sm:text-base font-medium transition-all hover:scale-105 mb-8"
           style={{
             background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
-            boxShadow: "0 8px 30px rgba(79,70,229,0.35)",
-            fontFamily: "'Sora', sans-serif",
-          }}
+            boxShadow: "0 8px 30px rgba(79,70,229,0.35)"}}
         >
           Be the first to know
         </Link>
@@ -120,11 +114,12 @@ export default function ProductsSection({ darkMode }: Props) {
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={selectedIndex}
-                className="text-sm sm:text-base text-justify"
+                className="text-sm sm:text-base"
                 style={{
                   color: muted,
                   lineHeight: 1.8,
-                }}
+                  textAlign: "justify",
+                  textAlignLast: "center"}}
                 variants={textBlurbVariants}
                 initial="initial"
                 animate="animate"
@@ -161,8 +156,7 @@ export default function ProductsSection({ darkMode }: Props) {
                     : darkMode
                       ? "rgba(79,70,229,0.3)"
                       : "rgba(79,70,229,0.25)",
-                  transform: active ? "scale(1.25)" : "scale(1)",
-                }}
+                  transform: active ? "scale(1.25)" : "scale(1)"}}
               />
             );
           })}
@@ -175,8 +169,7 @@ export default function ProductsSection({ darkMode }: Props) {
         style={{
           background: darkMode
             ? "linear-gradient(90deg, transparent 0%, rgba(79,70,229,0.5) 50%, transparent 100%)"
-            : "linear-gradient(90deg, transparent 0%, rgba(79,70,229,0.3) 50%, transparent 100%)",
-        }}
+            : "linear-gradient(90deg, transparent 0%, rgba(79,70,229,0.3) 50%, transparent 100%)"}}
       />
     </SectionWrapper>
   );

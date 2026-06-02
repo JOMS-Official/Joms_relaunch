@@ -16,8 +16,7 @@ const cards = [
     cta: "View Open Roles",
     link: "/careers",
     lineGradient: "linear-gradient(180deg, #6366F1 0%, rgba(0,0,0,0) 100%)",
-    accentColor: "#818CF8",
-  },
+    accentColor: "#818CF8"},
   {
     icon: TrendingUp,
     title: "For Investors",
@@ -26,8 +25,7 @@ const cards = [
     cta: "Start a Conversation",
     link: "/investors",
     lineGradient: "linear-gradient(180deg, #D4AF37 0%, rgba(0,0,0,0) 100%)",
-    accentColor: "#E5C158",
-  },
+    accentColor: "#E5C158"},
   {
     icon: Users,
     title: "For Collaborators",
@@ -36,8 +34,7 @@ const cards = [
     cta: "Explore Partnership ",
     link: "/contact",
     lineGradient: "linear-gradient(180deg, #3B82F6 0%, rgba(0,0,0,0) 100%)",
-    accentColor: "#60A5FA",
-  },
+    accentColor: "#60A5FA"},
 ];
 
 export default function BuildWithUs({ darkMode }: Props) {
@@ -45,14 +42,13 @@ export default function BuildWithUs({ darkMode }: Props) {
     <SectionWrapper>
       <div className="text-center mb-16">
         <p
-          className="text-sm mb-4 tracking-widest uppercase"
-          style={{ color: "#7C3AED" }}
+          className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]"
         >
           Build With Us
         </p>
         <h2
           className="text-section-title-home"
-          style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+          style={{lineHeight: 1.15 }}
         >
           Your Next Move Starts Here
         </h2>
@@ -67,8 +63,7 @@ export default function BuildWithUs({ darkMode }: Props) {
                 width: 3,
                 height: 48,
                 background: card.lineGradient,
-                borderRadius: 2,
-              }}
+                borderRadius: 2}}
             />
             <card.icon
               size={32}
@@ -78,7 +73,7 @@ export default function BuildWithUs({ darkMode }: Props) {
             />
             <h3
               className="text-xl mb-3"
-              style={{ fontFamily: "'Sora', sans-serif" }}
+              style={{}}
             >
               {card.title}
             </h3>
@@ -88,8 +83,7 @@ export default function BuildWithUs({ darkMode }: Props) {
                 color: darkMode
                   ? "rgba(248,250,252,0.6)"
                   : "rgba(2,6,23,0.6)",
-                lineHeight: 1.7,
-              }}
+                lineHeight: 1.7}}
             >
               {card.description}
             </p>

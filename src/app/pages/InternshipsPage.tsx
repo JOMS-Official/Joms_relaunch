@@ -10,12 +10,11 @@ import {
   MapPin,
   Rocket,
   Target,
-  User,
-} from "lucide-react";
+  User} from "lucide-react";
 import SectionWrapper from "../components/SectionWrapper";
 import GlassCard from "../components/GlassCard";
 import { getInternshipJobs } from "../data/careersJobs";
-import { careerGlassIconBox } from "../careersGlass";
+import { careerClosingSoonTag, careerGlassIconBox } from "../careersGlass";
 
 const green = "#34D399";
 const muted = (dark: boolean) => (dark ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.55)");
@@ -26,31 +25,26 @@ function internDeptTag(dark: boolean): React.CSSProperties {
     background: "rgba(52, 211, 153, 0.12)",
     border: "1px solid rgba(52, 211, 153, 0.45)",
     color: dark ? "#FFFFFF" : "#065f46",
-    boxShadow: "0 0 16px rgba(52, 211, 153, 0.12)",
-  };
+    boxShadow: "0 0 16px rgba(52, 211, 153, 0.12)"};
 }
 
 const features = [
   {
     icon: User,
     title: "Dedicated Mentorship",
-    body: "Learn closely from founders, innovators and industry professionals who guide your growth at every step.",
-  },
+    body: "Learn closely from founders, innovators and industry professionals who guide your growth at every step."},
   {
     icon: Briefcase,
     title: "Build Real Things",
-    body: "Solve real problems, collaborate with cross-functional teams and gain hands-on experience that goes beyond classroom learning.",
-  },
+    body: "Solve real problems, collaborate with cross-functional teams and gain hands-on experience that goes beyond classroom learning."},
   {
     icon: Rocket,
     title: "Grow Faster",
-    body: "Build practical skills, strengthen your portfolio and gain real-world exposure that helps you stand out from day one.",
-  },
+    body: "Build practical skills, strengthen your portfolio and gain real-world exposure that helps you stand out from day one."},
   {
     icon: Target,
     title: "Path to Full-Time",
-    body: "Top-performing interns get the opportunity to transition into full-time roles and continue building with us.",
-  },
+    body: "Top-performing interns get the opportunity to transition into full-time roles and continue building with us."},
 ];
 
 const applySteps = [
@@ -80,7 +74,7 @@ export default function InternshipsPage() {
       : "bg-white/80 border-black/[0.06] shadow-sm");
 
   return (
-    <div className="pt-35 [&_p]:!text-left">
+    <div className="pt-35">
       {/* Hero */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-12 md:pb-16 text-center">
         <div
@@ -89,23 +83,25 @@ export default function InternshipsPage() {
             color: green,
             border: "1px solid rgba(52, 211, 153, 0.45)",
             background: darkMode ? "rgba(52, 211, 153, 0.08)" : "rgba(16, 185, 129, 0.08)",
-            boxShadow: "0 0 24px rgba(52, 211, 153, 0.12)",
-          }}
+            boxShadow: "0 0 24px rgba(52, 211, 153, 0.12)"}}
         >
           <GraduationCap size={14} strokeWidth={2} />
           Internship Program
         </div>
         <h1
           className="text-section-title font-bold mb-6"
-          style={{
-            fontFamily: "'Sora', sans-serif",
-            lineHeight: 1.1,
-            color: darkMode ? "#F8FAFC" : "#020617",
-          }}
+          style={{lineHeight: 1.1,
+            color: darkMode ? "#F8FAFC" : "#020617"}}
         >
           Internships for Builders and Problem Solvers
         </h1>
-        <p className="max-w-2xl mx-auto text-lg mb-10 !text-center" style={{ color: darkMode ? muted(true) : subtext }}>
+        <p
+          className="max-w-2xl mx-auto text-lg mb-10"
+          style={{
+            color: darkMode ? muted(true) : subtext,
+            textAlign: "justify",
+            textAlignLast: "center"}}
+        >
           Build skills that matter through hands-on internships designed for curious thinkers, creators, and future
           entrepreneurs.
         </p>
@@ -115,8 +111,7 @@ export default function InternshipsPage() {
           className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-semibold text-[#020617] transition-transform hover:scale-[1.02]"
           style={{
             background: "linear-gradient(90deg, #34D399, #38BDF8)",
-            color: "#020617",
-          }}
+            color: "#020617"}}
         >
           Explore Internships
           <ArrowRight size={18} strokeWidth={2} className="text-[#020617]" />
@@ -134,8 +129,7 @@ export default function InternshipsPage() {
                   width: 3,
                   height: 48,
                   background: "linear-gradient(180deg, #2563EB 0%, rgba(0,0,0,0) 100%)",
-                  borderRadius: 2,
-                }}
+                  borderRadius: 2}}
               />
               <f.icon
                 size={32}
@@ -145,7 +139,7 @@ export default function InternshipsPage() {
               />
               <h3
                 className="text-xl mb-3"
-                style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                style={{color: darkMode ? "#F8FAFC" : "#020617" }}
               >
                 {f.title}
               </h3>
@@ -168,15 +162,14 @@ export default function InternshipsPage() {
                   ...careerGlassIconBox(darkMode),
                   width: 48,
                   height: 48,
-                  borderRadius: 9999,
-                }}
+                  borderRadius: 9999}}
               >
                 <Calendar size={22} style={{ color: green }} strokeWidth={1.75} />
               </div>
               <div>
                 <h3
                   className="text-base font-semibold mb-2"
-                  style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                  style={{color: darkMode ? "#F8FAFC" : "#020617" }}
                 >
                   Duration
                 </h3>
@@ -194,15 +187,14 @@ export default function InternshipsPage() {
                   ...careerGlassIconBox(darkMode),
                   width: 48,
                   height: 48,
-                  borderRadius: 9999,
-                }}
+                  borderRadius: 9999}}
               >
                 <GraduationCap size={22} style={{ color: green }} strokeWidth={1.75} />
               </div>
               <div>
                 <h3
                   className="text-base font-semibold mb-2"
-                  style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+                  style={{color: darkMode ? "#F8FAFC" : "#020617" }}
                 >
                   Qualifications
                 </h3>
@@ -221,11 +213,8 @@ export default function InternshipsPage() {
           <div>
             <h2
               className="text-section-title-sm font-bold mb-4"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-                lineHeight: 1.2,
-                color: darkMode ? "#F8FAFC" : "#020617",
-              }}
+              style={{lineHeight: 1.2,
+                color: darkMode ? "#F8FAFC" : "#020617"}}
             >
               How to Apply
             </h2>
@@ -251,8 +240,7 @@ export default function InternshipsPage() {
                   className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
                   style={{
                     background: darkMode ? "rgba(148, 163, 184, 0.15)" : "rgba(148, 163, 184, 0.2)",
-                    color: darkMode ? "#CBD5E1" : "#475569",
-                  }}
+                    color: darkMode ? "#CBD5E1" : "#475569"}}
                 >
                   {i + 1}
                 </span>
@@ -269,14 +257,14 @@ export default function InternshipsPage() {
       <SectionWrapper id="open-positions" className="!pt-0 !pb-16 md:!pb-24">
         <div className="text-center mb-12">
           <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 !text-center"
+            className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 text-center"
             style={{ color: green }}
           >
             Open Positions
           </p>
           <h2
             className="text-section-title-compact font-bold"
-            style={{ fontFamily: "'Sora', sans-serif", color: darkMode ? "#F8FAFC" : "#020617" }}
+            style={{color: darkMode ? "#F8FAFC" : "#020617" }}
           >
             Available Internships
           </h2>
@@ -296,7 +284,7 @@ export default function InternshipsPage() {
                       />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-lg" style={{ fontFamily: "'Sora', sans-serif" }}>
+                      <h3 className="text-lg" style={{}}>
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap gap-3 mt-2 items-center">
@@ -318,11 +306,7 @@ export default function InternshipsPage() {
                         {job.listingStatus === "closing_soon" ? (
                           <span
                             className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide"
-                            style={{
-                              color: "#FDE68A",
-                              border: "1px solid rgba(251, 191, 36, 0.45)",
-                              background: "rgba(251, 191, 36, 0.12)",
-                            }}
+                            style={careerClosingSoonTag(darkMode)}
                           >
                             Closing soon
                           </span>
@@ -334,8 +318,7 @@ export default function InternshipsPage() {
                     className="flex items-center justify-center sm:justify-end shrink-0 rounded-xl p-2 transition-all group-hover:translate-x-0.5"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
-                      border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.06)",
-                    }}
+                      border: darkMode ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.06)"}}
                     aria-hidden
                   >
                     <ChevronRight size={20} style={{ color: "#A78BFA" }} strokeWidth={2} />

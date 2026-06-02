@@ -12,32 +12,27 @@ const milestones = [
     year: "Nov 2024",
     title: "From Idea to Incorporation",
     description:
-      "JOMS Commerce and Technologies is officially incorporated. An idea born from lived experience takes its first legal form.",
-  },
+      "JOMS Commerce and Technologies is officially incorporated. An idea born from lived experience takes its first legal form."},
   {
     year: "Jan 2025",
     title: "Startup India, Officially Backing the Vision",
     description:
-      "Recognised as a startup under the Government of India's Startup India programme, validating our mission and unlocking a path to build with national support.",
-  },
+      "Recognised as a startup under the Government of India's Startup India programme, validating our mission and unlocking a path to build with national support."},
   {
     year: "Feb 2025",
     title: "Built on Trust; Certified for Growth",
     description:
-      "Awarded MSME (Udyam Aadhar) registration, strengthening our foundation as a committed, credible, and compliant enterprise.",
-  },
+      "Awarded MSME (Udyam Aadhar) registration, strengthening our foundation as a committed, credible, and compliant enterprise."},
   {
     year: "Mar–Apr 2026",
     title: "Quietly Building What Comes Next",
     description:
-      "Building in the Deep. Heads down. Product design, compliance architecture, team formation and the foundational work that doesn't make headlines but makes everything else possible.",
-  },
+      "Building in the Deep. Heads down. Product design, compliance architecture, team formation and the foundational work that doesn't make headlines but makes everything else possible."},
   {
     year: "May 15, 2026",
     title: "The World Gets Its First Look",
     description:
-      "The first chapter goes live. Vaagon enters the world.",
-  },
+      "The first chapter goes live. Vaagon enters the world."},
 ];
 
 export default function TimelineSection({ darkMode }: Props) {
@@ -83,22 +78,20 @@ export default function TimelineSection({ darkMode }: Props) {
     <SectionWrapper id="timeline">
       <div className="text-center mb-20">
         <p
-          className="text-sm mb-4 tracking-widest uppercase"
-          style={{ color: "#7C3AED" }}
+          className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]"
         >
           Our Journey
         </p>
         <h2
           className="text-section-title-home mb-4"
-          style={{ fontFamily: "'Sora', sans-serif", lineHeight: 1.15 }}
+          style={{lineHeight: 1.15 }}
         >
           From Idea to Impact
         </h2>
         <p
           className="text-sm sm:text-base"
           style={{
-            color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)",
-          }}
+            color: darkMode ? "rgba(248,250,252,0.5)" : "rgba(2,6,23,0.5)"}}
         >
           Key moments from incorporation to launch. How an idea became something the world can see.
         </p>
@@ -115,8 +108,7 @@ export default function TimelineSection({ darkMode }: Props) {
           style={{
             background: darkMode
               ? "rgba(79,70,229,0.2)"
-              : "rgba(79,70,229,0.15)",
-          }}
+              : "rgba(79,70,229,0.15)"}}
         />
 
         {/* Green fill */}
@@ -126,8 +118,7 @@ export default function TimelineSection({ darkMode }: Props) {
             height: `${fillPercent}%`,
             background: "linear-gradient(to bottom, #22c55e, #16a34a)",
             boxShadow: "0 0 8px rgba(34,197,94,0.5)",
-            transition: "height 0.55s cubic-bezier(0.4,0,0.2,1)",
-          }}
+            transition: "height 0.55s cubic-bezier(0.4,0,0.2,1)"}}
         />
 
         {milestones.map((m, i) => {
@@ -147,16 +138,13 @@ export default function TimelineSection({ darkMode }: Props) {
                   style={{
                     color: isActive ? "#4ade80" : "#7C3AED",
                     fontWeight: 600,
-                    transition: "color 0.5s ease",
-                  }}
+                    transition: "color 0.5s ease"}}
                 >
                   {m.year}
                 </p>
                 <h3
                   className="text-section-subtitle lg:text-section-subtitle-lg text-right"
-                  style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontWeight: 600,
+                  style={{fontWeight: 600,
                     color: isActive
                       ? darkMode
                         ? "rgba(248,250,252,0.85)"
@@ -165,8 +153,7 @@ export default function TimelineSection({ darkMode }: Props) {
                       ? "rgba(248,250,252,0.08)"
                       : "rgba(2,6,23,0.06)",
                     lineHeight: 1.15,
-                    transition: "color 0.7s ease",
-                  }}
+                    transition: "color 0.7s ease"}}
                 >
                   {m.title}
                 </h3>
@@ -189,8 +176,7 @@ export default function TimelineSection({ darkMode }: Props) {
                       : "0 0 8px rgba(79,70,229,0.2)",
                     transform: isActive ? "scale(1.35)" : "scale(1)",
                     transition:
-                      "background 0.5s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
-                  }}
+                      "background 0.5s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)"}}
                 />
               </div>
 
@@ -206,8 +192,7 @@ export default function TimelineSection({ darkMode }: Props) {
                       ? "rgba(248,250,252,0.2)"
                       : "rgba(2,6,23,0.2)",
                     lineHeight: 1.7,
-                    transition: "color 0.7s ease",
-                  }}
+                    transition: "color 0.7s ease"}}
                 >
                   {m.description}
                 </p>
@@ -224,8 +209,7 @@ export default function TimelineSection({ darkMode }: Props) {
           style={{
             background: darkMode
               ? "rgba(79,70,229,0.2)"
-              : "rgba(79,70,229,0.15)",
-          }}
+              : "rgba(79,70,229,0.15)"}}
         />
 
         {milestones.map((m, i) => {
@@ -253,8 +237,7 @@ export default function TimelineSection({ darkMode }: Props) {
                     : "0 0 8px rgba(79,70,229,0.2)",
                   transform: isActive ? "scale(1.3)" : "scale(1)",
                   transition:
-                    "background 0.5s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
-                }}
+                    "background 0.5s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)"}}
               />
 
               <p
@@ -262,16 +245,13 @@ export default function TimelineSection({ darkMode }: Props) {
                 style={{
                   color: isActive ? "#4ade80" : "#7C3AED",
                   fontWeight: 600,
-                  transition: "color 0.5s ease",
-                }}
+                  transition: "color 0.5s ease"}}
               >
                 {m.year}
               </p>
               <h3
                 className="text-xl mb-2 text-left"
-                style={{
-                  fontFamily: "'Sora', sans-serif",
-                  fontWeight: 600,
+                style={{fontWeight: 600,
                   color: isActive
                     ? darkMode
                       ? "rgba(248,250,252,0.85)"
@@ -280,8 +260,7 @@ export default function TimelineSection({ darkMode }: Props) {
                     ? "rgba(248,250,252,0.1)"
                     : "rgba(2,6,23,0.08)",
                   lineHeight: 1.1,
-                  transition: "color 0.7s ease",
-                }}
+                  transition: "color 0.7s ease"}}
               >
                 {m.title}
               </h3>
@@ -296,8 +275,7 @@ export default function TimelineSection({ darkMode }: Props) {
                     ? "rgba(248,250,252,0.2)"
                     : "rgba(2,6,23,0.2)",
                   lineHeight: 1.7,
-                  transition: "color 0.7s ease",
-                }}
+                  transition: "color 0.7s ease"}}
               >
                 {m.description}
               </p>
