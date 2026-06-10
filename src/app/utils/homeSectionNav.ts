@@ -4,8 +4,20 @@ export function getHomeSectionId(to: string): string | null {
   return id.length > 0 ? id : null;
 }
 
-export function scrollToHomeSection(id: string) {
+/** Fixed navbar offset so section labels (Contact, Vision, etc.) stay visible. */
+const SCROLL_OFFSET_PX = 112;
+
+export function scrollToElementById(id: string) {
   requestAnimationFrame(() => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top =
+      el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET_PX;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   });
+}
+
+/** @deprecated Use scrollToElementById — kept for home section hash links. */
+export function scrollToHomeSection(id: string) {
+  scrollToElementById(id);
 }

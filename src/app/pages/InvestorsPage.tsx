@@ -16,8 +16,13 @@ import {
   Building2,
   Link2} from "lucide-react";
 import GlassCard from "../components/GlassCard";
+import PageBackButton from "../components/PageBackButton";
 import SectionWrapper from "../components/SectionWrapper";
 import applicationSuccessIcon from "../../assets/application-success-icon.png";
+import {
+  emailLooksValid,
+  nameLooksValid,
+  urlLooksValid} from "../utils/formValidation";
 
 const goldDividerStyle: CSSProperties = {
   height: 1,
@@ -50,6 +55,10 @@ export default function InvestorsPage() {
   const [company, setCompany] = useState("");
   const [location, setLocation] = useState("");
   const [website, setWebsite] = useState("");
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    website: false});
 
   useEffect(() => {
     if (!showPitchModal) return;
@@ -62,18 +71,26 @@ export default function InvestorsPage() {
     setWebsite("");
   }, [showPitchModal]);
 
-  const emailLooksValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  const nameError =
+    touched.name && !nameLooksValid(name) ? "Enter a valid name (letters only, no numbers)." : "";
+  const emailError =
+    touched.email && !emailLooksValid(email) ? "Enter a valid email address." : "";
+  const websiteError =
+    touched.website && website.trim() && !urlLooksValid(website)
+      ? "Enter a valid website (e.g. www.joms.in)."
+      : "";
 
   const canSubmitPitch =
-    name.trim() !== "" &&
+    nameLooksValid(name) &&
     phone.trim() !== "" &&
-    email.trim() !== "" &&
     emailLooksValid(email) &&
     company.trim() !== "" &&
-    location.trim() !== "";
+    location.trim() !== "" &&
+    urlLooksValid(website);
 
   const handlePitchSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setTouched({ name: true, email: true, website: true });
     if (!canSubmitPitch) return;
     setPitchSubmitted(true);
     window.setTimeout(() => {
@@ -95,6 +112,7 @@ export default function InvestorsPage() {
   return (
     <div className="pt-14 sm:pt-16 lg:pt-20">
       <SectionWrapper>
+        <PageBackButton darkMode={darkMode} className="mb-8" />
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -408,6 +426,7 @@ export default function InvestorsPage() {
 
                   <form
                     onSubmit={handlePitchSubmit}
+                    noValidate
                     className="flex min-h-0 flex-1 flex-col px-6 pb-6 pt-5"
                   >
                     <div className="scrollbar-hide max-h-[min(58vh,500px)] min-h-0 flex-1 space-y-4 overflow-y-auto pr-1">
@@ -425,7 +444,11 @@ export default function InvestorsPage() {
                           className={glassInput}
                           value={name}
                           onChange={(e) => setName(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                         />
+                        {nameError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{nameError}</p>
+                        ) : null}
                       </div>
                       <div>
                         <label className={labelClass} htmlFor="pitch-phone">
@@ -457,7 +480,11 @@ export default function InvestorsPage() {
                           className={glassInput}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
                         />
+                        {emailError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{emailError}</p>
+                        ) : null}
                       </div>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-4">
                         <div>
@@ -501,13 +528,18 @@ export default function InvestorsPage() {
                         <input
                           id="pitch-website"
                           name="website"
-                          type="url"
+                          type="text"
+                          inputMode="url"
                           autoComplete="url"
-                          placeholder="https://yourcompany.com"
+                          placeholder="www.yourcompany.com"
                           className={glassInput}
                           value={website}
                           onChange={(e) => setWebsite(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, website: true }))}
                         />
+                        {websiteError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{websiteError}</p>
+                        ) : null}
                       </div>
                     </div>
 

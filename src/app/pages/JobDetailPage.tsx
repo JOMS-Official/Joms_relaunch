@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useOutletContext, useParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Briefcase, MapPin, Clock, X, Upload } from "lucide-react";
-import { getCareerJobById } from "../data/careersJobs";
+import { getCareerJobById, isJobListingOpen } from "../data/careersJobs";
+import { emailLooksValid, nameLooksValid, urlLooksValid } from "../utils/formValidation";
 import applicationSuccessIcon from "../../assets/application-success-icon.png";
 import {
   careerClosingSoonTag,
@@ -54,6 +55,11 @@ export default function JobDetailPage() {
   const [email, setEmail] = useState("");
   const [portfolio, setPortfolio] = useState("");
   const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [touched, setTouched] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    portfolio: false});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,18 +76,32 @@ export default function JobDetailPage() {
     }
   }, [showApplication]);
 
-  const emailLooksValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  const firstNameError =
+    touched.firstName && !nameLooksValid(firstName)
+      ? "Enter a valid first name (letters only)."
+      : "";
+  const lastNameError =
+    touched.lastName && !nameLooksValid(lastName)
+      ? "Enter a valid last name (letters only)."
+      : "";
+  const emailError =
+    touched.email && !emailLooksValid(email) ? "Enter a valid email address." : "";
+  const portfolioError =
+    touched.portfolio && portfolio.trim() && !urlLooksValid(portfolio)
+      ? "Enter a valid URL (e.g. www.joms.in or https://…)."
+      : "";
 
   const canSubmit =
-    firstName.trim() !== "" &&
-    lastName.trim() !== "" &&
+    nameLooksValid(firstName) &&
+    nameLooksValid(lastName) &&
     phone.trim() !== "" &&
-    email.trim() !== "" &&
     emailLooksValid(email) &&
-    resumeFile !== null;
+    resumeFile !== null &&
+    urlLooksValid(portfolio);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setTouched({ firstName: true, lastName: true, email: true, portfolio: true });
     if (!canSubmit) return;
     setSubmitted(true);
     setTimeout(() => {
@@ -99,6 +119,17 @@ export default function JobDetailPage() {
         <p style={{ color: muted }}>Role not found.</p>
         <Link to="/careers" className="inline-flex items-center gap-2 mt-6 text-sm" style={{ color: "#A78BFA" }}>
           <ArrowLeft size={16} /> Back to Careers
+        </Link>
+      </div>
+    );
+  }
+
+  if (!isJobListingOpen(job)) {
+    return (
+      <div className="pt-24 px-6 pb-20 max-w-3xl mx-auto text-center">
+        <p style={{ color: muted }}>This role is no longer accepting applications.</p>
+        <Link to="/careers" className="inline-flex items-center gap-2 mt-6 text-sm" style={{ color: "#A78BFA" }}>
+          <ArrowLeft size={16} /> View open roles
         </Link>
       </div>
     );
@@ -342,6 +373,7 @@ export default function JobDetailPage() {
 
                   <form
                     onSubmit={handleSubmit}
+                    noValidate
                     className="flex flex-col flex-1 min-h-0 px-5 pb-4 pt-3"
                   >
                     <div className="scrollbar-hide flex-1 min-h-0 overflow-y-auto space-y-2.5 pr-0.5">
@@ -356,7 +388,11 @@ export default function JobDetailPage() {
                             className={glassInput}
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            onBlur={() => setTouched((t) => ({ ...t, firstName: true }))}
                           />
+                          {firstNameError ? (
+                            <p className="mt-1 text-[10px] text-red-400">{firstNameError}</p>
+                          ) : null}
                         </div>
                         <div>
                           <label className={labelClass}>Last Name</label>
@@ -368,7 +404,11 @@ export default function JobDetailPage() {
                             className={glassInput}
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            onBlur={() => setTouched((t) => ({ ...t, lastName: true }))}
                           />
+                          {lastNameError ? (
+                            <p className="mt-1 text-[10px] text-red-400">{lastNameError}</p>
+                          ) : null}
                         </div>
                       </div>
                       <div>
@@ -393,7 +433,11 @@ export default function JobDetailPage() {
                           className={glassInput}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
                         />
+                        {emailError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{emailError}</p>
+                        ) : null}
                       </div>
                       <div>
                         <label className={labelClass}>Job Role</label>
@@ -427,12 +471,17 @@ export default function JobDetailPage() {
                         <label className={labelClass}>Portfolio Link (optional)</label>
                         <input
                           name="portfolio"
-                          type="url"
-                          placeholder="https://yourportfolio.com"
+                          type="text"
+                          inputMode="url"
+                          placeholder="www.yourportfolio.com"
                           className={glassInput}
                           value={portfolio}
                           onChange={(e) => setPortfolio(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, portfolio: true }))}
                         />
+                        {portfolioError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{portfolioError}</p>
+                        ) : null}
                       </div>
                     </div>
 
@@ -465,11 +514,11 @@ export default function JobDetailPage() {
                         style={{ color: darkMode ? "rgba(148,163,184,0.85)" : "rgba(2,6,23,0.48)" }}
                       >
                         By submitting, you agree to our{" "}
-                        <Link to="/blog" className="underline underline-offset-2 hover:text-violet-400">
+                        <Link to="/terms-of-service" className="underline underline-offset-2 hover:text-violet-400">
                           Terms of Service
                         </Link>{" "}
                         and{" "}
-                        <Link to="/blog" className="underline underline-offset-2 hover:text-violet-400">
+                        <Link to="/privacy" className="underline underline-offset-2 hover:text-violet-400">
                           Privacy Policy
                         </Link>
                         .

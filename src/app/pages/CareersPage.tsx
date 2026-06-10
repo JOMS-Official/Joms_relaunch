@@ -4,12 +4,19 @@ import { motion, AnimatePresence } from "motion/react";
 import { Search, MapPin, Clock, X, Briefcase, SlidersHorizontal, ArrowRight } from "lucide-react";
 import GlassCard from "../components/GlassCard";
 import SectionWrapper from "../components/SectionWrapper";
-import { careersJobs } from "../data/careersJobs";
+import { getOpenCareersJobs } from "../data/careersJobs";
 import { careerClosingSoonTag, careerGlassDeptTag, careerGlassIconBox } from "../careersGlass";
 
-const departmentOptions = ["All", "Leadership", "Engineering", "Design", "Marketing", "Finance"];
-const jobTypeOptions = ["All", "Full-time", "Internship", "Part-time", "Contract"];
-const locationOptions = ["All", "Remote", "Hybrid", "On-site", "Bangalore"];
+const departmentOptions = [
+  "All",
+  "Engineering",
+  "Product Design",
+  "Finance",
+  "HR",
+  "Branding & Marketing",
+];
+const jobTypeOptions = ["All", "Full-Time", "Internship"];
+const locationOptions = ["All", "Hybrid"];
 
 export default function CareersPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
@@ -24,7 +31,7 @@ export default function CareersPage() {
     (jobType !== "All" ? 1 : 0) +
     (locationFilter !== "All" ? 1 : 0);
 
-  const filtered = careersJobs.filter((j) => {
+  const filtered = getOpenCareersJobs().filter((j) => {
     if (department !== "All" && j.department !== department) return false;
     if (jobType !== "All" && j.type !== jobType) return false;
     if (locationFilter !== "All" && j.location !== locationFilter) return false;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import JomsLogoMark from "./JomsLogoMark";
@@ -19,6 +19,7 @@ interface NavbarProps {
 export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { goToSection } = useHomeSectionNav();
 
   const linkIsActive = (to: string) => {
@@ -31,7 +32,29 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
 
   const handleNavClick = (e: React.MouseEvent, to: string) => {
     setMobileOpen(false);
-    if (goToSection(to)) e.preventDefault();
+    if (goToSection(to)) {
+      e.preventDefault();
+      return;
+    }
+
+    // Same page as nav target: scroll to top (matches Blog → Blogs on /blog)
+    if (to === "/" && location.pathname === "/") {
+      e.preventDefault();
+      if (location.hash) navigate({ pathname: "/" }, { replace: true });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (to === "/blog" && location.pathname === "/blog") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (to === "/careers" && location.pathname === "/careers") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -55,6 +78,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
         <Link
           to="/"
           aria-label="JOMS — home"
+          onClick={(e) => handleNavClick(e, "/")}
           className="absolute left-6 top-1/2 z-20 flex h-[150px] w-[150px] max-[380px]:h-[min(150px,calc(100vw-8rem))] max-[380px]:w-[min(150px,calc(100vw-8rem))] -translate-y-1/2 items-center justify-start"
           style={{}}
         >

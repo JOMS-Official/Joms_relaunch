@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PageBackButton from "./PageBackButton";
 
 interface LegalPageShellProps {
   darkMode: boolean;
@@ -20,6 +21,7 @@ export function LegalPageShell({ darkMode, title, metaLine, children }: LegalPag
   return (
     <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 min-h-[70vh]">
       <div className="max-w-3xl mx-auto text-left">
+        <PageBackButton darkMode={darkMode} className="mb-6" />
         <h1
           className="text-section-title-compact font-bold mb-3"
           style={{color: heading }}

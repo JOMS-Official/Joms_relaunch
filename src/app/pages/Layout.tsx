@@ -2,10 +2,10 @@ import { useState, useLayoutEffect, useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { scrollToHomeSection } from "../utils/homeSectionNav";
+import { scrollToElementById } from "../utils/homeSectionNav";
 
 export default function Layout() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const location = useLocation();
 
   useLayoutEffect(() => {
@@ -19,10 +19,10 @@ export default function Layout() {
   }, [location.pathname, location.search, location.hash]);
 
   useEffect(() => {
-    if (location.pathname !== "/" || !location.hash) return;
+    if (!location.hash) return;
     const id = location.hash.replace(/^#/, "");
     if (!id) return;
-    const timer = window.setTimeout(() => scrollToHomeSection(id), 50);
+    const timer = window.setTimeout(() => scrollToElementById(id), 80);
     return () => window.clearTimeout(timer);
   }, [location.pathname, location.hash]);
 
