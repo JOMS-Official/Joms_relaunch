@@ -1,7 +1,6 @@
-import swaroopImg from "../../assets/Swaroop.jpg";
+import { SWAROOP_CARD_IMAGE } from "./teamImages";
 
-/** Same portrait as the home team carousel card (must stay in sync). */
-export const SWAROOP_CARD_IMAGE = swaroopImg;
+export { SWAROOP_CARD_IMAGE };
 
 export type TeamProfileBlock =
   | {
@@ -35,7 +34,7 @@ export const teamMemberProfiles: TeamMemberProfile[] = [
     roleShort: "Founder & CEO",
     roleDisplay: "FOUNDER & CEO",
     company: "JOMS Commerce & Technologies Pvt. Ltd.",
-    image: swaroopImg,
+    image: SWAROOP_CARD_IMAGE,
     linkedinUrl: "https://www.linkedin.com/in/swaroopjayaram",
     content: [
       {

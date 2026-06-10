@@ -10,3 +10,25 @@
 .animate-fadeIn {
   animation: fadeIn 0.3s ease forwards;
 }
+
+.glass-form-input--dark:-webkit-autofill,
+.glass-form-input--dark:-webkit-autofill:hover,
+.glass-form-input--dark:-webkit-autofill:focus,
+.glass-form-input--dark:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.08) inset !important;
+  box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.08) inset !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  caret-color: #f8fafc;
+  transition: background-color 99999s ease-out, color 99999s ease-out;
+}
+
+.glass-form-input--light:-webkit-autofill,
+.glass-form-input--light:-webkit-autofill:hover,
+.glass-form-input--light:-webkit-autofill:focus,
+.glass-form-input--light:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.65) inset !important;
+  box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.65) inset !important;
+  -webkit-text-fill-color: #020617 !important;
+  caret-color: #020617;
+  transition: background-color 99999s ease-out, color 99999s ease-out;
+}

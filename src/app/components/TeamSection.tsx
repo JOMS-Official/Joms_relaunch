@@ -4,14 +4,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { SWAROOP_SLUG } from "../data/teamMemberProfiles";
-import swaroopImg from "../../assets/Swaroop.jpg";
-import bhavanaImg from "../../assets/Bhavana.webp";
-import soniyaImg from "../../assets/Soniya.webp";
-import ashwinImg from "../../assets/Ashwin.webp";
-import vishalImg from "../../assets/vishal.webp";
-import tejasImg from "../../assets/Tejas.webp";
-import punithImg from "../../assets/punith.webp";
-import srinivasImg from "../../assets/srinivas.webp";
+import { TEAM_IMAGES } from "../data/teamImages";
 
 interface Props {
   darkMode: boolean;
@@ -32,12 +25,12 @@ const teamMembers: {
   {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
-    image: swaroopImg,
+    image: TEAM_IMAGES.swaroop,
     slug: SWAROOP_SLUG},
   {
     name: "Bhavana G",
     role: "Head of Operations",
-    image: bhavanaImg},
+    image: TEAM_IMAGES.bhavana},
   {
     name: "Amarnath Bagineni",
     role: "Chief Technology Officer"},
@@ -48,11 +41,11 @@ const teamMembers: {
   {
     name: "Punith C A",
     role: "Finance Manager",
-    image: punithImg},
+    image: TEAM_IMAGES.punith},
   {
     name: "Srinivas C",
     role: "Senior Data Architect",
-    image: srinivasImg},
+    image: TEAM_IMAGES.srinivas},
   {
     name: "Deepak",
     role: "Senior Mobile Architect"},
@@ -62,19 +55,19 @@ const teamMembers: {
   {
     name: "Soniya Patil",
     role: "Front-end Developer",
-    image: soniyaImg},
+    image: TEAM_IMAGES.soniya},
   {
     name: "Ashwin S",
     role: "Backend Developer",
-    image: ashwinImg},
+    image: TEAM_IMAGES.ashwin},
   {
     name: "Vishal HM",
     role: "UI/UX Designer",
-    image: vishalImg},
+    image: TEAM_IMAGES.vishal},
   {
     name: "Tejas K",
     role: "AI Research Engineer",
-    image: tejasImg},
+    image: TEAM_IMAGES.tejas},
   {
     name: "Sujala",
     role: "Talent Acquisition Specialist"},
