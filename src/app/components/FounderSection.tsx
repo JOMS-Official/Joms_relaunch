@@ -2,13 +2,11 @@ import { Linkedin, Quote } from "lucide-react";
 import GlassCard from "./GlassCard";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { SWAROOP_CARD_IMAGE } from "../data/teamImages";
 
 interface Props {
   darkMode: boolean;
 }
-
-const FOUNDER_IMAGE =
-  "https://images.unsplash.com/photo-1662302392561-b1deecd3579d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBpbmRpYW4lMjBtYWxlJTIwQ0VPJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzcyNzkyMDE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
 export default function FounderSection({ darkMode }: Props) {
   return (
@@ -45,7 +43,7 @@ export default function FounderSection({ darkMode }: Props) {
                 boxShadow: "0 0 30px rgba(79,70,229,0.2)"}}
             >
               <ImageWithFallback
-                src={FOUNDER_IMAGE}
+                src={SWAROOP_CARD_IMAGE}
                 alt="Swaroop Jayaram"
                 className="w-full h-full object-cover"
               />

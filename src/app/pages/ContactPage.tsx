@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { motion } from "motion/react";
 import { Send, CheckCircle, Mail, MapPin } from "lucide-react";
@@ -8,6 +8,11 @@ import { emailLooksValid, nameLooksValid } from "../utils/formValidation";
 
 export default function ContactPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

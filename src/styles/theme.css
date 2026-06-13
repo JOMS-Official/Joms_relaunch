@@ -129,11 +129,13 @@
   html {
     font-family: var(--font-sans);
     font-size: var(--font-size);
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground font-sans;
     font-family: var(--font-sans);
+    overflow-x: clip;
   }
 
   button,

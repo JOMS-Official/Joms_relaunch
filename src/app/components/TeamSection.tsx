@@ -54,7 +54,7 @@ const teamMembers: {
     role: "Senior Data Scientist"},
   {
     name: "Soniya Patil",
-    role: "Front-end Developer",
+    role: "Frontend Developer",
     image: TEAM_IMAGES.soniya},
   {
     name: "Ashwin S",

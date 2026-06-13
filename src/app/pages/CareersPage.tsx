@@ -68,29 +68,29 @@ export default function CareersPage() {
             We're looking for exceptional people who believe the best technology
             is yet to be built. Join a team where every step counts.
           </p>
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center px-2 sm:px-0">
             <Link
               to="/careers/internships"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:opacity-95 hover:shadow-[0_0_28px_rgba(52,211,153,0.2)]"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium max-sm:whitespace-nowrap transition-all hover:opacity-95 max-md:shadow-none md:shadow-[0_0_20px_rgba(52,211,153,0.12)] md:hover:shadow-[0_0_28px_rgba(52,211,153,0.2)]"
               style={{
                 color: "#34D399",
                 border: "1px solid rgba(52, 211, 153, 0.45)",
-                background: darkMode ? "rgba(52, 211, 153, 0.06)" : "rgba(16, 185, 129, 0.08)",
-                boxShadow: "0 0 20px rgba(52, 211, 153, 0.12)"}}
+                background: darkMode ? "rgba(52, 211, 153, 0.06)" : "rgba(16, 185, 129, 0.08)"}}
             >
               Looking for internships? Explore our intern program
-              <ArrowRight size={16} strokeWidth={2} />
+              <ArrowRight size={16} strokeWidth={2} className="shrink-0" />
             </Link>
           </div>
         </div>
 
         {/* Search + filter trigger */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-10 items-stretch sm:items-center">
+        <div className="flex flex-row gap-2 sm:gap-3 mb-10 items-center">
           <div
-            className="flex items-center gap-3 flex-1 min-w-0 px-4 py-3 rounded-xl"
-            style={{
-              background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
-              border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.06)"}}
+            className={
+              darkMode
+                ? "flex flex-1 min-w-0 items-center gap-3 rounded-xl bg-white/[0.06] px-4 py-3 max-md:border-0 md:border md:border-white/10"
+                : "flex flex-1 min-w-0 items-center gap-3 rounded-xl bg-black/[0.03] px-4 py-3 max-md:border-0 md:border md:border-black/[0.06]"
+            }
           >
             <Search size={18} style={{ color: darkMode ? "rgba(248,250,252,0.4)" : "rgba(2,6,23,0.4)" }} />
             <input
@@ -105,18 +105,20 @@ export default function CareersPage() {
           <button
             type="button"
             aria-expanded={filtersOpen}
+            aria-label="Filters"
             onClick={() => setFiltersOpen((v) => !v)}
-            className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all hover:opacity-95 shrink-0"
-            style={{
-              background: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
-              border: darkMode ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(0,0,0,0.08)",
-              color: darkMode ? "#F8FAFC" : "#020617"}}
+            className={
+              "relative flex h-12 w-12 shrink-0 items-center justify-center gap-2 rounded-xl text-sm font-medium transition-all hover:opacity-95 sm:h-auto sm:w-auto sm:px-5 sm:py-3 max-md:border-0 " +
+              (darkMode
+                ? "bg-white/[0.08] text-[#F8FAFC] md:border md:border-white/[0.12]"
+                : "bg-black/[0.05] text-[#020617] md:border md:border-black/[0.08]")
+            }
           >
             <SlidersHorizontal size={18} style={{ color: "#A78BFA" }} />
-            <span>Filters</span>
+            <span className="hidden sm:inline">Filters</span>
             {activeFilterCount > 0 && (
               <span
-                className="min-w-[1.25rem] h-5 px-1.5 rounded-full text-xs flex items-center justify-center font-semibold text-white"
+                className="absolute -top-1 -right-1 sm:static sm:min-w-[1.25rem] min-w-[1.125rem] h-[1.125rem] sm:h-5 px-1 sm:px-1.5 rounded-full text-[10px] sm:text-xs flex items-center justify-center font-semibold text-white"
                 style={{ background: "linear-gradient(135deg, #4F46E5, #7C3AED)" }}
               >
                 {activeFilterCount}

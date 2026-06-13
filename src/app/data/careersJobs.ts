@@ -109,7 +109,7 @@ export const careersJobs: CareerJob[] = [
   },
   {
     id: 3,
-    title: "User Interface Designer - Internship",
+    title: "User Interface Designer, Internship",
     department: "Product Design",
     location: "Hybrid",
     type: "Internship",
@@ -304,7 +304,7 @@ export const careersJobs: CareerJob[] = [
   },
   {
     id: 7,
-    title: "Flutter Developer - Internship",
+    title: "Flutter Developer, Internship",
     department: "Engineering",
     location: "Hybrid",
     type: "Internship",
@@ -312,7 +312,7 @@ export const careersJobs: CareerJob[] = [
     description:
       "Build cross-platform mobile apps with Flutter and Dart. Pair with design and backend on real features—with flexible work options.",
     aboutUs:
-      "JOMS, short for Just One More Step, combines creativity and technology to develop innovative products that elevate customer experiences. Our flagship projects include a range of cutting-edge products and solutions, such as e-commerce marketplace, premium fashion brands, curated luxury experiences, and much more.",
+      "JOMS, short for Just One More Step, combines creativity and technology to develop innovative products that elevate customer experiences. Our flagship projects include a range of cutting-edge products and solutions, such as ecommerce marketplace, premium fashion brands, curated luxury experiences, and much more.",
     roleOverview:
       "As a Flutter Developer Intern, you will contribute to designing, developing, and maintaining high-performance mobile applications. You’ll work closely with the tech team to build cross-platform apps for iOS and Android, ensuring an exceptional user experience and top-notch performance.",
     detailSections: [
