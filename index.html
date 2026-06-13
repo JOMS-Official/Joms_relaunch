@@ -1,10 +1,11 @@
 
   <!DOCTYPE html>
-  <!-- class="dark" matches Layout default (darkMode true) so first paint is not white before React runs -->
-  <html lang="en" class="dark">
+  <html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <link rel="apple-touch-icon" href="/favicon.svg" />
       <title>JOMS_Official_Website</title>
       <style>
         html,
@@ -13,13 +14,9 @@
           height: 100%;
           margin: 0;
         }
-        /* Avoid white flash on refresh before bundled CSS loads */
-        html.dark {
-          background-color: #020617;
-          color: #f8fafc;
-        }
-        html.dark body {
-          background-color: transparent;
+        html {
+          background-color: #f8fafc;
+          color: #020617;
         }
       </style>
     </head>

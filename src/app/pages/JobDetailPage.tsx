@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useOutletContext, useParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Briefcase, MapPin, Clock, X, Upload } from "lucide-react";
-import { getCareerJobById } from "../data/careersJobs";
+import { getCareerJobById, isJobListingOpen } from "../data/careersJobs";
+import {
+  emailLooksValid,
+  nameLooksValid,
+  nameValidationMessage,
+  urlLooksValid,
+} from "../utils/formValidation";
+import { submitJobApplication } from "../../firebase/submitJobApplication";
 import applicationSuccessIcon from "../../assets/application-success-icon.png";
 import {
   careerClosingSoonTag,
@@ -48,12 +55,19 @@ export default function JobDetailPage() {
 
   const [showApplication, setShowApplication] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [portfolio, setPortfolio] = useState("");
   const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [touched, setTouched] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    portfolio: false});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,27 +81,71 @@ export default function JobDetailPage() {
       setEmail("");
       setPortfolio("");
       setResumeFile(null);
+      setSubmitError("");
+      setIsSubmitting(false);
     }
   }, [showApplication]);
 
-  const emailLooksValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  const showFieldHint = (value: string, fieldTouched: boolean) =>
+    fieldTouched || value.trim().length > 0;
+
+  const firstNameError = showFieldHint(firstName, touched.firstName)
+    ? nameValidationMessage(firstName)
+    : "";
+  const lastNameError = showFieldHint(lastName, touched.lastName)
+    ? nameValidationMessage(lastName, { minLength: 1 })
+    : "";
+  const emailError =
+    touched.email && !emailLooksValid(email) ? "Enter a valid email address." : "";
+  const portfolioError =
+    touched.portfolio && portfolio.trim() && !urlLooksValid(portfolio)
+      ? "Enter a valid URL (e.g. www.joms.in or https://…)."
+      : "";
+
+  const portfolioValid = !portfolio.trim() || urlLooksValid(portfolio);
 
   const canSubmit =
-    firstName.trim() !== "" &&
-    lastName.trim() !== "" &&
+    nameLooksValid(firstName) &&
+    nameLooksValid(lastName, { minLength: 1 }) &&
     phone.trim() !== "" &&
-    email.trim() !== "" &&
     emailLooksValid(email) &&
-    resumeFile !== null;
+    resumeFile !== null &&
+    portfolioValid;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSubmit) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setShowApplication(false);
-    }, 3000);
+    setTouched({ firstName: true, lastName: true, email: true, portfolio: true });
+    if (!canSubmit || !job || !resumeFile || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      await submitJobApplication({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phone: phone.trim(),
+        email: email.trim(),
+        portfolio,
+        jobId: job.id,
+        jobTitle: job.title,
+        department: job.department,
+        resumeFile,
+      });
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setShowApplication(false);
+      }, 3000);
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Something went wrong. Please try again.";
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const muted = darkMode ? "rgba(160,160,160,0.95)" : "rgba(2,6,23,0.55)";
@@ -104,11 +162,22 @@ export default function JobDetailPage() {
     );
   }
 
+  if (!isJobListingOpen(job)) {
+    return (
+      <div className="pt-24 px-6 pb-20 max-w-3xl mx-auto text-center">
+        <p style={{ color: muted }}>This role is no longer accepting applications.</p>
+        <Link to="/careers" className="inline-flex items-center gap-2 mt-6 text-sm" style={{ color: "#A78BFA" }}>
+          <ArrowLeft size={16} /> View open roles
+        </Link>
+      </div>
+    );
+  }
+
   const glassInput =
-    "w-full px-3 py-2 rounded-lg text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
+    "glass-form-input w-full px-3 py-2 rounded-lg text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
     (darkMode
-      ? "bg-white/[0.08] border border-white/[0.14] text-[#F8FAFC] placeholder:text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_2px_12px_rgba(0,0,0,0.12)] focus:ring-1 focus:ring-violet-500/35 focus:border-violet-400/40"
-      : "bg-white/65 border border-black/[0.1] text-[#020617] placeholder:text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_2px_8px_rgba(0,0,0,0.05)] focus:ring-1 focus:ring-violet-500/30 focus:border-violet-400/45");
+      ? "glass-form-input--dark bg-white/[0.08] border border-white/[0.14] text-[#F8FAFC] placeholder:text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_2px_12px_rgba(0,0,0,0.12)] focus:ring-1 focus:ring-violet-500/35 focus:border-violet-400/40"
+      : "glass-form-input--light bg-white/65 border border-black/[0.1] text-[#020617] placeholder:text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_2px_8px_rgba(0,0,0,0.05)] focus:ring-1 focus:ring-violet-500/30 focus:border-violet-400/45");
   const glassFileRow =
     "flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer border border-dashed backdrop-blur-xl transition-colors " +
     (darkMode
@@ -342,6 +411,7 @@ export default function JobDetailPage() {
 
                   <form
                     onSubmit={handleSubmit}
+                    noValidate
                     className="flex flex-col flex-1 min-h-0 px-5 pb-4 pt-3"
                   >
                     <div className="scrollbar-hide flex-1 min-h-0 overflow-y-auto space-y-2.5 pr-0.5">
@@ -356,7 +426,11 @@ export default function JobDetailPage() {
                             className={glassInput}
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            onBlur={() => setTouched((t) => ({ ...t, firstName: true }))}
                           />
+                          {firstNameError ? (
+                            <p className="mt-1 text-[10px] text-red-400">{firstNameError}</p>
+                          ) : null}
                         </div>
                         <div>
                           <label className={labelClass}>Last Name</label>
@@ -368,7 +442,11 @@ export default function JobDetailPage() {
                             className={glassInput}
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            onBlur={() => setTouched((t) => ({ ...t, lastName: true }))}
                           />
+                          {lastNameError ? (
+                            <p className="mt-1 text-[10px] text-red-400">{lastNameError}</p>
+                          ) : null}
                         </div>
                       </div>
                       <div>
@@ -393,7 +471,11 @@ export default function JobDetailPage() {
                           className={glassInput}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, email: true }))}
                         />
+                        {emailError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{emailError}</p>
+                        ) : null}
                       </div>
                       <div>
                         <label className={labelClass}>Job Role</label>
@@ -427,12 +509,17 @@ export default function JobDetailPage() {
                         <label className={labelClass}>Portfolio Link (optional)</label>
                         <input
                           name="portfolio"
-                          type="url"
-                          placeholder="https://yourportfolio.com"
+                          type="text"
+                          autoComplete="url"
+                          placeholder="www.yourportfolio.com (optional)"
                           className={glassInput}
                           value={portfolio}
                           onChange={(e) => setPortfolio(e.target.value)}
+                          onBlur={() => setTouched((t) => ({ ...t, portfolio: true }))}
                         />
+                        {portfolioError ? (
+                          <p className="mt-1 text-[10px] text-red-400">{portfolioError}</p>
+                        ) : null}
                       </div>
                     </div>
 
@@ -440,36 +527,39 @@ export default function JobDetailPage() {
                       className="shrink-0 pt-3 mt-1 space-y-2.5 border-t"
                       style={{ borderColor: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)" }}
                     >
+                      {submitError ? (
+                        <p className="text-center text-[11px] text-red-400">{submitError}</p>
+                      ) : null}
                       <button
                         type="submit"
-                        disabled={!canSubmit}
+                        disabled={!canSubmit || isSubmitting}
                         className={
                           "w-full py-2.5 rounded-lg text-[13px] font-medium transition-all " +
-                          (canSubmit
+                          (canSubmit && !isSubmitting
                             ? "text-white hover:scale-[1.01] cursor-pointer"
                             : "cursor-not-allowed text-white/70")
                         }
                         style={{
-                          background: canSubmit
+                          background: canSubmit && !isSubmitting
                             ? "linear-gradient(135deg, #4F46E5, #7C3AED)"
                             : darkMode
                             ? "rgba(255,255,255,0.1)"
                             : "rgba(0,0,0,0.12)",
-                          boxShadow: canSubmit ? "0 6px 18px rgba(79,70,229,0.38)" : "none",
-                          opacity: canSubmit ? 1 : 0.65}}
+                          boxShadow: canSubmit && !isSubmitting ? "0 6px 18px rgba(79,70,229,0.38)" : "none",
+                          opacity: canSubmit && !isSubmitting ? 1 : 0.65}}
                       >
-                        Submit Application
+                        {isSubmitting ? "Submitting..." : "Submit Application"}
                       </button>
                       <p
                         className="text-center text-[10px] leading-snug px-0.5"
                         style={{ color: darkMode ? "rgba(148,163,184,0.85)" : "rgba(2,6,23,0.48)" }}
                       >
                         By submitting, you agree to our{" "}
-                        <Link to="/blog" className="underline underline-offset-2 hover:text-violet-400">
+                        <Link to="/terms-of-service" className="underline underline-offset-2 hover:text-violet-400">
                           Terms of Service
                         </Link>{" "}
                         and{" "}
-                        <Link to="/blog" className="underline underline-offset-2 hover:text-violet-400">
+                        <Link to="/privacy" className="underline underline-offset-2 hover:text-violet-400">
                           Privacy Policy
                         </Link>
                         .

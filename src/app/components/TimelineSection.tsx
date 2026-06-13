@@ -22,7 +22,7 @@ const milestones = [
     year: "Feb 2025",
     title: "Built on Trust; Certified for Growth",
     description:
-      "Awarded MSME (Udyam Aadhar) registration, strengthening our foundation as a committed, credible, and compliant enterprise."},
+      "Recognised by MSME, strengthening our foundation as a committed, credible and compliant enterprise."},
   {
     year: "Mar–Apr 2026",
     title: "Quietly Building What Comes Next",

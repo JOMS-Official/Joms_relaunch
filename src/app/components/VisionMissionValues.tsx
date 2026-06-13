@@ -45,7 +45,7 @@ const cards: {
 export default function VisionMissionValues({ darkMode }: Props) {
   const muted = darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.65)";
   return (
-    <SectionWrapper>
+    <SectionWrapper id="vision" className="scroll-mt-28">
       <div className="text-center mb-16">
         <p
           className="text-sm mb-4 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]"

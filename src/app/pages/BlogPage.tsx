@@ -50,7 +50,7 @@ export default function BlogPage() {
             <button
               key={c}
               onClick={() => setCategory(c)}
-              className="px-4 py-2 rounded-xl text-sm transition-all"
+              className="px-4 py-2 rounded-xl text-sm"
               style={{
                 background:
                   category === c
@@ -72,9 +72,9 @@ export default function BlogPage() {
         </div>
 
         {/* Blogs grid */}
-        <div key={category} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((post) => (
-  <Link key={post.id} to={`/blog/${post.id}`} className="block transition-opacity duration-300 animate-fadeIn">
+            <Link key={post.id} to={`/blog/${post.id}`} className="block">
             <GlassCard darkMode={darkMode} className="group flex flex-col cursor-pointer h-full">
               {/* Color header bar */}
               
@@ -110,7 +110,7 @@ export default function BlogPage() {
                 </div>
                 <ArrowRight
                   size={16}
-                  className="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1"
+                  className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
                   style={{ color: "#7C3AED" }}
                 />
               </div>

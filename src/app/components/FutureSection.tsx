@@ -25,7 +25,7 @@ export default function FutureSection({ darkMode }: Props) {
   const muted =
     darkMode ? "rgba(248,250,252,0.65)" : "rgba(2,6,23,0.6)";
   return (
-    <SectionWrapper id="vision">
+    <SectionWrapper id="future">
       <div className="flex flex-col lg:flex-row items-center gap-16">
         {/* Left text */}
         <div className="flex-1">

@@ -1,9 +1,10 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { SWAROOP_CARD_IMAGE, SWAROOP_SLUG } from "../data/teamMemberProfiles";
+import { SWAROOP_SLUG } from "../data/teamMemberProfiles";
+import { TEAM_IMAGES } from "../data/teamImages";
 
 interface Props {
   darkMode: boolean;
@@ -19,28 +20,32 @@ const teamMembers: {
   /** Omit until a portrait is available; card shows an empty placeholder slot. */
   image?: string;
   slug?: string;
+  roleAlign?: "left";
 }[] = [
   {
     name: "Swaroop Jayaram",
     role: "Founder & CEO",
-    image: "/src/assets/Swaroop.jpg",
+    image: TEAM_IMAGES.swaroop,
     slug: SWAROOP_SLUG},
   {
     name: "Bhavana G",
     role: "Head of Operations",
-    image: "/src/assets/Bhavana.webp"},
+    image: TEAM_IMAGES.bhavana},
   {
     name: "Amarnath Bagineni",
     role: "Chief Technology Officer"},
   {
     name: "Sangeeta M",
-    role: "Head of Partnerships & Growth"},
+    role: "Head of Partnerships & Growth",
+    roleAlign: "left"},
   {
     name: "Punith C A",
-    role: "Finance Manager"},
+    role: "Finance Manager",
+    image: TEAM_IMAGES.punith},
   {
     name: "Srinivas C",
-    role: "Senior Data Architect"},
+    role: "Senior Data Architect",
+    image: TEAM_IMAGES.srinivas},
   {
     name: "Deepak",
     role: "Senior Mobile Architect"},
@@ -50,19 +55,19 @@ const teamMembers: {
   {
     name: "Soniya Patil",
     role: "Front-end Developer",
-    image: "/src/assets/Soniya.webp"},
+    image: TEAM_IMAGES.soniya},
   {
     name: "Ashwin S",
     role: "Backend Developer",
-    image: "/src/assets/Ashwin.webp"},
+    image: TEAM_IMAGES.ashwin},
   {
     name: "Vishal HM",
     role: "UI/UX Designer",
-    image: "/src/assets/vishal.webp"},
+    image: TEAM_IMAGES.vishal},
   {
     name: "Tejas K",
     role: "AI Research Engineer",
-    image: "/src/assets/Tejas.webp"},
+    image: TEAM_IMAGES.tejas},
   {
     name: "Sujala",
     role: "Talent Acquisition Specialist"},
@@ -71,16 +76,66 @@ const teamMembers: {
     role: "Data Research Expert"},
 ];
 
+const SCROLL_EDGE_PX = 8;
+
 export default function TeamSection({ darkMode }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
+
+  const updateScrollButtons = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+    setCanScrollPrev(scrollLeft > SCROLL_EDGE_PX);
+    setCanScrollNext(scrollLeft < maxScroll - SCROLL_EDGE_PX);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    updateScrollButtons();
+    el.addEventListener("scroll", updateScrollButtons, { passive: true });
+    window.addEventListener("resize", updateScrollButtons);
+    const ro = new ResizeObserver(updateScrollButtons);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", updateScrollButtons);
+      window.removeEventListener("resize", updateScrollButtons);
+      ro.disconnect();
+    };
+  }, [updateScrollButtons]);
 
   const scrollByDirection = useCallback((dir: "prev" | "next") => {
     const el = scrollerRef.current;
     if (!el) return;
+    if (dir === "prev" && !canScrollPrev) return;
+    if (dir === "next" && !canScrollNext) return;
+
     const card = el.querySelector<HTMLElement>("[data-team-card]");
     const step = (card?.offsetWidth ?? CARD_W) + CARD_GAP;
-    el.scrollBy({ left: dir === "prev" ? -step : step, behavior: "smooth" });
-  }, []);
+    const maxScroll = el.scrollWidth - el.clientWidth;
+
+    if (dir === "next" && el.scrollLeft + step >= maxScroll - SCROLL_EDGE_PX) {
+      el.scrollTo({ left: maxScroll, behavior: "smooth" });
+    } else if (dir === "prev" && el.scrollLeft - step <= SCROLL_EDGE_PX) {
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: dir === "prev" ? -step : step, behavior: "smooth" });
+    }
+  }, [canScrollPrev, canScrollNext]);
+
+  const navBtnStyle = (enabled: boolean): React.CSSProperties => ({
+    background: darkMode ? "rgba(15,23,42,0.75)" : "rgba(255,255,255,0.85)",
+    border: darkMode
+      ? "1px solid rgba(255,255,255,0.15)"
+      : "1px solid rgba(0,0,0,0.1)",
+    color: darkMode ? "#F8FAFC" : "#0F172A",
+    backdropFilter: "blur(8px)",
+    opacity: enabled ? 1 : 0.35,
+    cursor: enabled ? "pointer" : "default",
+    pointerEvents: enabled ? "auto" : "none"});
 
   return (
     <SectionWrapper id="team">
@@ -110,15 +165,11 @@ export default function TeamSection({ darkMode }: Props) {
         <button
           type="button"
           aria-label="Previous team members"
+          aria-disabled={!canScrollPrev}
+          disabled={!canScrollPrev}
           onClick={() => scrollByDirection("prev")}
-          className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-90 sm:h-12 sm:w-12"
-          style={{
-            background: darkMode ? "rgba(15,23,42,0.75)" : "rgba(255,255,255,0.85)",
-            border: darkMode
-              ? "1px solid rgba(255,255,255,0.15)"
-              : "1px solid rgba(0,0,0,0.1)",
-            color: darkMode ? "#F8FAFC" : "#0F172A",
-            backdropFilter: "blur(8px)"}}
+          className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-90 sm:h-12 sm:w-12 disabled:hover:opacity-100"
+          style={navBtnStyle(canScrollPrev)}
         >
           <ChevronLeft size={22} strokeWidth={1.75} />
         </button>
@@ -158,15 +209,14 @@ export default function TeamSection({ darkMode }: Props) {
                       "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 45%, transparent 72%)"}}
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-3 p-4 text-left">
-                  <div className="min-w-0">
+                  <div className={`min-w-0 ${member.roleAlign === "left" ? "text-left w-full" : ""}`}>
                     <h3
-                      className="text-base font-semibold text-white sm:text-lg"
-                      style={{}}
+                      className="text-base font-semibold text-white sm:text-lg text-left"
                     >
                       {member.name}
                     </h3>
                     <p
-                      className="mt-0.5 text-xs sm:text-sm"
+                      className={`mt-0.5 text-xs sm:text-sm ${member.roleAlign === "left" ? "text-left" : ""}`}
                       style={{ color: "rgba(248,250,252,0.65)" }}
                     >
                       {member.role}
@@ -218,15 +268,11 @@ export default function TeamSection({ darkMode }: Props) {
         <button
           type="button"
           aria-label="Next team members"
+          aria-disabled={!canScrollNext}
+          disabled={!canScrollNext}
           onClick={() => scrollByDirection("next")}
-          className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-90 sm:h-12 sm:w-12"
-          style={{
-            background: darkMode ? "rgba(15,23,42,0.75)" : "rgba(255,255,255,0.85)",
-            border: darkMode
-              ? "1px solid rgba(255,255,255,0.15)"
-              : "1px solid rgba(0,0,0,0.1)",
-            color: darkMode ? "#F8FAFC" : "#0F172A",
-            backdropFilter: "blur(8px)"}}
+          className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-90 sm:h-12 sm:w-12 disabled:hover:opacity-100"
+          style={navBtnStyle(canScrollNext)}
         >
           <ChevronRight size={22} strokeWidth={1.75} />
         </button>

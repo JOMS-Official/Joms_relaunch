@@ -1,32 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { useOutletContext, useLocation } from "react-router";
+import React, { useState } from "react";
+import { useOutletContext } from "react-router";
 import { motion } from "motion/react";
 import { Send, CheckCircle, Mail, MapPin } from "lucide-react";
 import GlassCard from "../components/GlassCard";
 import SectionWrapper from "../components/SectionWrapper";
+import { emailLooksValid, nameLooksValid } from "../utils/formValidation";
 
 export default function ContactPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
   const [submitted, setSubmitted] = useState(false);
-  const location = useLocation();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [touched, setTouched] = useState({ name: false, email: false });
 
-  useEffect(() => {
-    if (location.hash === "#connect") {
-      requestAnimationFrame(() => {
-        document.getElementById("connect")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
-  }, [location.hash, location.pathname]);
+  const nameError = touched.name && !nameLooksValid(name) ? "Enter a valid name (letters only, no numbers)." : "";
+  const emailError =
+    touched.email && email.trim() && !emailLooksValid(email)
+      ? "Enter a valid email address."
+      : touched.email && !email.trim()
+        ? "Email is required."
+        : "";
+
+  const canSubmit =
+    nameLooksValid(name) && emailLooksValid(email) && message.trim().length > 0;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setTouched({ name: true, email: true });
+    if (!canSubmit) return;
     setSubmitted(true);
   };
 
   return (
     <div className="pt-14 sm:pt-16 lg:pt-20">
       <SectionWrapper className="!pt-8 !pb-6 md:!pt-10 md:!pb-8">
-        <div id="connect" className="text-center mb-6 sm:mb-8 scroll-mt-24">
+        <div id="connect" className="text-center mb-6 sm:mb-8 scroll-mt-28">
           <p className="text-sm mb-2 tracking-widest uppercase text-[#7C3AED] dark:text-[#EAB308]">
             Contact
           </p>
@@ -81,21 +90,26 @@ export default function ContactPage() {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 <div>
                   <label className="text-xs mb-2 block" style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}>
                     Name
                   </label>
                   <input
                     type="text"
-                    required
                     placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                     className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
                       color: darkMode ? "#F8FAFC" : "#020617"}}
                   />
+                  {nameError ? (
+                    <p className="mt-1.5 text-xs text-red-400">{nameError}</p>
+                  ) : null}
                 </div>
                 <div>
                   <label className="text-xs mb-2 block" style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}>
@@ -103,14 +117,19 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="email"
-                    required
                     placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={() => setTouched((t) => ({ ...t, email: true }))}
                     className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
                       color: darkMode ? "#F8FAFC" : "#020617"}}
                   />
+                  {emailError ? (
+                    <p className="mt-1.5 text-xs text-red-400">{emailError}</p>
+                  ) : null}
                 </div>
                 <div>
                   <label className="text-xs mb-2 block" style={{ color: darkMode ? "rgba(248,250,252,0.6)" : "rgba(2,6,23,0.5)" }}>
@@ -118,8 +137,9 @@ export default function ContactPage() {
                   </label>
                   <textarea
                     rows={4}
-                    required
                     placeholder="Enter your message"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none resize-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
@@ -129,7 +149,8 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white text-sm transition-all hover:scale-[1.02]"
+                  disabled={!canSubmit}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white text-sm transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{
                     background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
                     boxShadow: "0 8px 30px rgba(79,70,229,0.4)"}}

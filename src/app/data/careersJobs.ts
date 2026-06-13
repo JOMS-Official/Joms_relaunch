@@ -17,17 +17,18 @@ export type CareerJob = {
   roleOverview: string;
   detailSections: JobDetailSection[];
   howToApply: string;
-  /** Shown on careers list + job detail when hiring is winding down */
-  listingStatus?: "open" | "closing_soon";
+  /** Shown on careers list + job detail when hiring is winding down or closed */
+  listingStatus?: "open" | "closing_soon" | "closed";
 };
 
 export const careersJobs: CareerJob[] = [
   {
     id: 1,
     title: "Chief Technology Officer",
-    department: "Leadership",
-    location: "Bangalore",
-    type: "Full-time",
+    department: "Engineering",
+    location: "Hybrid",
+    type: "Full-Time",
+    listingStatus: "closed",
     description:
       "Lead our technology strategy, platform development, and engineering culture. Equity-based executive role at a high-growth startup.",
     aboutUs:
@@ -74,9 +75,9 @@ export const careersJobs: CareerJob[] = [
   {
     id: 2,
     title: "Brand Marketing Manager",
-    department: "Marketing",
-    location: "Bangalore",
-    type: "Full-time",
+    department: "Branding & Marketing",
+    location: "Hybrid",
+    type: "Full-Time",
     description:
       "Own brand positioning, campaigns, and growth across channels. Hybrid of branding and marketing management in a B2C-focused environment.",
     aboutUs:
@@ -109,9 +110,10 @@ export const careersJobs: CareerJob[] = [
   {
     id: 3,
     title: "User Interface Designer - Internship",
-    department: "Design",
-    location: "Bangalore",
+    department: "Product Design",
+    location: "Hybrid",
     type: "Internship",
+    listingStatus: "closed",
     description:
       "Collaborate on intuitive UI for web and mobile. Wireframes, design system, and user research in a real product environment.",
     aboutUs:
@@ -156,9 +158,9 @@ export const careersJobs: CareerJob[] = [
   },
   {
     id: 4,
-    title: "Graphic Designer - Internship",
-    department: "Design",
-    location: "Bangalore",
+    title: "Graphic Designer Intern",
+    department: "Product Design",
+    location: "Hybrid",
     type: "Internship",
     description:
       "Create graphics, social assets, and video content. Work with marketing to elevate brand identity in a fast-paced startup.",
@@ -204,9 +206,9 @@ export const careersJobs: CareerJob[] = [
   },
   {
     id: 5,
-    title: "Finance - Internship",
+    title: "Finance Interns",
     department: "Finance",
-    location: "Bangalore",
+    location: "Hybrid",
     type: "Internship",
     description:
       "Support financial planning, analysis, and reporting. Build foundations in startup finance alongside the finance team.",
@@ -253,9 +255,9 @@ export const careersJobs: CareerJob[] = [
   },
   {
     id: 6,
-    title: "Digital Marketing - Internship",
-    department: "Marketing",
-    location: "Bangalore",
+    title: "Digital Marketing Intern",
+    department: "Branding & Marketing",
+    location: "Hybrid",
     type: "Internship",
     description:
       "Support campaigns, social, SEO, and analytics. Hands-on digital marketing in a mission-driven consumer tech company.",
@@ -306,6 +308,7 @@ export const careersJobs: CareerJob[] = [
     department: "Engineering",
     location: "Hybrid",
     type: "Internship",
+    listingStatus: "closed",
     description:
       "Build cross-platform mobile apps with Flutter and Dart. Pair with design and backend on real features—with flexible work options.",
     aboutUs:
@@ -356,14 +359,13 @@ export const careersJobs: CareerJob[] = [
     ],
     howToApply:
       "Submit your resume and a brief cover letter highlighting your interest in the role and relevant experience to hello@joms.in. We are an equal-opportunity employer and welcome candidates from diverse backgrounds to apply.",
-    listingStatus: "closing_soon",
   },
   {
     id: 8,
     title: "Video Editor",
-    department: "Marketing",
-    location: "Remote",
-    type: "Full-time",
+    department: "Branding & Marketing",
+    location: "Hybrid",
+    type: "Full-Time",
     description:
       "Edit short-form and long-form content using Premiere Pro or DaVinci Resolve, plus AI-assisted workflows with Runway, Descript, and more.",
     aboutUs:
@@ -386,10 +388,18 @@ export const careersJobs: CareerJob[] = [
   },
 ];
 
+export function isJobListingOpen(job: CareerJob): boolean {
+  return job.listingStatus !== "closed";
+}
+
+export function getOpenCareersJobs(): CareerJob[] {
+  return careersJobs.filter(isJobListingOpen);
+}
+
 export function getCareerJobById(id: number): CareerJob | undefined {
   return careersJobs.find((j) => j.id === id);
 }
 
 export function getInternshipJobs(): CareerJob[] {
-  return careersJobs.filter((j) => j.type === "Internship");
+  return getOpenCareersJobs().filter((j) => j.type === "Internship");
 }

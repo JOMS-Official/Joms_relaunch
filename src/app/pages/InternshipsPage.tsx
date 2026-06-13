@@ -14,6 +14,7 @@ import {
 import SectionWrapper from "../components/SectionWrapper";
 import GlassCard from "../components/GlassCard";
 import { getInternshipJobs } from "../data/careersJobs";
+import { scrollToElementById } from "../utils/homeSectionNav";
 import { careerClosingSoonTag, careerGlassIconBox } from "../careersGlass";
 
 const green = "#34D399";
@@ -64,7 +65,7 @@ export default function InternshipsPage() {
   }, []);
 
   const scrollToOpenings = () => {
-    document.getElementById("open-positions")?.scrollIntoView({ behavior: "smooth" });
+    scrollToElementById("open-positions");
   };
 
   const glassPanel =
@@ -254,7 +255,7 @@ export default function InternshipsPage() {
       </section>
 
       {/* Open positions */}
-      <SectionWrapper id="open-positions" className="!pt-0 !pb-16 md:!pb-24">
+      <SectionWrapper id="open-positions" className="!pt-0 !pb-16 md:!pb-24 scroll-mt-28">
         <div className="text-center mb-12">
           <p
             className="text-xs font-semibold tracking-[0.2em] uppercase mb-3 text-center"
