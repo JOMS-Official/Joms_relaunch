@@ -20,7 +20,7 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "Why We're Building JOMS — A Letter from the Founder",
+    title: "Why We're Building JOMS: A Letter from the Founder",
     excerpt:
       "The world doesn't need more apps. It needs better platforms. Here's why we started JOMS and what drives every decision we make.",
     category: "Founder Insights",
@@ -30,9 +30,9 @@ export const blogPosts: BlogPost[] = [
     accentLine: "#7C3AED",
     author: { name: "Swaroop Jayaram", role: "Founder & CEO" },
     paragraphs: [
-      "The world doesn't need another app that promises the moon and delivers friction. What it needs are platforms that respect people's time, earn trust in small moments, and make complex marketplaces feel simple. That belief is why we started JOMS — not to chase trends, but to build something that lasts.",
+      "The world doesn't need another app that promises the moon and delivers friction. What it needs are platforms that respect people's time, earn trust in small moments, and make complex marketplaces feel simple. That belief is why we started JOMS, not to chase trends, but to build something that lasts.",
       "Every product decision we make comes back to a single question: does this help someone take one more meaningful step toward their goal? Progress rarely arrives as a giant leap. It shows up as clarity after confusion, a connection that should have been easy, or a process that finally feels fair. We are obsessed with those steps.",
-      "We're also building in the open, with humility. Marketplaces are hard. Trust is fragile. Technology is only as good as the humans it serves. So we're investing as much in thoughtful design and transparent operations as we are in scalable architecture — because one without the other doesn't hold up in the real world.",
+      "We're also building in the open, with humility. Marketplaces are hard. Trust is fragile. Technology is only as good as the humans it serves. So we're investing as much in thoughtful design and transparent operations as we are in scalable architecture, because one without the other doesn't hold up in the real world.",
       "Thank you for being early believers, critics, and partners. Whether you're a future user, teammate, or investor, we hope you'll hold us to the standard we set for ourselves: ship with care, listen harder than we talk, and never confuse motion for progress. This is just the beginning.",
     ],
   },
@@ -40,7 +40,7 @@ export const blogPosts: BlogPost[] = [
     id: 2,
     title: "The Architecture Behind Scalable Marketplaces",
     excerpt:
-      "A deep dive into the technical decisions powering our next-gen marketplace infrastructure, from event-driven architectures to real-time matching.",
+      "A deep dive into the technical decisions powering our next gen marketplace infrastructure, from event driven architectures to real time matching.",
     category: "Tech Articles",
     date: "Feb 8, 2025",
     readTime: "8 min",
@@ -48,16 +48,16 @@ export const blogPosts: BlogPost[] = [
     accentLine: "#60A5FA",
     author: { name: "JOMS Engineering", role: "Platform Team" },
     paragraphs: [
-      "Scaling a marketplace isn't only about handling more requests per second — it's about keeping data consistent, decisions auditable, and failures boring. We've leaned on an event-driven core so that critical state changes propagate reliably without turning every feature into a distributed systems thesis.",
-      "Real-time matching sits on top of clear domain boundaries. Services own their data; integrations happen through contracts we can version and observe. That gives us room to evolve pricing, trust signals, and discovery without rewiring the world every quarter.",
-      "Observability is part of the architecture, not an afterthought. Traces, metrics, and structured logs tell us when latency creeps in or when a queue backs up — before users feel it. If you're building something similar, invest early in the glue: idempotency, retries with limits, and honest backpressure.",
+      "Scaling a marketplace isn't only about handling more requests per second. It's about keeping data consistent, decisions auditable, and failures boring. We've leaned on an event driven core so that critical state changes propagate reliably without turning every feature into a distributed systems thesis.",
+      "Real time matching sits on top of clear domain boundaries. Services own their data; integrations happen through contracts we can version and observe. That gives us room to evolve pricing, trust signals, and discovery without rewiring the world every quarter.",
+      "Observability is part of the architecture, not an afterthought. Traces, metrics, and structured logs tell us when latency creeps in or when a queue backs up before users feel it. If you're building something similar, invest early in the glue: idempotency, retries with limits, and honest backpressure.",
     ],
   },
   {
     id: 3,
     title: "From Zero to One: Building a Startup in 2025",
     excerpt:
-      "Lessons learned from the first year of building JOMS — from idea validation to assembling a world-class remote team.",
+      "Lessons learned from the first year of building JOMS, from idea validation to assembling a world class remote team.",
     category: "Startup Building",
     date: "Jan 28, 2025",
     readTime: "6 min",
@@ -66,8 +66,8 @@ export const blogPosts: BlogPost[] = [
     author: { name: "Swaroop Jayaram", role: "Founder & CEO" },
     paragraphs: [
       "Year one was less about having all the answers and more about learning which questions actually mattered. We talked to users until the patterns repeated, threw away prototypes without ego, and kept the team small enough that accountability stayed visible.",
-      "Hiring remotely forced us to be deliberate about communication and documentation. Async by default doesn't mean slow — it means respectful. We invested in rituals that build trust across time zones: clear written specs, demo days, and honest retros.",
-      "If you're at the zero-to-one stage, optimize for learning speed, not vanity metrics. Ship small, measure honestly, and protect your focus the way you'd protect runway — because in the early days, they're the same thing.",
+      "Hiring remotely forced us to be deliberate about communication and documentation. Async by default doesn't mean slow. It means respectful. We invested in rituals that build trust across time zones: clear written specs, demo days, and honest retros.",
+      "If you're at the zero to one stage, optimize for learning speed, not vanity metrics. Ship small, measure honestly, and protect your focus the way you'd protect runway, because in the early days, they're the same thing.",
     ],
   },
   {
@@ -84,7 +84,7 @@ export const blogPosts: BlogPost[] = [
     paragraphs: [
       "We're opening our beta to a limited group of partners who want to shape the product with us. Core flows are live, feedback loops are tight, and we're prioritizing stability alongside the features you've asked for most.",
       "What's coming next: deeper trust tooling, richer discovery, and integrations that meet you where you already work. We'll share a public roadmap soon; until then, beta participants get direct lines to the team.",
-      "If you're interested, reach out through our contact page with a short note on what you're building — we'll follow up with next steps.",
+      "If you're interested, reach out through our contact page with a short note on what you're building. We'll follow up with next steps.",
     ],
   },
   {
@@ -99,16 +99,16 @@ export const blogPosts: BlogPost[] = [
     accentLine: "#818CF8",
     author: { name: "JOMS Engineering", role: "Platform Team" },
     paragraphs: [
-      "Trust isn't a badge on a landing page — it's the sum of predictable behavior, transparent policies, and fast recovery when something goes wrong. We design for moments of doubt: unclear pricing, delayed delivery, disputed outcomes.",
-      "On the technical side, that means immutable audit trails where they matter, least-privilege access everywhere, and abuse-resistant flows that don't punish legitimate users. On the product side, it means plain language, visible SLAs, and human escalation paths that feel reachable.",
-      "The goal is simple: reduce anxiety at every step. When users feel safe, they move faster — and marketplaces thrive.",
+      "Trust isn't a badge on a landing page. It's the sum of predictable behavior, transparent policies, and fast recovery when something goes wrong. We design for moments of doubt: unclear pricing, delayed delivery, disputed outcomes.",
+      "On the technical side, that means immutable audit trails where they matter, least privilege access everywhere, and abuse resistant flows that don't punish legitimate users. On the product side, it means plain language, visible SLAs, and human escalation paths that feel reachable.",
+      "The goal is simple: reduce anxiety at every step. When users feel safe, they move faster, and marketplaces thrive.",
     ],
   },
   {
     id: 6,
     title: "The Power of Just One More Step",
     excerpt:
-      "Our company name carries a philosophy. Progress isn't about giant leaps — it's about relentless, meaningful steps forward.",
+      "Our company name carries a philosophy. Progress isn't about giant leaps. It's about relentless, meaningful steps forward.",
     category: "Founder Insights",
     date: "Dec 20, 2024",
     readTime: "4 min",
@@ -116,9 +116,9 @@ export const blogPosts: BlogPost[] = [
     accentLine: "#EAB308",
     author: { name: "Swaroop Jayaram", role: "Founder & CEO" },
     paragraphs: [
-      "JOMS stands for 'Just One More Step' — a reminder that momentum beats perfection. The best teams don't wait for certainty; they take the next step with enough clarity to learn and enough discipline to iterate.",
+      "JOMS stands for 'Just One More Step', a reminder that momentum beats perfection. The best teams don't wait for certainty; they take the next step with enough clarity to learn and enough discipline to iterate.",
       "That philosophy shows up in how we ship: smaller releases, faster feedback, and a bias toward helping users make progress today rather than promising everything tomorrow.",
-      "If you're building something hard, celebrate the small wins. They're not distractions from the mission — they're how the mission survives.",
+      "If you're building something hard, celebrate the small wins. They're not distractions from the mission. They're how the mission survives.",
     ],
   },
 ];

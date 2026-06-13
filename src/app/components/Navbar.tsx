@@ -59,14 +59,11 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
 
   return (
     <nav
-      className="fixed top-0 left-0 z-50 w-full overflow-visible py-3"
-      style={{
-        background: darkMode ? "rgba(15,23,42,0.85)" : "rgba(255,255,255,0.85)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: darkMode
-          ? "1px solid rgba(255,255,255,0.08)"
-          : "1px solid rgba(0,0,0,0.06)"}}
+      className={
+        darkMode
+          ? "fixed top-0 left-0 z-50 w-full overflow-visible border-b border-transparent bg-[#0f172a] py-3 md:border-white/[0.08] md:bg-[rgba(15,23,42,0.92)] md:backdrop-blur-[12px]"
+          : "fixed top-0 left-0 z-50 w-full overflow-visible border-b border-transparent bg-white py-3 md:border-black/[0.06] md:bg-[rgba(255,255,255,0.92)] md:backdrop-blur-[12px]"
+      }
     >
       <div className="relative mx-auto flex h-12 items-center justify-between gap-3 px-6">
         {/* Keeps layout width; logo is absolutely positioned so a 150×150 mark does not stretch the bar */}
@@ -86,13 +83,13 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-10 xl:gap-12">
+        <div className="hidden lg:flex items-center gap-10 ml-5 xl:gap-12 xl:ml-8">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
               onClick={(e) => handleNavClick(e, link.to)}
-              className="text-sm transition-colors hover:opacity-100"
+              className="text-base transition-colors hover:opacity-100"
               style={{
                 opacity: linkIsActive(link.to) ? 1 : 0.7,
                 color: darkMode ? "#E2E8F0" : "#1E293B"}}
@@ -140,7 +137,7 @@ export default function Navbar({ darkMode, setDarkMode }: NavbarProps) {
                 key={link.label}
                 to={link.to}
                 onClick={(e) => handleNavClick(e, link.to)}
-                className="text-sm py-2 px-3 rounded-lg transition-all"
+                className="text-base py-2 px-3 rounded-lg transition-all"
                 style={{
                   background: darkMode
                     ? "rgba(255,255,255,0.05)"

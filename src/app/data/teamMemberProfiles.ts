@@ -148,7 +148,7 @@ export const teamMemberProfiles: TeamMemberProfile[] = [
 
       {
         kind: "heading",
-        text: 'Just One More Step - One small step for a man, one giant leap for mankind',
+        text: 'Just One More Step: One small step for a man, one giant leap for mankind',
         accentFirstLetter: true,
       },
       {

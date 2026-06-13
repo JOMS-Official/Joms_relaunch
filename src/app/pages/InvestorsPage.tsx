@@ -32,7 +32,7 @@ const goldDividerStyle: CSSProperties = {
 const highlights = [
   {
     icon: TrendingUp,
-    title: "High-Growth Market",
+    title: "High Growth Market",
     description: "We’re operating at the intersection of networking, events and community-driven technology; industries rapidly evolving with the next generation of founders, creators, and professionals."},
   {
     icon: Shield,

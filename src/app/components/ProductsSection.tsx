@@ -18,10 +18,9 @@ const slideTexts = [
 ];
 
 const textBlurbVariants = {
-  initial: { opacity: 0, y: 16 },
+  initial: { opacity: 0 },
   animate: {
     opacity: 1,
-    y: 0,
     transition: {
       duration: 0.58,
       ease: [0.16, 1, 0.3, 1],
@@ -29,7 +28,6 @@ const textBlurbVariants = {
   },
   exit: {
     opacity: 0,
-    y: -12,
     transition: {
       duration: 0.34,
       ease: [0.4, 0, 0.2, 1],
@@ -81,7 +79,7 @@ export default function ProductsSection({ darkMode }: Props) {
         </h2>
 
         <Link
-          to="/contact#connect"
+          to="/contact"
           className="inline-flex items-center justify-center px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl text-white text-sm sm:text-base font-medium transition-all hover:scale-105 mb-8"
           style={{
             background: "linear-gradient(135deg, #4F46E5, #7C3AED)",
@@ -91,7 +89,7 @@ export default function ProductsSection({ darkMode }: Props) {
         </Link>
 
         <div
-          className="w-full max-w-lg mx-auto mb-10 min-h-[7.5rem] sm:min-h-[6.75rem]"
+          className="w-full max-w-lg mx-auto mb-10 h-[7.5rem] sm:h-[6.75rem]"
           aria-roledescription="carousel"
           aria-label="Launching soon updates"
         >

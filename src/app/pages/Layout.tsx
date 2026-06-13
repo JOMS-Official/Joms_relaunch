@@ -15,11 +15,12 @@ export default function Layout() {
   // Reset scroll on route changes; skip when landing on home with a section hash (Vision, Team, etc.).
   useLayoutEffect(() => {
     if (location.pathname === "/" && location.hash) return;
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [location.pathname, location.search, location.hash]);
 
+  // In-page hash targets are only used on the home page (/#vision, /#team, …).
   useEffect(() => {
-    if (!location.hash) return;
+    if (location.pathname !== "/" || !location.hash) return;
     const id = location.hash.replace(/^#/, "");
     if (!id) return;
     const timer = window.setTimeout(() => scrollToElementById(id), 80);

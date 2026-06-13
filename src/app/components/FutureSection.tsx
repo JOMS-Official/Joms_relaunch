@@ -8,13 +8,13 @@ interface Props {
 
 const pillars = [
   {
-    title: "Human-Centred by Design",
+    title: "Human Centred by Design",
     body:
       "Every product we build begins with one question: what does the person at the other end actually need? Not what's impressive but what's meaningful."},
   {
     title: "Technology that Scales",
     body:
-      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve, robust, adaptive and future-ready."},
+      "We engineer for longevity. Our products are built to grow with the communities and businesses they serve, robust, adaptive and future ready."},
   {
     title: "Impact that Endures",
     body:
