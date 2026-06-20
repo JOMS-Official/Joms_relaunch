@@ -2,6 +2,7 @@ import type { CSSProperties, FormEvent } from "react";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
+
 import {
   TrendingUp,
   Shield,
@@ -43,6 +44,9 @@ const highlights = [
     title: "Global Vision",
     description: "While our journey starts from India, our ambition is global. We’re designing experiences and ecosystems that can connect ambitious people across borders, industries and communities."},
 ];
+
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbysGkTm07MU4WwnWPHc7yzgdSShvJL_ZGb_l3fcKbotZKWPcN5cFEEW7J8osOhRXVm9Jw/exec";
 
 export default function InvestorsPage() {
   const { darkMode } = useOutletContext<{ darkMode: boolean }>();
@@ -86,18 +90,43 @@ export default function InvestorsPage() {
     emailLooksValid(email) &&
     company.trim() !== "" &&
     location.trim() !== "" &&
-    urlLooksValid(website);
+    (!website.trim() || urlLooksValid(website));
 
-  const handlePitchSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setTouched({ name: true, email: true, website: true });
-    if (!canSubmitPitch) return;
+  const handlePitchSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+
+  setTouched({ name: true, email: true, website: true });
+
+  if (!canSubmitPitch) return;
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        email,
+        company,
+        location,
+        website,
+      }),
+    });
+
     setPitchSubmitted(true);
+
     window.setTimeout(() => {
       setPitchSubmitted(false);
       setShowPitchModal(false);
     }, 3000);
-  };
+  } catch (err) {
+    console.error("Submission failed:", err);
+    alert("Failed to submit. Please try again.");
+  }
+};
 
   const glassInput =
     "w-full px-3.5 py-2.5 rounded-lg text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
