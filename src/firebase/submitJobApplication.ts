@@ -1,9 +1,3 @@
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage, getFirebaseConfigError } from "./firebase";
-
-const MAX_RESUME_BYTES_FOR_FALLBACK = 600_000;
-
 const CAREERS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWvB2NYYlWzqBxRYH7LfOwJaHrpv46uakYDnBbtdmJGlKYUH_yv4VgH9bgbA0R1LOctQ/exec";
 
 export type JobApplicationInput = {
