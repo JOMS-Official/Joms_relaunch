@@ -30,12 +30,38 @@ export default function ContactPage() {
   const canSubmit =
     nameLooksValid(name) && emailLooksValid(email) && message.trim().length > 0;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setTouched({ name: true, email: true });
-    if (!canSubmit) return;
+  const CONTACT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwNjaufaET7AXOIXr9PnTN-I46K7s7btZdI37m68QdoMzShWwDyQy4o5i6BIIs47UZyA/exec";
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setTouched({ name: true, email: true });
+
+  if (!canSubmit) return;
+
+  try {
+    await fetch(CONTACT_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+    });
+
     setSubmitted(true);
-  };
+    setName("");
+    setEmail("");
+    setMessage("");
+  } catch (err) {
+    console.error("Contact form submission failed:", err);
+    alert("Failed to send message. Please try again.");
+  }
+};
 
   return (
     <div className="pt-14 sm:pt-16 lg:pt-20">
