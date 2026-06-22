@@ -1,4 +1,6 @@
 /** Team portraits served from `public/assests/`. */
+export const TEAM_PLACEHOLDER_IMAGE = "/assests/user-removebg-preview.png";
+
 export const TEAM_IMAGES = {
   swaroop: "/assests/swaroop%201.webp",
   bhavana: "/assests/Bhavana.webp",
