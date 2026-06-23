@@ -129,7 +129,7 @@ export default function InvestorsPage() {
 };
 
   const glassInput =
-    "w-full px-3.5 py-2.5 rounded-lg text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
+    "w-full px-3.5 py-2.5 rounded-lg text-[16px] sm:text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
     (darkMode
       ? "bg-white/[0.08] border border-white/[0.14] text-[#F8FAFC] placeholder:text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_2px_12px_rgba(0,0,0,0.12)] focus:ring-1 focus:ring-amber-500/35 focus:border-amber-400/40"
       : "bg-white/65 border border-black/[0.1] text-[#020617] placeholder:text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_2px_8px_rgba(0,0,0,0.05)] focus:ring-1 focus:ring-amber-500/30 focus:border-amber-400/45");
