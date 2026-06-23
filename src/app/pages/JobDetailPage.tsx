@@ -174,7 +174,7 @@ export default function JobDetailPage() {
   }
 
   const glassInput =
-    "glass-form-input w-full px-3 py-2 rounded-lg text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
+    "glass-form-input w-full px-3 py-2 rounded-lg text-[16px] sm:text-[13px] leading-snug outline-none transition-[box-shadow,border-color] backdrop-blur-xl " +
     (darkMode
       ? "glass-form-input--dark bg-white/[0.08] border border-white/[0.14] text-[#F8FAFC] placeholder:text-slate-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_2px_12px_rgba(0,0,0,0.12)] focus:ring-1 focus:ring-violet-500/35 focus:border-violet-400/40"
       : "glass-form-input--light bg-white/65 border border-black/[0.1] text-[#020617] placeholder:text-slate-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_2px_8px_rgba(0,0,0,0.05)] focus:ring-1 focus:ring-violet-500/30 focus:border-violet-400/45");
