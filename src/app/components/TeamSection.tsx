@@ -4,7 +4,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { SWAROOP_SLUG } from "../data/teamMemberProfiles";
-import { TEAM_IMAGES } from "../data/teamImages";
+import { TEAM_IMAGES, TEAM_PLACEHOLDER_IMAGE } from "../data/teamImages";
 
 interface Props {
   darkMode: boolean;
@@ -17,7 +17,7 @@ const CARD_GAP = 14;
 const teamMembers: {
   name: string;
   role: string;
-  /** Omit until a portrait is available; card shows an empty placeholder slot. */
+  /** Omit until a portrait is available; card shows the default user placeholder. */
   image?: string;
   slug?: string;
   roleAlign?: "left";
@@ -186,6 +186,14 @@ export default function TeamSection({ darkMode }: Props) {
               scrollSnapAlign: "start" as const};
             const cardInner = (
               <>
+                <div
+                  aria-hidden
+                  className="absolute inset-0 h-full w-full"
+                  style={{
+                    background: darkMode
+                      ? "linear-gradient(160deg, rgba(79,70,229,0.22) 0%, rgba(15,23,42,0.95) 55%, rgba(15,23,42,1) 100%)"
+                      : "linear-gradient(160deg, rgba(79,70,229,0.14) 0%, rgba(226,232,240,0.65) 45%, rgba(241,245,249,0.98) 100%)"}}
+                />
                 {member.image ? (
                   <ImageWithFallback
                     src={member.image}
@@ -193,14 +201,14 @@ export default function TeamSection({ darkMode }: Props) {
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 ) : (
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 h-full w-full"
-                    style={{
-                      background: darkMode
-                        ? "linear-gradient(160deg, rgba(79,70,229,0.22) 0%, rgba(15,23,42,0.95) 55%, rgba(15,23,42,1) 100%)"
-                        : "linear-gradient(160deg, rgba(79,70,229,0.14) 0%, rgba(226,232,240,0.65) 45%, rgba(241,245,249,0.98) 100%)"}}
-                  />
+                  <div className="absolute inset-x-0 top-0 bottom-[4.25rem] flex items-end justify-center overflow-visible px-1">
+                    <img
+                      src={TEAM_PLACEHOLDER_IMAGE}
+                      alt=""
+                      aria-hidden
+                      className="h-[118%] w-[118%] max-w-none object-contain translate-y-9 opacity-95"
+                    />
+                  </div>
                 )}
                 <div
                   className="pointer-events-none absolute inset-0"

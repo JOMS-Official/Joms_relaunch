@@ -132,11 +132,12 @@ export default function ContactPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-                    className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
+                    className="w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
-                      color: darkMode ? "#F8FAFC" : "#020617"}}
+                      color: darkMode ? "#F8FAFC" : "#020617",
+                      fontSize: "16px"}}
                   />
                   {nameError ? (
                     <p className="mt-1.5 text-xs text-red-400">{nameError}</p>
@@ -152,11 +153,12 @@ export default function ContactPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setTouched((t) => ({ ...t, email: true }))}
-                    className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
+                    className="w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
-                      color: darkMode ? "#F8FAFC" : "#020617"}}
+                      color: darkMode ? "#F8FAFC" : "#020617",
+                      fontSize: "16px"}}
                   />
                   {emailError ? (
                     <p className="mt-1.5 text-xs text-red-400">{emailError}</p>
@@ -171,11 +173,12 @@ export default function ContactPage() {
                     placeholder="Enter your message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-transparent text-sm outline-none resize-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
+                    className="w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none resize-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
-                      color: darkMode ? "#F8FAFC" : "#020617"}}
+                      color: darkMode ? "#F8FAFC" : "#020617",
+                      fontSize: "16px"}}
                   />
                 </div>
                 <button
