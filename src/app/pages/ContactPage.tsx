@@ -13,7 +13,9 @@ export default function ContactPage() {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(() => {
+  return localStorage.getItem("contact_submitted") === "true";
+});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -54,6 +56,7 @@ export default function ContactPage() {
     });
 
     setSubmitted(true);
+localStorage.setItem("contact_submitted", "true");
     setName("");
     setEmail("");
     setMessage("");
@@ -132,7 +135,7 @@ export default function ContactPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-                    className="w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
+                    className={`glass-form-input w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30 ${darkMode ? "glass-form-input--dark" : "glass-form-input--light"}`}
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",
@@ -153,7 +156,7 @@ export default function ContactPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setTouched((t) => ({ ...t, email: true }))}
-                    className="w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30"
+                    className={`glass-form-input w-full px-4 py-3 rounded-xl bg-transparent text-base outline-none transition-all focus:ring-2 focus:ring-[#4F46E5]/30 ${darkMode ? "glass-form-input--dark" : "glass-form-input--light"}`}
                     style={{
                       background: darkMode ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
                       border: darkMode ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.08)",

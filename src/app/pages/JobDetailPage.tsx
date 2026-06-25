@@ -55,6 +55,9 @@ export default function JobDetailPage() {
 
   const [showApplication, setShowApplication] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+const [hasApplied, setHasApplied] = useState(() => {
+  return localStorage.getItem(`applied_job_${job?.id}`) === "true";
+});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -133,6 +136,8 @@ export default function JobDetailPage() {
         resumeFile,
       });
       setSubmitted(true);
+setHasApplied(true);
+localStorage.setItem(`applied_job_${job?.id}`, "true");
       setTimeout(() => {
         setSubmitted(false);
         setShowApplication(false);
@@ -307,15 +312,20 @@ export default function JobDetailPage() {
               </dl>
             </div>
             <button
-              type="button"
-              onClick={() => setShowApplication(true)}
-              className="w-full max-w-[384px] py-3.5 rounded-xl text-white text-sm font-medium transition-transform hover:scale-[1.02]"
-              style={{
-                background: "linear-gradient(90deg, #4F46E5, #7B5CFF)",
-                boxShadow: "0 8px 24px rgba(79,70,229,0.45)"}}
-            >
-              Apply Now
-            </button>
+  type="button"
+  onClick={() => !hasApplied && setShowApplication(true)}
+  disabled={hasApplied}
+  className="w-full max-w-[384px] py-3.5 rounded-xl text-white text-sm font-medium transition-transform"
+  style={{
+    background: hasApplied
+      ? "rgba(255,255,255,0.08)"
+      : "linear-gradient(90deg, #4F46E5, #7B5CFF)",
+    boxShadow: hasApplied ? "none" : "0 8px 24px rgba(79,70,229,0.45)",
+    cursor: hasApplied ? "not-allowed" : "pointer",
+    opacity: hasApplied ? 0.7 : 1}}
+>
+  {hasApplied ? "✓ Already Applied" : "Apply Now"}
+</button>
           </aside>
         </div>
       </div>
